@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,6 +18,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@Table(name = "USERS")
 public class User {
 	
 	@Id @GeneratedValue
