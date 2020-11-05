@@ -18,32 +18,34 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Comment {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "comment_id")
 	private Long id;
-	
+
 	@Lob
 	private String content;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdDate;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
-	
+
 	private int good;
-	
+
 	private boolean deleted;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
-	
+
 }
