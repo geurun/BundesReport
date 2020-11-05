@@ -8,6 +8,7 @@ class BundesReportApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
