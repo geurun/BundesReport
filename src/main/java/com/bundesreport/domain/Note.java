@@ -45,4 +45,15 @@ public class Note {
 	@JoinColumn(name = "user_id", insertable = false, updatable = false)
 	private User receiver;
 
+	//==relational method==//
+	public void setSender(User sender) {
+		this.sender = sender;
+		sender.getSendNotes().add(this);
+	}
+	
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
+		receiver.getReceiveNotes().add(this);
+	}
+	
 }

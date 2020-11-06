@@ -59,4 +59,11 @@ public class Post {
 
 	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();
+	
+	//==relational method==//
+	public void setUser(User user) {
+		this.user = user;
+		user.getPosts().add(this);
+	}
+	
 }
