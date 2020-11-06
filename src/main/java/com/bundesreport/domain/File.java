@@ -32,5 +32,11 @@ public class File {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
+	
+	//==relational method==//
+	public void setPost(Post post) {
+		this.post = post;
+		post.getFiles().add(this);
+	}
 
 }
