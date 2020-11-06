@@ -7,66 +7,42 @@
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">BundesReport</div>
+				<div class="sidebar-brand-text mx-3" th:text="${sidebar.title}"></div>
 			</a>
-
-			<hr class="sidebar-divider my-0" />
-
-			<li class="nav-item active">
-				<a class="nav-link" href="index.html">
-					<i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span>
-				</a>
-			</li>
 
 			<hr class="sidebar-divider" />
 
-			<div class="sidebar-heading">Interface</div>
+			<div class="sidebar-heading" th:text="${sidebar.menu}"></div>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="fas fa-fw fa-cog"></i><span>Components</span>
+					<i class="fas fa-fw fa-cog"></i><span th:text=${sidebar.board}></span>
 				</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="#">Buttons</a>
-						<a class="collapse-item" href="#">Cards</a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.freeBoard}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.abroadBoard}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.livingQA}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.fleaMarket}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.jobSearch}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.club}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.eventNotification}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.recipe}"></span></a>
+						<a class="collapse-item" href="#"><span th:text="${sidebar.gallery}"></span></a>
 					</div>
 				</div>
 			</li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-					<i class="fas fa-fw fa-wrench"></i><span>Utilities</span>
-				</a>
-				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="#">Colors</a>
-						<a class="collapse-item" href="#">Borders</a>
-						<a class="collapse-item" href="#">Animations</a>
-						<a class="collapse-item" href="#">Other</a>
-					</div>
-				</div></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Addons</div>
+			<div class="sidebar-heading">추가 메뉴</div>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item">
-				<a class="nav-link" href="charts.html">
-					<i class="fas fa-fw fa-chart-area"></i><span>Charts</span>
-				</a>
-			</li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item">
-				<a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i><span>Tables</span>
+				<a class="nav-link" href="#">
+					<i class="fas fa-fw fa-chart-area"></i><span>향후 추가</span>
 				</a>
 			</li>
 
