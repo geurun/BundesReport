@@ -17,6 +17,6 @@ public class PageController {
 	public String home() {
 		Locale.setDefault(Locale.ROOT);
 		System.out.println(messageSource.getMessage("title", new String[] { "title" }, Locale.getDefault()));
-		return "board.html";
+		return "home.html";
 	}
 }
