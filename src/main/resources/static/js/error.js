@@ -11,4 +11,3 @@ $(document).mousemove(function(event) {
     'transform': 'rotate(' + rot + 'deg)'
   });
 });
-
