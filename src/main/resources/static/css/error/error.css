@@ -1,17 +1,20 @@
 .full-screen {
-	background-color: #7aa5d2;
-	width: 100vw;
-	height: 100vh;
-	color: white;
-	font-family: 'Arial Black';
-	text-align: center;
+  background-color: #7aa5d2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  color: white;
+  font-family: 'Arial Black';
+  text-align: center;
 }
 
 .container {
-	padding-top: 4em;
-	width: 50%;
-	display: block;
-	margin: 0 auto;
+  padding-top: 4em;
+  display: block;
+  margin: 0 auto;
 }
 
 .error-num {
@@ -19,23 +22,23 @@
 }
 
 .eye {
-	background: #fff;
-	border-radius: 50%;
-	display: inline-block;
-	height: 100px;
-	position: relative;
-	width: 100px;
+  background: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  height: 6.3rem;
+  position: relative;
+  width: 6.3rem;
 }
 
 .eye::after {
-	background: #000;
-	border-radius: 50%;
-	bottom: 56.1px;
-	content: ' ';
-	height: 33px;
-	position: absolute;
-	right: 33px;
-	width: 33px;
+  background: #000;
+  border-radius: 50%;
+  bottom: 3.8rem;
+  content: ' ';
+  height: 2rem;
+  position: absolute;
+  right: 2rem;
+  width: 2rem;
 }
 
 .italic {
