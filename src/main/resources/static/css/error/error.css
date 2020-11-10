@@ -18,7 +18,7 @@
 }
 
 .error-num {
-  font-size: 8em;
+	font-size: 8em;
 }
 
 .eye {
@@ -29,6 +29,7 @@
   position: relative;
   width: 6.3rem;
 }
+
 .eye::after {
   background: #000;
   border-radius: 50%;
@@ -41,18 +42,19 @@
 }
 
 .italic {
-  font-style: italic;
+	font-style: italic;
 }
 
 p {
-  margin-bottom: 4em;
+	margin-bottom: 4em;
 }
 
 a {
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase;
+	color: white;
+	text-decoration: none;
+	text-transform: uppercase;
 }
+
 a:hover {
-  color: lightgray;
+	color: lightgray;
 }
