@@ -4,18 +4,21 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BundesReport - 404</title>
+<title>BundesReport - 500</title>
 <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
 <link type="text/css" rel="stylesheet" th:href="@{/css/error/error.css}" />
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/js/error.js}"></script>
 </head>
 <body>
-	<div id="notfound">
-		<div class="notfound">
-			<div class="notfound-404"></div>
-			<h1>404</h1>
-			<h2>Oops! Page Not Be Found</h2>
-			<a href="/">Back to home</a>
-		</div>
-	</div>
+	<div class="full-screen">
+        <div class='container'>
+            <span class="error-num">4</span>
+            <div class='eye'></div>
+            <span class="error-num">4</span>
+            <p class="sub-text">Oh eyeballs! Something went wrong. We're <span class="italic">looking</span> to see what happened.</p>
+            <a href="/">Go back</a>
+        </div>
+    </div>
 </body>
 </html>
