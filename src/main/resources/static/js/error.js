@@ -1,6 +1,4 @@
 $(document).mousemove(function(event) {
-
-	console.log("in");
   var eye = $(".eye");
   var x = (eye.offset().left) + (eye.width() / 2);
   var y = (eye.offset().top) + (eye.height() / 2);
