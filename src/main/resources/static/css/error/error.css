@@ -1,7 +1,11 @@
 .full-screen {
   background-color: #7aa5d2;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
   color: white;
   font-family: 'Arial Black';
   text-align: center;
@@ -9,7 +13,6 @@
 
 .container {
   padding-top: 4em;
-  width: 50%;
   display: block;
   margin: 0 auto;
 }
@@ -22,19 +25,19 @@
   background: #fff;
   border-radius: 50%;
   display: inline-block;
-  height: 100px;
+  height: 6.3rem;
   position: relative;
-  width: 100px;
+  width: 6.3rem;
 }
 .eye::after {
   background: #000;
   border-radius: 50%;
-  bottom: 56.1px;
+  bottom: 3.8rem;
   content: ' ';
-  height: 33px;
+  height: 2rem;
   position: absolute;
-  right: 33px;
-  width: 33px;
+  right: 2rem;
+  width: 2rem;
 }
 
 .italic {

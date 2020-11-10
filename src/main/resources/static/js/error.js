@@ -1,4 +1,6 @@
 $(document).mousemove(function(event) {
+
+	console.log("in");
   var eye = $(".eye");
   var x = (eye.offset().left) + (eye.width() / 2);
   var y = (eye.offset().top) + (eye.height() / 2);
@@ -10,5 +12,4 @@ $(document).mousemove(function(event) {
     '-ms-transform': 'rotate(' + rot + 'deg)',
     'transform': 'rotate(' + rot + 'deg)'
   });
-});
-
+});(jQuery); // End of use strict
