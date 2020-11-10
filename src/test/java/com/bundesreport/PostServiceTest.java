@@ -1,5 +1,6 @@
 package com.bundesreport;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -63,5 +64,40 @@ public class PostServiceTest {
 			System.out.println("" + post.getId() + post.getTitle());
 		}
 		assertEquals(2, i);
+	}
+	
+	@Test
+	public void 카테고리별_포스트_조회() throws Exception {
+		//given
+		Post post1 = new Post();
+		post1.setTitle("title1");
+		post1.setContent("content1");
+		post1.setCategory(1);
+		Post post2 = new Post();
+		post2.setTitle("title2");
+		post2.setContent("content2");
+		post2.setCategory(1);
+		Post post3 = new Post();
+		post3.setTitle("title3");
+		post3.setContent("content3");
+		post3.setCategory(2);
+		postService.savePost(post1);
+		postService.savePost(post2);
+		postService.savePost(post3);
+		
+		//when
+		List<Post> postList1 = postService.findPostsByCategory(1);
+		List<Post> postList2 = postService.findPostsByCategory(2);
+		
+		//then
+		int i1 = 0, i2 = 0;
+		for (Post post : postList1) {
+			i1++;
+		}
+		for (Post post : postList2) {
+			i2++;
+		}
+		assertEquals(2, i1);
+		assertEquals(1, i2);
 	}
 }
