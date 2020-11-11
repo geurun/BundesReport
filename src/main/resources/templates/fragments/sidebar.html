@@ -3,14 +3,12 @@
 <th:block th:fragment="sidebarFragment">
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-				<div id="logo">
-				<img class="sidebar-full-logo" th:src="@{/img/BundesReportLogo.png}">
-				<img class="sidebar-mini-logo" th:src="@{/img/BundesReportLogoMini.png}">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+				<div>
+					<img class="sidebar-full-logo" th:src="@{/img/BundesReportLogo.png}">
+					<img class="sidebar-mini-logo" th:src="@{/img/BundesReportLogoMini.png}">
 				</div>
 			</a>
-			<br />
-			<br />
 			<hr class="sidebar-divider" />
 			<div class="sidebar-heading" th:text="${sidebar.menu}"></div>
 			<!-- Nav Item - Pages Collapse Menu -->
