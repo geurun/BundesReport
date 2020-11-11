@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasRole("USER").and().formLogin().loginPage("/singin").loginProcessingUrl("/signin")
 				.defaultSuccessUrl("/").failureUrl("/signin?error").usernameParameter("userName")
 				.passwordParameter("hashedPassword").and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/signin")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/")
 				.invalidateHttpSession(true).and().exceptionHandling();
 	}
 
