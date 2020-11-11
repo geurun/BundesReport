@@ -12,12 +12,11 @@ public enum CategoryType {
 	GALLERY(9);
 
 	private int id;
-	
+
 	CategoryType(int id) {
-		// TODO Auto-generated constructor stub
 		this.id = id;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
