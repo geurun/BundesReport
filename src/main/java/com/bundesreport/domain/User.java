@@ -2,7 +2,10 @@ package com.bundesreport.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,17 +17,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bundesreport.type.LanguageStatus;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
 @Table(name = "USERS")
-public class User {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = -1457804012376126489L;
 
 	@Id
 	@GeneratedValue
@@ -57,4 +69,52 @@ public class User {
 	@OneToMany(mappedBy = "receiver")
 	private List<Note> receiveNotes = new ArrayList<>();
 
+	@Builder
+	public User(Long id, String userName, String hashedPassword, String email, LanguageStatus languageStatus,
+			boolean deleted) {
+		this.id = id;
+		this.userName = userName;
+		this.hashedPassword = hashedPassword;
+		this.email = email;
+		this.languageStatus = languageStatus;
+		this.deleted = deleted;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// ToDo: Administrator or User
+		Set<GrantedAuthority> roles = new HashSet<>();
+		roles.add(new SimpleGrantedAuthority("USER"));
+		return roles;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.hashedPassword;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return !this.deleted;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return !this.deleted;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return !this.deleted;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return !this.deleted;
+	}
 }
