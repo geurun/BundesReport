@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 
+import com.bundesreport.domain.User;
 import com.bundesreport.util.MessageUtil;
 
 import lombok.Getter;
@@ -13,10 +14,15 @@ import lombok.Setter;
 @Setter
 public class SidebarBean {
 
-	public SidebarBean(MessageSource messageSource, Locale locale) {
-		if (locale.equals(null)) {
-			locale = Locale.ROOT;
+	public SidebarBean(MessageSource messageSource, User user) {
+		// ToDo: Selected Locale
+		Locale locale = Locale.ROOT;
+
+		if (user != null) {
+			this.user = user;
+			locale = user.getLanguageStatus().getLocale();
 		}
+
 		MessageUtil msgUtil = new MessageUtil();
 		title = msgUtil.getMessage(messageSource, "title", locale);
 		home = msgUtil.getMessage(messageSource, "menu.home", locale);
@@ -32,6 +38,8 @@ public class SidebarBean {
 		recipe = msgUtil.getMessage(messageSource, "menu.recipe", locale);
 		gallery = msgUtil.getMessage(messageSource, "menu.gallery", locale);
 	}
+
+	private User user;
 
 	private String title;
 

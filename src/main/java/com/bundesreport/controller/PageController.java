@@ -1,7 +1,5 @@
 package com.bundesreport.controller;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -19,10 +17,10 @@ public class PageController {
 
 	protected Model createLayout(Model model, User user) {
 		// ToDo: Use User's initial Language or Selected Language
-		SidebarBean sidebar = new SidebarBean(messageSource, Locale.ROOT);
+		SidebarBean sidebar = new SidebarBean(messageSource, null);
 		TopbarBean topbar = new TopbarBean(messageSource, null);
 		if (user != null) {
-			sidebar = new SidebarBean(messageSource, Locale.ROOT);
+			sidebar = new SidebarBean(messageSource, user);
 			topbar = new TopbarBean(messageSource, user);
 		}
 		model.addAttribute("sidebar", sidebar);
