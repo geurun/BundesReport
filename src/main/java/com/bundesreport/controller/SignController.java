@@ -1,10 +1,12 @@
 package com.bundesreport.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
 
@@ -17,17 +19,27 @@ public class SignController extends PageController {
 	private final UserService userService;
 
 	@GetMapping(value = "/signin")
-	public String signin(Model model) {
-		model = createSidebar(model);
+	public String signin(Model model, Authentication authentication) {
+		if (authentication != null) {
+			model = createLayout(model, (User) authentication.getPrincipal());
+			model.addAttribute("userForm", new UserForm());
+			return "signin";
+		}
+		model = createLayout(model, null);
 		model.addAttribute("userForm", new UserForm());
 		return "signin";
 	}
 
 	@GetMapping(value = "/signup")
-	public String signup(Model model) {
-		model = createSidebar(model);
+	public String signup(Model model, Authentication authentication) {
+		if (authentication != null) {
+			model = createLayout(model, (User) authentication.getPrincipal());
+			model.addAttribute("userForm", new UserForm());
+			return "signup";
+		}
+		model = createLayout(model, null);
 		model.addAttribute("userForm", new UserForm());
-		return "signup.html";
+		return "signup";
 	}
 
 	@PostMapping("/signup")
