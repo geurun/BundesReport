@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerFragment" />
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Nr.</th>
+				<th>Title</th>
+				<th>Content</th>
+				<th>Category</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="post : ${posts}">
+				<td><span th:text="${post.id}"></span></td>
+				<td><span th:text="${post.title}"></span></td>
+				<td><span th:text="${post.content}"></span></td>
+				<td><span th:text="${post.category}"></span></td>
+				<td><span th:text="${post.created_date}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
