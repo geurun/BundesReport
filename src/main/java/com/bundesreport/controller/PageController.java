@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bundesreport.component.SidebarBean;
+import com.bundesreport.component.TopbarBean;
+import com.bundesreport.domain.User;
 
 @Controller
 public class PageController {
@@ -16,16 +17,16 @@ public class PageController {
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = "/")
-	public String home(Model model) {
-		model = createSidebar(model);
-		return "home.html";
-	}
-
-	private Model createSidebar(Model model) {
+	protected Model createLayout(Model model, User user) {
 		// ToDo: Use User's initial Language or Selected Language
 		SidebarBean sidebar = new SidebarBean(messageSource, Locale.ROOT);
+		TopbarBean topbar = new TopbarBean(messageSource, null);
+		if (user != null) {
+			sidebar = new SidebarBean(messageSource, Locale.ROOT);
+			topbar = new TopbarBean(messageSource, user);
+		}
 		model.addAttribute("sidebar", sidebar);
+		model.addAttribute("topbar", topbar);
 		return model;
 	}
 }

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class PostController {
+public class PostController extends PageController {
 
 	private final PostService postService;
 	
@@ -23,6 +23,7 @@ public class PostController {
 	public String list(@PathVariable("categoryName") CategoryType categoryName, Model model) {
 		int categoryId = categoryName.getId();
 		List<Post> posts = postService.findPostsByCategory(categoryId);
+		model = createLayout(model, null);
 		model.addAttribute("posts", posts);
 		return "posts/postList";
 	}

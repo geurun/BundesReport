@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout:decorator="home">
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<th:block layout:fragment="content">
 	<div class="container-fluid">
 		<div class="card shadow mb-4">
             <div class="card-body">
@@ -29,10 +29,6 @@
 			</div>
 		</div>	
 	</div>
-
-	
-	
-	
-</body>
+</th:block>
 </html>
 
