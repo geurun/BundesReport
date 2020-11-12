@@ -12,6 +12,7 @@ import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.repository.PostRepository;
 import com.bundesreport.repository.UserRepository;
+import com.bundesreport.type.CategoryType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +24,6 @@ public class PostService {
 	private final PostRepository postRepository;
 	private final UserService userService;
 	
-	/**글 저장
-	@Transactional
-	public Long savePost(Post post) {
-		postRepository.save(post);
-		return post.getId();
-	}*/
-	
 	/**글 조회*/
 	public Post findPost(Long postId) {
 		return postRepository.findOne(postId);
@@ -39,8 +33,8 @@ public class PostService {
 		return postRepository.findAll();
 	}
 	
-	public List<Post> findPostsByCategory(int categoryId) {
-		return postRepository.findByCategory(categoryId);
+	public List<Post> findPostsByCategory(CategoryType categoryType) {
+		return postRepository.findByCategory(categoryType);
 	}
 	
 	@Transactional

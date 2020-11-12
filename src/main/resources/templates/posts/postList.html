@@ -9,20 +9,18 @@
             		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nr.</th>
-								<th>Title</th>
-								<th>Content</th>
-								<th>Category</th>
-								<th>Date</th>
+								<th>작성자</th>
+								<th>제목</th>
+								<th>게시판</th>
+								<th>작성일시</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="post : ${posts}">
-								<td><span th:text="${post.id}"></span></td>
+								<td><span th:text="${post.user}"></span></td>
 								<td><span th:text="${post.title}"></span></td>
-								<td><span th:text="${post.content}"></span></td>
 								<td><span th:text="${post.category}"></span></td>
-								<td><span th:text="${post.created_date}"></span></td>
+								<td><span th:text="${post.createdDate}"></span></td>
 							</tr>
 						</tbody>
 					</table>

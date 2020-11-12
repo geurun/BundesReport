@@ -24,23 +24,29 @@ import lombok.RequiredArgsConstructor;
 public class PostController extends PageController {
 
 	private final PostService postService;
-	
+
 	@GetMapping(value = "/posts/{categoryName}")
-	public String list(@PathVariable("categoryName") CategoryType categoryName, Model model) {
-		int categoryId = categoryName.getId();
-		List<Post> posts = postService.findPostsByCategory(categoryId);
-		model = createLayout(model, null);
+	public String list(@PathVariable("categoryName") String categoryName, Model model, Authentication authentication) {
+		if (authentication != null) {
+			model = createLayout(model, (User)authentication.getPrincipal());
+		}
+		else {
+			model = createLayout(model, null);
+		}
+		CategoryType categoryType = CategoryType.valueOf(categoryName.toUpperCase());
+		List<Post> posts = postService.findPostsByCategory(categoryType);
 		model.addAttribute("posts", posts);
 		return "posts/postList";
 	}
-	
+
 	@GetMapping(value = "/posts/new")
 	public String createForm(Model model, Authentication authentication) {
 		model = createLayout(model, (User) authentication.getPrincipal());
 		model.addAttribute("postForm", new PostForm((User) authentication.getPrincipal()));
+		model.addAttribute("categories", CategoryType.values());
 		return "posts/createPostForm";
 	}
-	
+
 	@PostMapping(value = "/posts/new")
 	public String create(PostForm form) {
 		postService.createPost(form);

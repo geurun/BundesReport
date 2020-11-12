@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
 import com.bundesreport.domain.Post;
+import com.bundesreport.type.CategoryType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,8 +34,8 @@ public class PostRepository {
 		return em.createQuery("select p from Post p", Post.class).getResultList();
 	}
 	
-	public List<Post> findByCategory(int categoryId) {
-		return em.createQuery("select p from Post p where p.category = :category", Post.class).setParameter("category", categoryId).getResultList();
+	public List<Post> findByCategory(CategoryType categoryType) {
+		return em.createQuery("select p from Post p where p.category = :category", Post.class).setParameter("category", categoryType).getResultList();
 	}
 }
 
