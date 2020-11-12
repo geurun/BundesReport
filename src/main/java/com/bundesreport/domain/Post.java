@@ -64,13 +64,14 @@ public class Post {
 	private List<File> files = new ArrayList<>();
 	
 	@Builder
-	public Post(Long id, String title, String content, CategoryType category, boolean deleted, User user) {
+	public Post(Long id, String title, String content, CategoryType category, User user, boolean deleted) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.category = category;
-		this.deleted = deleted;
 		this.user = user;
+		this.deleted = deleted;
+		
 		//this.createdDate = LocalDateTime.now();
 	}
 	

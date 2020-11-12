@@ -17,7 +17,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="post : ${posts}">
-								<td><span th:text="${post.user}"></span></td>
+								<td><span th:text="${post.user.username}"></span></td>
 								<td><span th:text="${post.title}"></span></td>
 								<td><span th:text="${post.category}"></span></td>
 								<td><span th:text="${post.createdDate}"></span></td>

@@ -42,13 +42,14 @@ public class PostController extends PageController {
 	@GetMapping(value = "/posts/new")
 	public String createForm(Model model, Authentication authentication) {
 		model = createLayout(model, (User) authentication.getPrincipal());
-		model.addAttribute("postForm", new PostForm((User) authentication.getPrincipal()));
+		model.addAttribute("postForm", new PostForm());
 		model.addAttribute("categories", CategoryType.values());
 		return "posts/createPostForm";
 	}
 
 	@PostMapping(value = "/posts/new")
-	public String create(PostForm form) {
+	public String create(PostForm form, Authentication authentication) {
+		form.setUser((User) authentication.getPrincipal());
 		postService.createPost(form);
 		return "redirect:/";
 	}

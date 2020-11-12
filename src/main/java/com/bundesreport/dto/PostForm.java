@@ -27,18 +27,4 @@ public class PostForm {
 		return Post.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
 				.build();
 	}
-	
-	@Builder
-	/*public PostForm(Long id, String title, String content, int category, LocalDateTime createdDate, boolean deleted, User user) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.category = category;
-		this.createdDate = createdDate;
-		this.deleted = deleted;
-		this.user = user;
-	}*/
-	public PostForm(User user) {
-		this.user = user;
-	}
 }
