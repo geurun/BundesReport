@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,6 +60,21 @@ public class Post {
 
 	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();
+	
+	@Builder
+	public Post(Long id, String title, String content, int category, boolean deleted, User user) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.deleted = deleted;
+		this.user = user;
+		//this.createdDate = LocalDateTime.now();
+	}
+	
+	public Post() {
+		
+	}
 	
 	//==relational method==//
 	public void setUser(User user) {
