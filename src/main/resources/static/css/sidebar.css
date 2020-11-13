@@ -1,9 +1,12 @@
 .sidebar-full-logo {
-	width: 13rem;
-	padding-top: 3rem;
+	width: 12rem;
 }
 
 .sidebar-mini-logo {
-	width: 7.5rem;
-	padding-top: 3rem;
+	width: 6.5rem;
 }
+
+.sidebar-full-logo, .sidebar-mini-logo {
+	display: inline;
+}
+
