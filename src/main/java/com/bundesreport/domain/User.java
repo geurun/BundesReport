@@ -21,6 +21,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.bundesreport.dto.UserForm;
 import com.bundesreport.type.LanguageStatus;
 
 import lombok.AccessLevel;
@@ -78,6 +79,11 @@ public class User implements UserDetails {
 		this.email = email;
 		this.languageStatus = languageStatus;
 		this.deleted = deleted;
+	}
+
+	public UserForm toUserForm() {
+		return UserForm.builder().id(id).userName(userName).hashedPassword(hashedPassword).email(email)
+				.languageStatus(languageStatus).deleted(deleted).build();
 	}
 
 	@Override
