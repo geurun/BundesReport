@@ -14,7 +14,7 @@ public enum LanguageStatus {
 	public String getString() {
 		return this.value;
 	}
-	
+
 	public Locale getLocale() {
 		if (this.value == "KOREAN") {
 			return Locale.KOREAN;

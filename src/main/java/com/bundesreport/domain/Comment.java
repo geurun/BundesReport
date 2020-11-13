@@ -49,13 +49,13 @@ public class Comment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
-	
-	//==relational method==//
+
+	// ==relational method==//
 	public void setPost(Post post) {
 		this.post = post;
 		post.getComments().add(this);
 	}
-	
+
 	public void setUser(User user) {
 		this.user = user;
 		user.getComments().add(this);

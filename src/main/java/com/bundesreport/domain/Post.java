@@ -62,7 +62,7 @@ public class Post {
 
 	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();
-	
+
 	@Builder
 	public Post(Long id, String title, String content, CategoryType category, User user, boolean deleted) {
 		this.id = id;
@@ -71,18 +71,18 @@ public class Post {
 		this.category = category;
 		this.user = user;
 		this.deleted = deleted;
-		
-		//this.createdDate = LocalDateTime.now();
+
+		// this.createdDate = LocalDateTime.now();
 	}
-	
+
 	public Post() {
-		
+
 	}
-	
-	//==relational method==//
+
+	// ==relational method==//
 	public void setUser(User user) {
 		this.user = user;
 		user.getPosts().add(this);
 	}
-	
+
 }

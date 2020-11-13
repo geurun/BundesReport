@@ -6,7 +6,6 @@ import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.type.CategoryType;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

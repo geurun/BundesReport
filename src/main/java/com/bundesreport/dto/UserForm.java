@@ -34,7 +34,7 @@ public class UserForm {
 				.hashedPassword(new BCryptPasswordEncoder().encode(hashedPassword)).email(email)
 				.languageStatus(languageStatus).deleted(deleted).build();
 	}
-	
+
 	@Builder
 	public UserForm(Long id, String userName, String hashedPassword, String email, LanguageStatus languageStatus,
 			boolean deleted) {
