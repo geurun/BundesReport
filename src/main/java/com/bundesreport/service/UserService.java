@@ -24,10 +24,10 @@ public class UserService implements UserDetailsService {
 	private final UserRepository userRepository;
 
 	@Transactional
-	public Long createUser(UserForm userForm) {
+	public User createUser(UserForm userForm) {
 		User user = userForm.toEntity();
 		userRepository.save(user);
-		return user.getId();
+		return user;
 	}
 
 	@Transactional

@@ -1,6 +1,8 @@
 package com.bundesreport.controller;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +46,9 @@ public class SignController extends PageController {
 
 	@PostMapping("/signup")
 	public String signup(UserForm form) {
-		userService.createUser(form);
+		User user = userService.createUser(form);
+		SecurityContextHolder.getContext().setAuthentication(
+				new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
 		return "redirect:/";
 	}
 }

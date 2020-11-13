@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/signin", "/signup").permitAll().antMatchers("/user/**")
-				.hasRole("USER").and().formLogin().loginPage("/singin").loginProcessingUrl("/signin")
+				.authenticated().and().formLogin().loginPage("/signin").loginProcessingUrl("/signin")
 				.defaultSuccessUrl("/").failureUrl("/signin?error").usernameParameter("userName")
 				.passwordParameter("hashedPassword").and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/")
