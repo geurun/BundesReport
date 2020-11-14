@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bundesreport.domain.Post;
+import com.bundesreport.dto.PostForm;
 import com.bundesreport.repository.PostRepository;
+import com.bundesreport.type.CategoryType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,13 +19,6 @@ public class PostService {
 
 	private final PostRepository postRepository;
 
-	/** 글 저장 */
-	@Transactional
-	public Long savePost(Post post) {
-		postRepository.save(post);
-		return post.getId();
-	}
-
 	/** 글 조회 */
 	public Post findPost(Long postId) {
 		return postRepository.findOne(postId);
@@ -33,7 +28,16 @@ public class PostService {
 		return postRepository.findAll();
 	}
 
-	public List<Post> findPostsByCategory(int categoryId) {
-		return postRepository.findByCategory(categoryId);
+	public List<Post> findPostsByCategory(CategoryType categoryType) {
+		return postRepository.findByCategory(categoryType);
 	}
+
+	@Transactional
+	public Long createPost(PostForm postForm) {
+		// postForm.setUser(user);
+		Post post = postForm.toEntity();
+		postRepository.save(post);
+		return post.getId();
+	}
+
 }

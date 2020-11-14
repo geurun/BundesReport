@@ -17,14 +17,8 @@ public class PageController {
 
 	protected Model createLayout(Model model, User user) {
 		// ToDo: Use User's initial Language or Selected Language
-		SidebarBean sidebar = new SidebarBean(messageSource, null);
-		TopbarBean topbar = new TopbarBean(messageSource, null);
-		if (user != null) {
-			sidebar = new SidebarBean(messageSource, user);
-			topbar = new TopbarBean(messageSource, user);
-		}
-		model.addAttribute("sidebar", sidebar);
-		model.addAttribute("topbar", topbar);
+		model.addAttribute("sidebar", new SidebarBean(messageSource, user));
+		model.addAttribute("topbar", new TopbarBean(messageSource, user));
 		return model;
 	}
 }

@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.bundesreport.type.CategoryType;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +41,7 @@ public class Post {
 	@Lob
 	private String content;
 
-	private int category;
+	private CategoryType category;
 
 	@CreationTimestamp
 	private LocalDateTime createdDate;
@@ -59,11 +62,27 @@ public class Post {
 
 	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();
-	
-	//==relational method==//
+
+	@Builder
+	public Post(Long id, String title, String content, CategoryType category, User user, boolean deleted) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.user = user;
+		this.deleted = deleted;
+
+		// this.createdDate = LocalDateTime.now();
+	}
+
+	public Post() {
+
+	}
+
+	// ==relational method==//
 	public void setUser(User user) {
 		this.user = user;
 		user.getPosts().add(this);
 	}
-	
+
 }
