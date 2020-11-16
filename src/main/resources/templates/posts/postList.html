@@ -1,12 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/list">
 <th:block layout:fragment="content">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/post.css}" />
 	<div class="container-fluid">
+		<!-- Page Wrapper -->
+		<div id="wrapper">
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Main Content -->
+				<div id="content">
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+						<div
+							class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">
+								<span th:text="${sidebar.freeBoard}"></span>
+							</h1>
+						</div>
+						<div class="card shadow mb-4">
+							<div class="card-body">
+								<a href="/posts/new" class="btn btn-primary"><span>new</span></a>
+								<br> <br>
+								<div class="table-responsive">
+									<table class="table talbe-bordered" id="dataTable" width="100%"
+										cellspacing="0">
+										<thead>
+											<tr>
+												<th class="postnum">번호</th>
+												<th class="username">작성자</th>
+												<th class="title">제목</th>
+												<th class="date">작성날짜</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="post : ${posts}">
+												<td><span th:text="${post.id}"></span></td>
+												<td><span th:text="${post.user.username}"></span></td>
+												<td><a href=""
+													th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span
+														th:text="${post.title}"></span></a></td>
+												<td><span th:text="${post.createdDate}"></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">게시판</h1>
+		</div>
 		<div class="card shadow mb-4">
-            <div class="card-body">
-            <a href="/posts/new" class="btn btn-primary"><span>new</span></a>
-            	<div class="table-responsive">
-            		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<div class="card-body">
+				<a href="/posts/new" class="btn btn-primary"><span>new</span></a> <br>
+				<br>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
 						<thead>
 							<tr>
 								<th>작성자</th>
@@ -18,7 +74,9 @@
 						<tbody>
 							<tr th:each="post : ${posts}">
 								<td><span th:text="${post.user.username}"></span></td>
-								<td><a href="" th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
+								<td><a href=""
+									th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span
+										th:text="${post.title}"></span></a></td>
 								<td><span th:text="${post.category}"></span></td>
 								<td><span th:text="${post.createdDate}"></span></td>
 							</tr>
@@ -26,7 +84,7 @@
 					</table>
 				</div>
 			</div>
-		</div>	
+		</div> -->
 	</div>
 </th:block>
 </html>
