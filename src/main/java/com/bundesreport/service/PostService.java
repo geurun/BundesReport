@@ -1,5 +1,6 @@
 package com.bundesreport.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +38,16 @@ public class PostService {
 		// postForm.setUser(user);
 		Post post = postForm.toEntity();
 		postRepository.save(post);
+		return post.getId();
+	}
+	
+	@Transactional
+	public Long updatePost(PostForm postForm) {
+		Post post = postRepository.findOne(postForm.getId());
+		post.setTitle(postForm.getTitle());
+		post.setContent(postForm.getContent());
+		post.setCategory(postForm.getCategory());
+		post.setUpdatedDate(LocalDateTime.now());
 		return post.getId();
 	}
 

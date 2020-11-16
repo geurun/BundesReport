@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.service.PostService;
@@ -61,7 +62,9 @@ public class PostController extends PageController {
 	@GetMapping(value = "/posts/update/{postId}")
 	public String updateForm(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
 		model = createLayout(model, (User)authentication.getPrincipal());
-		model.addAttribute("postForm", new PostForm());
+		Post post = postService.findPost(postId);
+		model.addAttribute("postForm", post.toPostForm());
+		model.addAttribute("categories", CategoryType.values());
 		return "posts/updatePostForm";
 	}
 
