@@ -21,6 +21,7 @@ public class PostForm {
 	private String content;
 	private CategoryType category;
 	private LocalDateTime createdDate;
+	private LocalDateTime updatedDate;
 	private boolean deleted;
 	private User user;
 

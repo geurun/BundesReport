@@ -20,7 +20,7 @@
 								<td><span th:text="${post.user.username}"></span></td>
 								<td><a href="" th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
 								<td><span th:text="${post.category}"></span></td>
-								<td><span th:text="${post.createdDate}"></span></td>
+								<td><span th:text="${post.updatedDate}"></span></td>
 							</tr>
 						</tbody>
 					</table>
