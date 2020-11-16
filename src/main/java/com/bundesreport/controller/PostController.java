@@ -57,4 +57,12 @@ public class PostController extends PageController {
 		model.addAttribute("post", postService.findPost(postId));
 		return "posts/postDetail";
 	}
+	
+	@GetMapping(value = "/posts/update/{postId}")
+	public String updateForm(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
+		model = createLayout(model, (User)authentication.getPrincipal());
+		model.addAttribute("postForm", new PostForm());
+		return "posts/updatePostForm";
+	}
+
 }
