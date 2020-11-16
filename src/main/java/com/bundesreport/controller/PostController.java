@@ -45,4 +45,16 @@ public class PostController extends PageController {
 		postService.createPost(form);
 		return "redirect:/";
 	}
+	
+	@GetMapping(value = "/posts/detail/{postId}")
+	public String detail(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
+		if (authentication != null) {
+			model = createLayout(model, (User)authentication.getPrincipal());
+		}
+		else {
+			model = createLayout(model, null);
+		}
+		model.addAttribute("post", postService.findPost(postId));
+		return "posts/postDetail";
+	}
 }

@@ -9,16 +9,16 @@
             		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>�ۼ���</th>
-								<th>����</th>
-								<th>�Խ���</th>
-								<th>�ۼ��Ͻ�</th>
+								<th>작성자</th>
+								<th>제목</th>
+								<th>카테고리</th>
+								<th>작성날짜</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="post : ${posts}">
 								<td><span th:text="${post.user.username}"></span></td>
-								<td><span th:text="${post.title}"></span></td>
+								<td><a href="" th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
 								<td><span th:text="${post.category}"></span></td>
 								<td><span th:text="${post.createdDate}"></span></td>
 							</tr>
