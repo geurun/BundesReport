@@ -1,0 +1,28 @@
+#canvas {
+	background-color: #A2D4FF;
+	width: 1000px;
+	height: 600px;
+}
+
+#line {
+	border: 3px solid #FFA3D4;
+}
+
+#text {
+	font-size: 23px;
+	width: 300px;
+	height: 30px;
+}
+
+#auth {
+	width: 100px;
+	height: 30px;
+}
+
+#result{
+	position: fixed;
+	top: 300px;
+	left:600px;
+	text-align:center;
+}
+
