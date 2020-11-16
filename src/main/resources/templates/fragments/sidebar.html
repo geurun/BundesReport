@@ -30,32 +30,14 @@
 					</div>
 				</div>
 			</li>
-
-			<!-- Divider -->
 			<hr class="sidebar-divider">
-			
-			<div class="sidebar-heading">이벤트</div>
+			<div class="sidebar-heading" th:text="${sidebar.event}"></div>
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-					<i class="fas fa-gamepad"></i><span>미니 게임</span>
-				</a>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/game/rain"><span>산성비</span></a>
-					</div>
-				</div>
-			</li>
-			
-			<!-- 
-			<div class="sidebar-heading">추가 메뉴</div>
-			<li class="nav-item">
-				<a class="nav-link" href="#">
-					<i class="fas fa-fw fa-chart-area"></i><span>향후 추가</span>
+				<a class="nav-link" href="/game/rain">
+					<i class="fas fa-gamepad"></i><span th:text="${sidebar.rain}"></span>
 				</a>
 			</li>
-
 			<hr class="sidebar-divider d-none d-md-block">
-			 -->
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>

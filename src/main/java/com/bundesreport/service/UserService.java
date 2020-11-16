@@ -17,21 +17,18 @@ import com.bundesreport.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
 	@Autowired
 	private final UserRepository userRepository;
 
-	@Transactional
-	public User createUser(UserForm userForm) {
-		User user = userForm.toEntity();
-		userRepository.save(user);
-		return user;
+	public User save(UserForm userForm) {
+		return userRepository.save(userForm.toEntity());
 	}
 
-	@Transactional
-	public User updateUser(UserForm userForm) {
+	public User update(UserForm userForm) {
 		User user = loadUserByUsername(userForm.getUserName());
 		if (!StringUtils.isEmpty(userForm.getHashedPassword())) {
 			user.setHashedPassword(new BCryptPasswordEncoder().encode(userForm.getHashedPassword()));
@@ -42,8 +39,7 @@ public class UserService implements UserDetailsService {
 		return user;
 	}
 
-	@Transactional
-	public void deleteUser(User user) {
+	public void delete(User user) {
 		userRepository.delete(user);
 	}
 
@@ -54,8 +50,6 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public User loadUserByUsername(String userName) throws UsernameNotFoundException {
-		Optional<User> userWrapper = userRepository.findByUserName(userName);
-		User user = userWrapper.get();
-		return user;
+		return userRepository.findByUserName(userName).get();
 	}
 }

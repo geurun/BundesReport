@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
 <th:block layout:fragment="content">
 	<link type="text/css" rel="stylesheet" th:href="@{/css/game/rain.css}" />
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<div id="canvas"></div>
 		<hr id="line" width="1000px" align="left">
-		<input id="text" placeholder="text"
-			onkeypress="keydown(event.keyCode)" autofocus>
+		<input id="text" placeholder="text" onkeypress="keydown(event.keyCode)" autofocus>
 		<button id="auth" onclick="keydown(13)">Eingabe</button>
-		<br> <font size="5" id="point">Die Punkt</font> / <font size="5"
-			id="heart">Das Leben</font>
+		<br> <font size="5" id="point">Die Punkt</font> / <font size="5" id="heart">Das Leben</font>
 		<div id="result"></div>
-
-
 		<script type="text/javascript">
 			var canvasWidth = 800; // 키워드 생성되는 가로범위
 			var canvasHeigth = 580; // 키워드 생성되는 세로범위
