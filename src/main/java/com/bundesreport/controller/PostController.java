@@ -64,8 +64,17 @@ public class PostController extends PageController {
 		model = createLayout(model, (User)authentication.getPrincipal());
 		Post post = postService.findPost(postId);
 		model.addAttribute("postForm", post.toPostForm());
+		model.addAttribute("post", post);
 		model.addAttribute("categories", CategoryType.values());
 		return "posts/updatePostForm";
 	}
-
+	
+	@PostMapping(value = "/posts/update/{postId}")
+	public String update(@PathVariable("postId") Long postId, PostForm form, Authentication authentication, Model model) {
+		model = createLayout(model, (User)authentication.getPrincipal());
+		//form.setId(postId);
+		//form.setUser((User)authentication.getPrincipal());
+		postService.updatePost(form, postId);
+		return "redirect:/posts/detail/" + postId;
+	}
 }

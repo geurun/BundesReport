@@ -42,8 +42,8 @@ public class PostService {
 	}
 	
 	@Transactional
-	public Long updatePost(PostForm postForm) {
-		Post post = postRepository.findOne(postForm.getId());
+	public Long updatePost(PostForm postForm, Long postId) {
+		Post post = postRepository.findOne(postId);
 		post.setTitle(postForm.getTitle());
 		post.setContent(postForm.getContent());
 		post.setCategory(postForm.getCategory());
