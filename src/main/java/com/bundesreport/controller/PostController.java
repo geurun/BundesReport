@@ -75,4 +75,12 @@ public class PostController extends PageController {
 		postService.updatePost(form, postId);
 		return "redirect:/posts/detail/" + postId;
 	}
+
+	@GetMapping(value = "/posts/delete/{postId}")
+	public String delete(@PathVariable("postId") Long postId, Authentication authentication, Model model) {
+		model = createLayout(model, (User) authentication.getPrincipal());
+		postService.deletePost(postId);
+		return "redirect:/";
+	}
+
 }
