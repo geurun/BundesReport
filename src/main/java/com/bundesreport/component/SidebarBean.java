@@ -37,6 +37,8 @@ public class SidebarBean {
 		eventNotification = msgUtil.getMessage(messageSource, "menu.eventNotification", locale);
 		recipe = msgUtil.getMessage(messageSource, "menu.recipe", locale);
 		gallery = msgUtil.getMessage(messageSource, "menu.gallery", locale);
+		event = msgUtil.getMessage(messageSource, "menu.event", locale);
+		rain = msgUtil.getMessage(messageSource, "menu.rain", locale);
 	}
 
 	private User user;
@@ -66,4 +68,8 @@ public class SidebarBean {
 	private String recipe;
 
 	private String gallery;
+
+	private String event;
+
+	private String rain;
 }

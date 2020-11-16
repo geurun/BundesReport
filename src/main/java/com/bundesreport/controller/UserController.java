@@ -1,5 +1,7 @@
 package com.bundesreport.controller;
 
+import java.util.Objects;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +25,7 @@ public class UserController extends PageController {
 
 	@GetMapping(value = "/user/profile")
 	public String userProfile(Model model, Authentication auth) {
-		if (auth != null) {
+		if (Objects.nonNull(auth)) {
 			User user = (User) auth.getPrincipal();
 			model = createLayout(model, user);
 			model.addAttribute("bean", new UserProfileBean(messageSource, user));
@@ -36,7 +38,7 @@ public class UserController extends PageController {
 
 	@PostMapping(value = "/user/profile")
 	public String userProfileUdate(UserForm form) {
-		User user = userService.updateUser(form);
+		User user = userService.update(form);
 		SecurityContextHolder.getContext().setAuthentication(
 				new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
 		return "redirect:/user/profile";
@@ -44,9 +46,8 @@ public class UserController extends PageController {
 
 	@GetMapping(value = "/user/withdrawal")
 	public String userProfileDelete(Model model, Authentication auth) {
-		if (auth != null) {
-			User user = (User) auth.getPrincipal();
-			userService.deleteUser(user);
+		if (Objects.nonNull(auth)) {
+			userService.delete((User) auth.getPrincipal());
 		}
 		return "redirect:/signout";
 	}

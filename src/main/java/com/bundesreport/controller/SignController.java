@@ -1,5 +1,7 @@
 package com.bundesreport.controller;
 
+import java.util.Objects;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,9 +23,9 @@ public class SignController extends PageController {
 	private final UserService userService;
 
 	@GetMapping(value = "/signin")
-	public String signin(Model model, Authentication authentication) {
-		if (authentication != null) {
-			model = createLayout(model, (User) authentication.getPrincipal());
+	public String signin(Model model, Authentication auth) {
+		if (Objects.nonNull(auth)) {
+			model = createLayout(model, (User) auth.getPrincipal());
 			model.addAttribute("userForm", new UserForm());
 			return "signin";
 		}
@@ -33,9 +35,9 @@ public class SignController extends PageController {
 	}
 
 	@GetMapping(value = "/signup")
-	public String signup(Model model, Authentication authentication) {
-		if (authentication != null) {
-			model = createLayout(model, (User) authentication.getPrincipal());
+	public String signup(Model model, Authentication auth) {
+		if (Objects.nonNull(auth)) {
+			model = createLayout(model, (User) auth.getPrincipal());
 			model.addAttribute("userForm", new UserForm());
 			return "signup";
 		}
@@ -46,7 +48,7 @@ public class SignController extends PageController {
 
 	@PostMapping("/signup")
 	public String signup(UserForm form) {
-		User user = userService.createUser(form);
+		User user = userService.save(form);
 		SecurityContextHolder.getContext().setAuthentication(
 				new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
 		return "redirect:/";

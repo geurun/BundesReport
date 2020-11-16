@@ -19,14 +19,4 @@ public class HomeController extends PageController {
 		model = createLayout(model, null);
 		return "home";
 	}
-	
-	@RequestMapping(value = "/game/rain")
-	public String raub(Model model, Authentication authentication) {
-		if (authentication != null) {
-			model = createLayout(model, (User) authentication.getPrincipal());
-			return "games/rain";
-		}
-		model = createLayout(model, null);
-		return "games/rain";
-	}
 }
