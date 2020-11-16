@@ -2,6 +2,7 @@ package com.bundesreport.component;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import org.springframework.context.MessageSource;
 
@@ -16,13 +17,16 @@ import lombok.Setter;
 @Setter
 public class TopbarBean {
 
-	public TopbarBean(MessageSource messageSource, User user) {
+	public TopbarBean(MessageSource messageSource, User user, List<Note> messages) {
 		// ToDo: Selected Locale
 		Locale locale = Locale.ROOT;
 
-		if (user != null) {
+		if (Objects.nonNull(user)) {
 			this.user = user;
 			locale = user.getLanguageStatus().getLocale();
+
+			this.messages = messages;
+			this.messageCount = messages.size();
 		}
 
 		MessageUtil msgUtil = new MessageUtil();
@@ -33,10 +37,6 @@ public class TopbarBean {
 		profile = msgUtil.getMessage(messageSource, "topbar.button.profile", locale);
 		signout = msgUtil.getMessage(messageSource, "topbar.button.signout", locale);
 
-		// ToDo: Get Note (New 5)
-		// Notes findBy
-		// Make Link
-		// messageCount = list.size();
 		if (messageCount > 99) {
 			messageCount = 99;
 		}
