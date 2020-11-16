@@ -47,6 +47,11 @@ public class UserService implements UserDetailsService {
 		userRepository.delete(user);
 	}
 
+	public User findById(Long id) {
+		Optional<User> userWrapper = userRepository.findById(id);
+		return userWrapper.get();
+	}
+
 	@Override
 	public User loadUserByUsername(String userName) throws UsernameNotFoundException {
 		Optional<User> userWrapper = userRepository.findByUserName(userName);
