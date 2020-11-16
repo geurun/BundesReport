@@ -18,7 +18,7 @@
 						<tbody>
 							<tr th:each="post : ${posts}">
 								<td><span th:text="${post.user.username}"></span></td>
-								<td><a href="" th:href="@{/posts/{id} (id=${post.id})}"><span th:text="${post.title}"></span></a></td>
+								<td><a href="" th:href="@{/posts/detail/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
 								<td><span th:text="${post.category}"></span></td>
 								<td><span th:text="${post.createdDate}"></span></td>
 							</tr>
