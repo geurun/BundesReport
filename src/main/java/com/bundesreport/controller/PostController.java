@@ -46,34 +46,32 @@ public class PostController extends PageController {
 		postService.createPost(form);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping(value = "/posts/detail/{postId}")
 	public String detail(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
 		if (authentication != null) {
-			model = createLayout(model, (User)authentication.getPrincipal());
-		}
-		else {
+			model = createLayout(model, (User) authentication.getPrincipal());
+		} else {
 			model = createLayout(model, null);
 		}
 		model.addAttribute("post", postService.findPost(postId));
 		return "posts/postDetail";
 	}
-	
+
 	@GetMapping(value = "/posts/update/{postId}")
 	public String updateForm(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
-		model = createLayout(model, (User)authentication.getPrincipal());
+		model = createLayout(model, (User) authentication.getPrincipal());
 		Post post = postService.findPost(postId);
 		model.addAttribute("postForm", post.toPostForm());
 		model.addAttribute("post", post);
 		model.addAttribute("categories", CategoryType.values());
 		return "posts/updatePostForm";
 	}
-	
+
 	@PostMapping(value = "/posts/update/{postId}")
-	public String update(@PathVariable("postId") Long postId, PostForm form, Authentication authentication, Model model) {
-		model = createLayout(model, (User)authentication.getPrincipal());
-		//form.setId(postId);
-		//form.setUser((User)authentication.getPrincipal());
+	public String update(@PathVariable("postId") Long postId, PostForm form, Authentication authentication,
+			Model model) {
+		model = createLayout(model, (User) authentication.getPrincipal());
 		postService.updatePost(form, postId);
 		return "redirect:/posts/detail/" + postId;
 	}

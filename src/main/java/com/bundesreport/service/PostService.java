@@ -40,7 +40,7 @@ public class PostService {
 		postRepository.save(post);
 		return post.getId();
 	}
-	
+
 	@Transactional
 	public Long updatePost(PostForm postForm, Long postId) {
 		Post post = postRepository.findOne(postId);
