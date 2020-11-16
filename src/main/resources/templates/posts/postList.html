@@ -28,10 +28,10 @@
 										cellspacing="0">
 										<thead>
 											<tr>
-												<th class="postnum">번호</th>
-												<th class="username">작성자</th>
-												<th class="title">제목</th>
-												<th class="date">작성날짜</th>
+												<th class="postnum"><span th:text="${post.nummer}"></span></th>
+												<th class="username"><span th:text="${post.createdUser}"></span></th>
+												<th class="title"><span th:text="${post.postTitle}"></span></th>
+												<th class="date"><span th:text="${post.createdDate}"></span></th>
 											</tr>
 										</thead>
 										<tbody>

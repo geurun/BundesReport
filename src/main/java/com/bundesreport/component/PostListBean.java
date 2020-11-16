@@ -1,6 +1,7 @@
 package com.bundesreport.component;
 
 import java.util.Locale;
+import java.util.List;
 
 import org.springframework.context.MessageSource;
 
@@ -11,20 +12,13 @@ import com.bundesreport.util.MessageUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class PostBean {
+public class PostListBean {
 
-	
-	public PostBean(MessageSource messageSource, User user, Post post){
+	public PostListBean(MessageSource messageSource, List<Post> posts) {
+		
 		Locale locale = Locale.ROOT;
 		
-		if (user != null) {
-			this.user = user;
-			locale = user.getLanguageStatus().getLocale();		
-		}	
-		
-		this.post = post;
+		this.posts = posts;
 		
 		MessageUtil msgUtil = new MessageUtil();
 		number = msgUtil.getMessage(messageSource, "post.number", locale);
@@ -37,10 +31,8 @@ public class PostBean {
 		update = msgUtil.getMessage(messageSource,"post.update", locale);
 		delete = msgUtil.getMessage(messageSource,"post.delete", locale);
 	}
-
-	private User user;
 	
-	private Post post;
+	private List<Post> posts;
 	
 	private String number;
 	
@@ -59,5 +51,4 @@ public class PostBean {
 	private String update;
 	
 	private String delete;
-
 }

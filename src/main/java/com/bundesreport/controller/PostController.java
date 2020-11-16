@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bundesreport.component.NoteListBean;
+import com.bundesreport.component.PostListBean;
+import com.bundesreport.component.SidebarBean;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.service.PostService;
@@ -27,6 +30,8 @@ public class PostController extends PageController {
 		} else {
 			model = createLayout(model, null);
 		}
+		model.addAttribute("post",
+				new PostListBean(messageSource, postService.findPostsByCategory(CategoryType.valueOf(categoryName.toUpperCase()))));
 		model.addAttribute("posts", postService.findPostsByCategory(CategoryType.valueOf(categoryName.toUpperCase())));
 		return "posts/postList";
 	}
