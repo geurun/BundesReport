@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<th:block layout:fragment="content">
+	<div class="container-fluid">
+		<!-- Page Wrapper -->
+		<div id="wrapper">
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Main Content -->
+				<div id="content">
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800" th:text="${bean.title}"></h1>
+						</div>
+						<div class="card shadow mb-4">
+							<div class="card-body">
+								<div class="table-responsive">
+									<form th:action="@{/note/new}" th:object="${noteForm}" method="post">
+										<input type="hidden" id="receiver" name="receiver" th:field="*{receiver}" />
+										<table class="table talbe-bordered">
+											<tbody>
+												<tr>
+													<th style="width: 30%" th:text="${bean.noteTitle}"></th>
+													<td style="width: 70%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.noteTitle}" th:field="*{title}" required /></td>
+												</tr>
+												<tr>
+													<th th:text="${bean.receiver}"></th>
+													<td th:text="*{receiver.username}"></td>
+												</tr>
+												<tr>
+													<th th:text="${bean.noteContent}"></th>
+													<td><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.noteContent}" th:field="*{content}" required /></td>
+												</tr>
+												<tr>
+													<th>
+														<a class="btn btn-secondary" href="/note/list" role="button"><span th:text="${bean.btnList}"></span></a>
+													</th>
+													<td class="text-right">
+														<input type="submit" name="save" id="save" class="btn btn-secondary" th:value="${bean.btnSend}" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>
