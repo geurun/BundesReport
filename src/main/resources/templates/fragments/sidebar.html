@@ -33,9 +33,14 @@
 			<hr class="sidebar-divider">
 			<div class="sidebar-heading" th:text="${sidebar.event}"></div>
 			<li class="nav-item">
-				<a class="nav-link" href="/game/rain">
-					<i class="fas fa-gamepad"></i><span th:text="${sidebar.rain}"></span>
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+					<i class="fas fa-gamepad"></i><span th:text=${sidebar.miniGame}></span>
 				</a>
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="/game/rain"><span th:text="${sidebar.rain}"></span></a>
+					</div>
+				</div>
 			</li>
 			<hr class="sidebar-divider d-none d-md-block">
 			<!-- Sidebar Toggler (Sidebar) -->
