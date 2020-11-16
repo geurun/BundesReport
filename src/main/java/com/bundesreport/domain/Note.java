@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,14 +13,27 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
 @Table(name = "NOTES")
 public class Note {
+
+	@Builder
+	public Note(Long id, String title, String content, User sender, User receiver) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.sender = sender;
+		this.receiver = receiver;
+	}
 
 	@Id
 	@GeneratedValue
@@ -37,23 +49,11 @@ public class Note {
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	@ManyToOne
+	@JoinColumn(name = "SENDER_ID")
 	private User sender;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	@ManyToOne
+	@JoinColumn(name = "RECEIVER_ID")
 	private User receiver;
-
-	// ==relational method==//
-	public void setSender(User sender) {
-		this.sender = sender;
-		sender.getSendNotes().add(this);
-	}
-
-	public void setReceiver(User receiver) {
-		this.receiver = receiver;
-		receiver.getReceiveNotes().add(this);
-	}
-
 }

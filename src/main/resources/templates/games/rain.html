@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<th:block layout:fragment="content">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/game/rain.css}" />
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<div id="canvas"></div>
+		<hr id="line" width="1000px" align="left">
+		<input id="text" placeholder="text"
+			onkeypress="keydown(event.keyCode)" autofocus>
+		<button id="auth" onclick="keydown(13)">Eingabe</button>
+		<br> <font size="5" id="point">Die Punkt</font> / <font size="5"
+			id="heart">Das Leben</font>
+		<div id="result"></div>
+
+
+		<script type="text/javascript">
+			var canvasWidth = 800; // 키워드 생성되는 가로범위
+			var canvasHeigth = 580; // 키워드 생성되는 세로범위
+			var goal, keyword = [];
+
+			function getQuerystring(paramName) {
+				var _tempUrl = window.location.search.substring(1);
+				var _tempArray = _tempUrl.split('&');
+
+				for (var i = 0; _tempArray.length; i++) {
+					var _keyValuePair = _tempArray[i].split('=');
+					if (_keyValuePair[0] == paramName) {
+						return _keyValuePair[1];
+					}
+				}
+			}
+
+			try {
+				var level = getQuerystring("level");
+			} catch (exception) {
+				location.href = '?level=1';
+			}
+
+			if (level == 1) {
+				alert("Level : 1 [Das Ziel: 300]");
+				keyword = [ 'lernen', 'handeln', 'arbeiten', 'sein', 'haben',
+						'werden', 'wissen', 'geben', 'lesen', 'fahren' ]; // 키워드 수정 및 추가 가능합니다.
+				goal = 300; // 목표 포인트
+			} else if (level == 2) {
+				alert("Level : 2 [Das Ziel : 500]");
+				keyword = [ 'heißen', 'laufen', 'kaufen', 'lieben', 'machen',
+						'antworten', 'bezahlen', 'studieren', 'backen',
+						'schreiben' ]; // 키워드 수정 및 추가 가능합니다.
+				goal = 500; // 목표 포인트
+			} else if (level == 3) {
+				alert("Level : 3 [Das Ziel : 700]");
+				keyword = [ 'anmachen', 'zwingen', 'bitten', 'danken',
+						'warten', 'sitzen', 'sinken', 'schlafen', 'nennen',
+						'hängen' ]; // 키워드 수정 및 추가 가능합니다.
+				goal = 700; // 목표 포인트
+			} else if (level == 4) {
+				alert("Level : 4 [Das Ziel : 900]");
+				keyword = [ 'essen', 'fallen', 'empfehlen', 'denken',
+						'vergessen', 'bringen', 'fließen', 'beginnen',
+						'sich informieren an', 'bleiben' ]; // 키워드 수정 및 추가 가능합니다.
+				goal = 900; // 목표 포인트
+			} else if (level == 5) {
+				alert("Level : 5 [Das Ziel : 1000]");
+				keyword = [ 'einladen', 'verkaufen', 'anfangen', 'frieren',
+						'sich unterhalten', 'gefallen', 'kennenlernen',
+						'versuchen', 'können', 'sich interessieren für' ]; // 키워드 수정 및 추가 가능합니다.
+				goal = 1000; // 목표 포인트
+			}
+
+			function heart_counter(heart) {
+				var result = "<font color=red>";
+				for (var x = 0; x < heart; ++x) {
+					result += "♥";
+				}
+				result += "</font>";
+				return result;
+			}
+
+			var keyword_cnt = 0;
+			var point = 0; // 포인트
+			var heart = 5; // 목숨
+
+			document.getElementById('point').innerHTML = "Die Punkt : " + point
+			document.getElementById('heart').innerHTML = "Das Leben : "
+					+ heart_counter(heart);
+
+			function gamewin() {
+				var message = '';
+				var result = document.getElementById('result');
+				clearInterval(setInterval1);
+				clearInterval(setInterval2);
+				if (level == 5) { // 최종 레벨을 클리어하면 승리 (임의로 수정 가능)
+					result += "<h1>Herzlichen Glückwunsch! Sie haben gewonnen! XD</h1>";
+				} else {
+					var nextlevel = (parseInt(level) + 1);
+					message += "<h1>"
+							+ (parseInt(nextlevel) - 1)
+							+ "Level <br>haben Sie geschafft!</h1><br><a href='?level="
+							+ nextlevel + "'><h3>Nächstes Level</a>";
+					result.innerHTML += message;
+				}
+				var text = document.getElementById('text');
+				text.disabled = true;
+			}
+
+			function remove_node(pRemoveEle) {
+				var vRemove = document.getElementById(pRemoveEle);
+				var vParent = vRemove.parentNode;
+				vParent.removeChild(vRemove);
+				vRemove = null;
+			}
+
+			function gameover(code) {
+				var message = '';
+				var result = document.getElementById('result');
+				;
+				clearInterval(setInterval1);
+				clearInterval(setInterval2);
+				if (code == 1) {
+					message += "<h1>Spiel beendet :(</h1><b>Sie haben sich ganzes Leben verloren.</b><hr>";
+				} else {
+					message += "<h1>Spiel beendet :(</h1><b>Zielpunkt wurde nicht erreicht.</b><hr>";
+				}
+				result.innerHTML += message
+						+ "<button onclick='location.reload()'><h3>Wiederherstellen</h3></button>";
+			}
+
+			function random_speed(maxSpeed) {
+
+				return parseInt(Math.random() * maxSpeed) + 1;
+			}
+
+			function random_width() {
+				return parseInt(Math.random() * canvasWidth) + 300;
+			}
+
+			function keyword_rain() {
+				this.y = 0;
+				this.speed = random_speed(1.5);
+
+				this.node = document.createElement('h3');
+				this.node.id = keyword[keyword_cnt];
+				this.node.innerHTML = keyword[keyword_cnt++];
+
+				if (keyword_cnt >= keyword.length) {
+					clearInterval(setInterval1);
+				}
+
+				this.node.style.position = 'absolute';
+				this.node.style.left = random_width() + 'px';
+
+				document.getElementById('canvas').appendChild(this.node);
+
+				keyword_rain.prototype.move = function() {
+					if (this.y > canvasHeigth) { // 땅에 닿았을 때
+						$(this.node).empty(); // 태그 삭제 (jQuery)
+						this.y = this.speed = 0;
+						keyword.splice(keyword.indexOf(this.node.id), 1);
+						keyword_cnt -= 1;
+						heart -= 1;
+						document.getElementById('heart').innerHTML = "Das Leben : "
+								+ heart_counter(heart);
+						if (heart < 1)
+							gameover(1);
+						else if (keyword.length == 0)
+							gameover(2);
+						return;
+					}
+					this.y += this.speed;
+					this.node.style.top = this.y + 100 + 'px';
+				}
+			}
+
+			function keydown(keyCode) {
+				if (keyCode == 13) {
+					var text = document.getElementById('text'); // 사용자 입력폼
+
+					if (keyword.indexOf(text.value) != -1) { // 입력한 값이 키워드에 있으면 실행
+						remove_node(text.value);
+						for ( var i in game) {
+							if (game[i]['node'].id == text.value) {
+								game[i]['y'] = 0;
+								game[i]['speed'] = 0;
+							}
+						}
+						keyword.splice(keyword.indexOf(text.value), 1);
+						keyword_cnt -= 1;
+						point += 100;
+						document.getElementById('point').innerHTML = "Die Punkt : "
+								+ point;
+					}
+					text.value = "";
+					if (point >= goal) {
+						gamewin();
+						return;
+					}
+					if (keyword.length == 0) {
+						gameover(2);
+						return;
+					}
+				}
+				return;
+			}
+
+			var game = [];
+
+			var setInterval1 = setInterval(function() {
+				game.push(new keyword_rain());
+			}, 1000); // 1초마다 키워드 생성
+
+			var setInterval2 = setInterval(function() {
+				for ( var x in game) {
+					game[x].move();
+				}
+			}, 15); // 키워드 움직이기
+		</script>
+	</div>
+</th:block>
+</html>
