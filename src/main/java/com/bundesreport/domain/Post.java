@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.bundesreport.dto.PostForm;
 import com.bundesreport.type.CategoryType;
 
 import lombok.Builder;
@@ -83,6 +84,11 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 		user.getPosts().add(this);
+	}
+
+	public PostForm toPostForm() {
+		return PostForm.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
+				.build();
 	}
 
 }
