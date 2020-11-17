@@ -17,7 +17,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
+import com.bundesreport.dto.PostForm;
 import com.bundesreport.type.CategoryType;
 
 import lombok.Builder;
@@ -27,6 +29,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Where(clause = "deleted = false")
 @Table(name = "POSTS")
 public class Post {
 
@@ -51,7 +54,7 @@ public class Post {
 
 	private int good;
 
-	private boolean deleted;
+	private boolean deleted = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
@@ -83,6 +86,11 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 		user.getPosts().add(this);
+	}
+
+	public PostForm toPostForm() {
+		return PostForm.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
+				.build();
 	}
 
 }

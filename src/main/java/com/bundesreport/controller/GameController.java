@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bundesreport.domain.User;
 
-@Controller
-public class HomeController extends PageController {
+import lombok.RequiredArgsConstructor;
 
-	@RequestMapping(value = "/")
-	public String home(Model model, Authentication auth) {
+@Controller
+@RequiredArgsConstructor
+public class GameController extends PageController {
+
+	@RequestMapping(value = "/game/rain")
+	public String rain(Model model, Authentication auth) {
 		if (Objects.nonNull(auth)) {
 			model = createLayout(model, (User) auth.getPrincipal());
-			return "home";
+			return "games/rain";
 		}
-		model = createLayout(model);
-		return "home";
+		model = createLayout(model, null);
+		return "games/rain";
 	}
 }

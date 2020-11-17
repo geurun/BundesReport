@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.bundesreport.component.NoteListBean;
+
 import com.bundesreport.component.PostListBean;
 import com.bundesreport.component.SidebarBean;
+import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.service.PostService;
@@ -50,16 +51,41 @@ public class PostController extends PageController {
 		postService.createPost(form);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping(value = "/posts/detail/{postId}")
 	public String detail(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
 		if (authentication != null) {
-			model = createLayout(model, (User)authentication.getPrincipal());
-		}
-		else {
+			model = createLayout(model, (User) authentication.getPrincipal());
+		} else {
 			model = createLayout(model, null);
 		}
 		model.addAttribute("post", postService.findPost(postId));
 		return "posts/postDetail";
 	}
+
+	@GetMapping(value = "/posts/update/{postId}")
+	public String updateForm(@PathVariable("postId") Long postId, Model model, Authentication authentication) {
+		model = createLayout(model, (User) authentication.getPrincipal());
+		Post post = postService.findPost(postId);
+		model.addAttribute("postForm", post.toPostForm());
+		model.addAttribute("post", post);
+		model.addAttribute("categories", CategoryType.values());
+		return "posts/updatePostForm";
+	}
+
+	@PostMapping(value = "/posts/update/{postId}")
+	public String update(@PathVariable("postId") Long postId, PostForm form, Authentication authentication,
+			Model model) {
+		model = createLayout(model, (User) authentication.getPrincipal());
+		postService.updatePost(form, postId);
+		return "redirect:/posts/detail/" + postId;
+	}
+
+	@GetMapping(value = "/posts/delete/{postId}")
+	public String delete(@PathVariable("postId") Long postId, Authentication authentication, Model model) {
+		model = createLayout(model, (User) authentication.getPrincipal());
+		postService.deletePost(postId);
+		return "redirect:/";
+	}
+
 }

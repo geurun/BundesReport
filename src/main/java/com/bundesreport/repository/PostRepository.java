@@ -37,4 +37,9 @@ public class PostRepository {
 		return em.createQuery("select p from Post p where p.category = :category", Post.class)
 				.setParameter("category", categoryType).getResultList();
 	}
+	
+	public Long delete(Post post) {
+		post.setDeleted(true);
+		return post.getId();
+	}
 }

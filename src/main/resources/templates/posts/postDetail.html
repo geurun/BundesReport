@@ -3,15 +3,21 @@
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<div class="card shadow mb-4">
-            <div class="card-body">
-            	<div class="post-title"><h2><span th:text="${post.title}"></span></h2></div>
-            	<div class="post-info">
-            		<span th:text="${post.createdDate}"></span>
-            		<span th:text="${post.user.username}"></span>
-            		<span th:text="${post.good}"></span>
-            	</div>
-            	<div class="post-content"><span th:text="${post.content}"></span></div>
-            </div>
+			<div class="card-body">
+				<div class="post-title">
+					<h2>
+						<span th:text="${post.title}"></span>
+					</h2>
+				</div>
+				<div class="post-info">
+					<span th:text="${post.updatedDate}"></span> <span th:text="${post.user.username}"></span> <span th:text="${post.good}"></span>
+				</div>
+				<div class="post-content">
+					<span th:text="${post.content}"></span>
+				</div>
+				<a th:href="@{/posts/update/{postId} (postId = ${post.id})}" class="btn btn-primary">수정</a>
+				<a th:href="@{/posts/delete/{postId} (postId = ${post.id})}" class="btn btn-primary">삭제</a>
+			</div>
 		</div>
 	</div>
 </th:block>
