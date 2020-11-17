@@ -11,6 +11,9 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/vendor/fontawesome-free/css/all.min.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/css/sb-admin-2.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}" />
+		<!-- CSRF -->
+		<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+		<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	</head>
 </th:block>
 </html>

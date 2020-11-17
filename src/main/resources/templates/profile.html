@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/profile">
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<!-- Page Wrapper -->
@@ -81,14 +81,14 @@
 							<div class="card mb-4">
 								<div class="card-header" th:text="${bean.modifyUserInfo}"></div>
 								<div class="card-body">
-									<form th:action="@{/user/profile}" th:object="${userForm}" method="post">
+									<form id="form" th:action="@{/user/profile}" th:object="${userForm}" method="post">
 										<input type="hidden" id="id" name="id" th:field="*{id}" />
 										<input type="hidden" id="userName" name="userName" th:field="*{userName}" />
 										<table class="table">
 											<tbody>
 												<tr>
 													<th style="width: 30%" scope="row" th:text=${bean.userName}></th>
-													<td style="width: 70%" th:text="${username}"></td>
+													<td style="width: 70%" th:text="${bean.user.username}"></td>
 												</tr>
 												<tr>
 													<th scope="row" th:text=${bean.password}></th>
@@ -96,7 +96,7 @@
 												</tr>
 												<tr>
 													<th scope="row" th:text="${bean.email}"></th>
-													<td><input type="email" class="form-control input-sm" placeholder="Email" th:attr="placeholder=${bean.email}" th:field="*{email}" th:value="${email}" required /></td>
+													<td><input id="email" type="email" class="form-control input-sm" placeholder="Email" th:attr="placeholder=${bean.email}" th:field="*{email}" th:value="${email}" required /></td>
 												</tr>
 												<tr>
 													<th scope="row" th:text="${bean.languageStatus}"></th>
@@ -109,6 +109,9 @@
 															</div>
 														</div>
 													</td>
+												</tr>
+												<tr>
+													<div id="feedback"></div>
 												</tr>
 												<tr>
 													<th><a class="btn btn-outline-danger" href="/user/withdrawal" role="button"><span th:text="${bean.withdrawal}"></span></a></th>

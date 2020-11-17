@@ -13,6 +13,9 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}" />
 		<!-- DataTable -->
 		<link rel="stylesheet" type="text/css" th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" />
+		<!-- CSRF -->
+		<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+		<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	</head>
 </th:block>
 </html>

@@ -1,8 +1,10 @@
 package com.bundesreport.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +31,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	public User update(UserForm userForm) {
-		User user = loadUserByUsername(userForm.getUserName());
+		User user = findByUserName(userForm.getUserName());
 		if (!StringUtils.isEmpty(userForm.getHashedPassword())) {
 			user.setHashedPassword(new BCryptPasswordEncoder().encode(userForm.getHashedPassword()));
 		}
@@ -48,8 +50,16 @@ public class UserService implements UserDetailsService {
 		return userWrapper.get();
 	}
 
+	public User findByUserName(String userName) {
+		return userRepository.findByUserName(userName);
+	}
+
+	public List<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
 	@Override
-	public User loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return userRepository.findByUserName(userName).get();
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return findByUserName(username);
 	}
 }
