@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<head><script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script></head>
 <th:block layout:fragment="content">
 	<form th:action="@{/posts/new}" method="post">
 		<div class="form-group">
 			<label th:for="title">제목</label> <input th:field="${postForm.title}" class="form-control" placeholder="제목을 입력하시게" />
 		</div>
 		<div class="form-group">
-			<label th:for="content">내용</label> <input th:field="${postForm.content}" class="form-control" placeholder="내용을 입력하시게" />
+			<label th:for="content">내용</label> 
+			<textarea id="editor" name="content" th:field="${postForm.content}" class="form-control"><?= $data ?></textarea>
 		</div>
 		<div class="form-group">
 			<label th:for="category">게시판종류</label> <select th:field="${postForm.category}" class="form-control">
@@ -15,6 +17,15 @@
 			</select>
 		</div>
 		<button type="submit">SUBMIT</button>
+		<div id="etc"></div>
 	</form>
+
+	<script type="text/javascript">
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+	</script>
 </th:block>
 </html>
