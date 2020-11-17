@@ -15,8 +15,7 @@
 				<div class="post-content">
 					<span th:utext="${post.content}"></span>
 				</div>
-				<a th:href="@{/posts/update/{postId} (postId = ${post.id})}" class="btn btn-primary">수정</a>
-				<a th:href="@{/posts/delete/{postId} (postId = ${post.id})}" class="btn btn-primary">삭제</a>
+				<a th:href="@{/posts/update/{postId} (postId = ${post.id})}" class="btn btn-primary">수정</a> <a th:href="@{/posts/delete/{postId} (postId = ${post.id})}" class="btn btn-primary">삭제</a>
 			</div>
 		</div>
 	</div>
