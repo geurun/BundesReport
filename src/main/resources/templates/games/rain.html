@@ -7,12 +7,12 @@
 		<div id="canvas"></div>
 		<hr id="line" width="1000px" align="left">
 		<input id="text" placeholder="text" onkeypress="keydown(event.keyCode)" autofocus>
-		<button id="auth" onclick="keydown(13)">Eingabe</button>
+		<button id="auth" onclick="keydown(13)" class="btn btn-warning">Eingabe</button>
 		<br> <font size="5" id="point">Die Punkt</font> / <font size="5" id="heart">Das Leben</font>
 		<div id="result"></div>
 		<script type="text/javascript">
-			var canvasWidth = 800; // 키워드 생성되는 가로범위
-			var canvasHeigth = 580; // 키워드 생성되는 세로범위
+			var canvasWidth = 800;
+			var canvasHeigth = 580;
 			var goal, keyword = [];
 
 			function getQuerystring(paramName) {
@@ -36,32 +36,32 @@
 			if (level == 1) {
 				alert("Level : 1 [Das Ziel: 300]");
 				keyword = [ 'lernen', 'handeln', 'arbeiten', 'sein', 'haben',
-						'werden', 'wissen', 'geben', 'lesen', 'fahren' ]; // 키워드 수정 및 추가 가능합니다.
-				goal = 300; // 목표 포인트
+						'werden', 'wissen', 'geben', 'lesen', 'fahren' ];
+				goal = 300;
 			} else if (level == 2) {
 				alert("Level : 2 [Das Ziel : 500]");
 				keyword = [ 'heißen', 'laufen', 'kaufen', 'lieben', 'machen',
 						'antworten', 'bezahlen', 'studieren', 'backen',
-						'schreiben' ]; // 키워드 수정 및 추가 가능합니다.
-				goal = 500; // 목표 포인트
+						'schreiben' ];
+				goal = 500;
 			} else if (level == 3) {
 				alert("Level : 3 [Das Ziel : 700]");
 				keyword = [ 'anmachen', 'zwingen', 'bitten', 'danken',
 						'warten', 'sitzen', 'sinken', 'schlafen', 'nennen',
-						'hängen' ]; // 키워드 수정 및 추가 가능합니다.
-				goal = 700; // 목표 포인트
+						'hängen' ];
+				goal = 700;
 			} else if (level == 4) {
 				alert("Level : 4 [Das Ziel : 900]");
 				keyword = [ 'essen', 'fallen', 'empfehlen', 'denken',
 						'vergessen', 'bringen', 'fließen', 'beginnen',
-						'sich informieren an', 'bleiben' ]; // 키워드 수정 및 추가 가능합니다.
-				goal = 900; // 목표 포인트
+						'sich informieren an', 'bleiben' ];
+				goal = 900;
 			} else if (level == 5) {
 				alert("Level : 5 [Das Ziel : 1000]");
 				keyword = [ 'einladen', 'verkaufen', 'anfangen', 'frieren',
 						'sich unterhalten', 'gefallen', 'kennenlernen',
-						'versuchen', 'können', 'sich interessieren für' ]; // 키워드 수정 및 추가 가능합니다.
-				goal = 1000; // 목표 포인트
+						'versuchen', 'können', 'sich interessieren für' ];
+				goal = 1000;
 			}
 
 			function heart_counter(heart) {
@@ -74,8 +74,8 @@
 			}
 
 			var keyword_cnt = 0;
-			var point = 0; // 포인트
-			var heart = 5; // 목숨
+			var point = 0;
+			var heart = 5;
 
 			document.getElementById('point').innerHTML = "Die Punkt : " + point
 			document.getElementById('heart').innerHTML = "Das Leben : "
@@ -86,14 +86,14 @@
 				var result = document.getElementById('result');
 				clearInterval(setInterval1);
 				clearInterval(setInterval2);
-				if (level == 5) { // 최종 레벨을 클리어하면 승리 (임의로 수정 가능)
+				if (level == 5) {
 					result += "<h1>Herzlichen Glückwunsch! Sie haben gewonnen! XD</h1>";
 				} else {
 					var nextlevel = (parseInt(level) + 1);
 					message += "<h1>"
 							+ (parseInt(nextlevel) - 1)
-							+ "Level <br>haben Sie geschafft!</h1><br><a href='?level="
-							+ nextlevel + "'><h3>Nächstes Level</a>";
+							+ "Level <br>haben Sie geschafft!</h1><br><button class='btn btn-success'><a href='?level="
+							+ nextlevel + "'><h3>Nächstes Level</a></button>";
 					result.innerHTML += message;
 				}
 				var text = document.getElementById('text');
@@ -119,7 +119,8 @@
 					message += "<h1>Spiel beendet :(</h1><b>Zielpunkt wurde nicht erreicht.</b><hr>";
 				}
 				result.innerHTML += message
-						+ "<button onclick='location.reload()'><h3>Wiederherstellen</h3></button>";
+						+ "<button onclick='location.reload()' class='btn btn-danger'><h3>Wiederherstellen</h3></button>";
+				text.disabled = true;
 			}
 
 			function random_speed(maxSpeed) {
@@ -170,9 +171,9 @@
 
 			function keydown(keyCode) {
 				if (keyCode == 13) {
-					var text = document.getElementById('text'); // 사용자 입력폼
+					var text = document.getElementById('text');
 
-					if (keyword.indexOf(text.value) != -1) { // 입력한 값이 키워드에 있으면 실행
+					if (keyword.indexOf(text.value) != -1) {
 						remove_node(text.value);
 						for ( var i in game) {
 							if (game[i]['node'].id == text.value) {
@@ -203,13 +204,13 @@
 
 			var setInterval1 = setInterval(function() {
 				game.push(new keyword_rain());
-			}, 1000); // 1초마다 키워드 생성
+			}, 1000);
 
 			var setInterval2 = setInterval(function() {
 				for ( var x in game) {
 					game[x].move();
 				}
-			}, 15); // 키워드 움직이기
+			}, 15);
 		</script>
 	</div>
 </th:block>
