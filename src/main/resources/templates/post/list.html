@@ -33,8 +33,8 @@
 												<td><span th:text="${post.id}"></span></td>
 												<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
 												<td><span th:text="${post.user.username}"></span></td>
-												<td><span th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></span>
-												<span th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></span></td>
+												<td><span th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></span> <span
+													th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></span></td>
 											</tr>
 										</tbody>
 									</table>
