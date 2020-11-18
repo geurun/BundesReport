@@ -28,22 +28,18 @@
 											</tr>
 											<tr>
 												<th th:text="${bean.createdDate}"></th>
-												<td th:text="${bean.post.createdDate}"></td>
+												<td><span th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd')}"></span> <span
+													th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'dd-MM-yyyy')}"></span></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.postContent}"></th>
-												<td>
-													<span th:utext="${bean.post.content}"></span>
-												</td>
+												<td><span th:utext="${bean.post.content}"></span></td>
 											</tr>
 											<tr>
-												<th>
-													<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
-												</th>
-												<td class="text-right">
-													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
-													<a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnModify}"></span></a>
-												</td>
+												<th><a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a></th>
+												<td class="text-right"><a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span
+														th:text="${bean.btnDelete}"></span></a> <a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"><span
+														th:text="${bean.btnModify}"></span></a></td>
 											</tr>
 										</tbody>
 									</table>
