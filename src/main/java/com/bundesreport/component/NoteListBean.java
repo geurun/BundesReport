@@ -24,6 +24,8 @@ public class NoteListBean extends MessageBean {
 		sender = msgUtil.getMessage("note.list.sender");
 		date = msgUtil.getMessage("note.list.date");
 		readed = msgUtil.getMessage("note.list.readed");
+		readedTrue = msgUtil.getMessage("note.list.readed.true");
+		readedFalse = msgUtil.getMessage("note.list.readed.false");
 		btnPrevious = msgUtil.getMessage("note.list.paging.previous");
 		btnNext = msgUtil.getMessage("note.list.paging.next");
 		btnDelete = msgUtil.getMessage("note.list.delete");
@@ -35,6 +37,8 @@ public class NoteListBean extends MessageBean {
 	private String sender;
 	private String date;
 	private String readed;
+	private String readedTrue;
+	private String readedFalse;
 	private String paging;
 	private String btnPrevious;
 	private String btnNext;

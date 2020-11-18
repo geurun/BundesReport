@@ -32,7 +32,8 @@
 												<td th:text="${message.content}"></td>
 												<td th:text="${message.sender.username}"></td>
 												<td th:text="${message.createdDate}"></td>
-												<td></td>
+												<td th:if="${message.readed}" th:text="${bean.readedTrue}"></td>
+												<td th:if="${!message.readed}" th:text="${bean.readedFalse}"></td>
 											</tr>
 										</tbody>
 									</table>
