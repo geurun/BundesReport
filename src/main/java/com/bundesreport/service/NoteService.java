@@ -30,6 +30,10 @@ public class NoteService {
 		return repository.findByReceiver(user);
 	}
 
+	public void save(Note note) {
+		repository.save(note);
+	}
+
 	public void save(NoteForm noteForm) {
 		repository.save(noteForm.toEntity());
 	}
