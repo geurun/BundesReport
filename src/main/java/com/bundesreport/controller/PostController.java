@@ -42,7 +42,7 @@ public class PostController extends PageController {
 		}
 	}
 
-	@GetMapping(value = "/posts/write/{category}")
+	@GetMapping(value = "/post/write/{category}")
 	public String write(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
