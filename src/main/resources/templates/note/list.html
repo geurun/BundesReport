@@ -29,7 +29,8 @@
 											<tr th:each="message: ${bean.messages}">
 												<td><a th:href="@{/note/{id} (id=${message.id})}"><span th:text="${message.title}"></span></a></td>
 												<td th:text="${message.sender.username}"></td>
-												<td th:text="${message.createdDate}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(message.createdDate, 'yyyy-MM-dd')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'dd-MM-yyyy')}"></td>
 												<td th:if="${message.readed}" th:text="${bean.readedTrue}"></td>
 												<td th:if="${!message.readed}" th:text="${bean.readedFalse}"></td>
 											</tr>
