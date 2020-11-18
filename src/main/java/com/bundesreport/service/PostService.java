@@ -31,8 +31,8 @@ public class PostService {
 		return postRepository.findAll();
 	}
 
-	public List<Post> findByCategory(CategoryType categoryType) {
-		return postRepository.findByCategory(categoryType);
+	public List<Post> findByCategory(String categoryName) {
+		return postRepository.findByCategory(CategoryType.valueOf(categoryName.toUpperCase()));
 	}
 
 	public void save(PostForm postForm) {

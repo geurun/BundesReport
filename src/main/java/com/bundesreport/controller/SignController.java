@@ -2,6 +2,7 @@ package com.bundesreport.controller;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,37 +25,26 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignController extends PageController {
 
+	@Autowired
 	private final UserService userService;
 
 	@GetMapping(value = "/signin")
 	public String signin(Model model, Authentication auth) {
-		if (Objects.nonNull(auth)) {
-			model = createLayout(model, (User) auth.getPrincipal());
-			model.addAttribute("userForm", new UserForm());
-			return "signin";
-		}
-		model = createLayout(model, null);
+		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
 		return "signin";
 	}
 
 	@GetMapping(value = "/signup")
 	public String signup(Model model, Authentication auth) {
-		if (Objects.nonNull(auth)) {
-			model = createLayout(model, (User) auth.getPrincipal());
-			model.addAttribute("userForm", new UserForm());
-			return "signup";
-		}
-		model = createLayout(model, null);
+		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
 		return "signup";
 	}
 
 	@PostMapping(value = "/signup/check")
 	public ResponseEntity<?> userValidationViaAjax(@RequestBody UserForm userForm) {
-
-		MsgUtil util = new MsgUtil(messageSource);
-
+		MsgUtil util = new MsgUtil(msgSrc);
 		AjaxResponse result = new AjaxResponse();
 
 		// ID check

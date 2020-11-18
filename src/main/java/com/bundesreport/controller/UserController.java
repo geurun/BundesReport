@@ -30,13 +30,11 @@ public class UserController extends PageController {
 	@GetMapping(value = "/user/profile")
 	public String userProfile(Model model, Authentication auth) {
 		if (Objects.nonNull(auth)) {
+			model = createLayout(model, auth);
 			User user = (User) auth.getPrincipal();
-			model = createLayout(model, user);
-			model.addAttribute("bean", new UserProfileBean(messageSource, user));
+			model.addAttribute("bean", new UserProfileBean(msgSrc, user));
 			model.addAttribute("userForm", user.toUserForm());
-			return "profile";
 		}
-		model = createLayout(model, null);
 		return "profile";
 	}
 
@@ -50,9 +48,7 @@ public class UserController extends PageController {
 
 	@PostMapping(value = "/user/profile/check")
 	public ResponseEntity<?> userProfileValidationViaAjax(@RequestBody UserForm userForm, Authentication auth) {
-
-		MsgUtil util = new MsgUtil(messageSource);
-
+		MsgUtil util = new MsgUtil(msgSrc);
 		AjaxResponse result = new AjaxResponse();
 
 		if (Objects.nonNull(auth)) {
@@ -61,10 +57,12 @@ public class UserController extends PageController {
 				return ResponseEntity.ok(result);
 			}
 		}
+
 		// Email check
 		if (userService.findByEmail(userForm.getEmail()).size() > 0) {
 			result.getMsgs().add(util.getMessage("user.error.email"));
 		}
+
 		return ResponseEntity.ok(result);
 	}
 

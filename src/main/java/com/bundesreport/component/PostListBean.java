@@ -15,10 +15,10 @@ import lombok.Setter;
 @Setter
 public class PostListBean extends MessageBean {
 
-	public PostListBean(MessageSource msgSrc, User user, List<Post> posts, CategoryType category) {
+	public PostListBean(MessageSource msgSrc, User user, List<Post> posts, String category) {
 		super(msgSrc, user);
 		this.posts = posts;
-		this.category = category;
+		this.category = CategoryType.valueOf(category.toUpperCase());
 
 		title = msgUtil.getMessage(this.category.getMessageCode());
 		number = msgUtil.getMessage("post.list.number");

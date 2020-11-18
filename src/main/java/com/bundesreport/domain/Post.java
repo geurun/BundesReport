@@ -79,20 +79,14 @@ public class Post {
 		this.deleted = deleted;
 	}
 
-	// ==relational method==//
-	public void setUser(User user) {
-		this.user = user;
-		user.getPosts().add(this);
-	}
-
 	public PostForm toPostForm() {
 		return PostForm.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
 				.build();
 	}
 
-	public Post getUpdateModel(Post post, PostForm form) {
-		post.setTitle(form.getTitle());
-		post.setContent(form.getContent());
-		return post;
+	public Post getUpdateModel(PostForm form) {
+		setTitle(form.getTitle());
+		setContent(form.getContent());
+		return this;
 	}
 }

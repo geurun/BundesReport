@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -19,23 +20,20 @@ import com.bundesreport.service.NoteService;
 public class PageController {
 
 	@Autowired
-	MessageSource messageSource;
+	MessageSource msgSrc;
 
 	@Autowired
 	NoteService noteService;
 
-	protected Model createLayout(Model model) {
-		return createLayout(model, null);
-	}
-
-	protected Model createLayout(Model model, User user) {
+	protected Model createLayout(Model model, Authentication auth) {
+		User user = null;
 		List<Note> noteList = new ArrayList<>();
-		if (Objects.nonNull(user)) {
+		if (Objects.nonNull(auth)) {
+			user = (User) auth.getPrincipal();
 			noteList = noteService.findByReceiver(user);
 		}
-		// ToDo: Use User's initial Language or Selected Language
-		model.addAttribute("sidebar", new SidebarBean(messageSource, user));
-		model.addAttribute("topbar", new TopbarBean(messageSource, user, noteList));
+		model.addAttribute("sidebar", new SidebarBean(msgSrc, user));
+		model.addAttribute("topbar", new TopbarBean(msgSrc, user, noteList));
 		return model;
 	}
 }

@@ -32,62 +32,55 @@ public class NoteController extends PageController {
 	private final UserService userService;
 
 	@GetMapping(value = "/note/list")
-	public String notes(Model model, Authentication auth) {
+	public String list(Model model, Authentication auth) {
+		model = createLayout(model, auth);
 		if (Objects.nonNull(auth)) {
 			User user = (User) auth.getPrincipal();
-			model = createLayout(model, user);
-			model.addAttribute("bean",
-					new NoteListBean(messageSource, user, noteService.findByReceiver(user)));
+			model.addAttribute("bean", new NoteListBean(msgSrc, user, noteService.findByReceiver(user)));
 		}
 		return "note/list";
 	}
 
 	@GetMapping(value = "/note/{id}")
-	public String noteView(@PathVariable("id") Long id, Model model, Authentication auth) {
+	public String view(@PathVariable("id") Long id, Model model, Authentication auth) {
+		model = createLayout(model, auth);
 		if (Objects.nonNull(auth)) {
-			User user = (User) auth.getPrincipal();
 			Optional<Note> note = noteService.findById(id);
 			if (Objects.isNull(note)) {
-				return "redirect:/";
-			} else {
-				if (!user.getUsername().equals(note.get().getReceiver().getUsername())) {
-					return "redirect:/";
-				}
+				return "redirect:/note/list";
 			}
-			model = createLayout(model, user);
-			model.addAttribute("bean", new NoteBean(messageSource, user, note.get()));
+			User user = (User) auth.getPrincipal();
+			if (!user.getUsername().equals(note.get().getReceiver().getUsername())) {
+				return "redirect:/note/list";
+			}
+			model.addAttribute("bean", new NoteBean(msgSrc, user, note.get()));
 		}
 		return "note/view";
 	}
 
 	@GetMapping(value = "/note/new/{receiverId}")
-	public String noteNew(@PathVariable("receiverId") Long receiverId, Model model, Authentication auth) {
+	public String write(@PathVariable("receiverId") Long receiverId, Model model, Authentication auth) {
+		model = createLayout(model, auth);
 		if (Objects.nonNull(auth)) {
 			User user = (User) auth.getPrincipal();
-			model = createLayout(model, user);
-			model.addAttribute("bean", new NoteBean(messageSource, user, null));
-			// ToDo: Receiver exist check
+			model.addAttribute("bean", new NoteBean(msgSrc, user, null));
 			model.addAttribute("noteForm", new NoteForm(userService.findById(receiverId)));
 		}
 		return "note/write";
 	}
 
 	@PostMapping(value = "/note/new")
-	public String noteNew(NoteForm form, Authentication auth) {
-		if (Objects.nonNull(auth)) {
-			form.setSender((User) auth.getPrincipal());
-			noteService.save(form);
-		}
+	public String write(NoteForm form, Authentication auth) {
+		form.setSender((User) auth.getPrincipal());
+		noteService.save(form);
 		return "redirect:/note/list";
 	}
 
 	@GetMapping(value = "/note/delete/{id}")
-	public String noteDelete(@PathVariable("id") Long id, Model model, Authentication auth) {
-		if (Objects.nonNull(auth)) {
-			Optional<Note> note = noteService.findById(id);
-			if (Objects.nonNull(note)) {
-				noteService.delete(note.get());
-			}
+	public String delete(@PathVariable("id") Long id, Model model, Authentication auth) {
+		Optional<Note> note = noteService.findById(id);
+		if (Objects.nonNull(note)) {
+			noteService.delete(note.get());
 		}
 		return "redirect:/note/list";
 	}

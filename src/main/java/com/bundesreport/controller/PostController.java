@@ -3,6 +3,7 @@ package com.bundesreport.controller;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,6 @@ import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.service.PostService;
-import com.bundesreport.type.CategoryType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,50 +24,49 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostController extends PageController {
 
+	@Autowired
 	private final PostService postService;
 
-	@GetMapping(value = "/posts/{categoryName}")
-	public String list(@PathVariable("categoryName") String categoryName, Model model, Authentication auth) {
+	@GetMapping(value = "/posts/{category}")
+	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
-			CategoryType category = CategoryType.valueOf(categoryName.toUpperCase());
+			model = createLayout(model, auth);
 			User user = null;
 			if (Objects.nonNull(auth)) {
 				user = (User) auth.getPrincipal();
 			}
-			model = createLayout(model, user);
-			model.addAttribute("bean",
-					new PostListBean(messageSource, user, postService.findByCategory(category), category));
+			model.addAttribute("bean", new PostListBean(msgSrc, user, postService.findByCategory(category), category));
 			return "posts/list";
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			return "redirect:/404";
 		}
 	}
 
-	@GetMapping(value = "/posts/new/{categoryName}")
-	public String write(@PathVariable("categoryName") String categoryName, Model model, Authentication auth) {
-		CategoryType category = CategoryType.valueOf(categoryName.toUpperCase());
-		User user = null;
-		if (Objects.nonNull(auth)) {
-			user = (User) auth.getPrincipal();
+	@GetMapping(value = "/posts/new/{category}")
+	public String write(@PathVariable("category") String category, Model model, Authentication auth) {
+		try {
+			model = createLayout(model, auth);
+			User user = null;
+			if (Objects.nonNull(auth)) {
+				user = (User) auth.getPrincipal();
+			}
+			model.addAttribute("bean", new PostBean(msgSrc, user, null, category));
+			model.addAttribute("postForm", new PostForm(category, user));
+			model.addAttribute("categoryName", category);
+			return "posts/write";
+		} catch (Exception e) {
+			return "redirect:/404";
 		}
-		model = createLayout(model, user);
-		model.addAttribute("bean", new PostBean(messageSource, user, null, category));
-		model.addAttribute("categoryName", categoryName);
-		model.addAttribute("postForm", new PostForm(category, user));
-		return "posts/write";
 	}
 
 	@PostMapping(value = "/posts/new")
 	public String write(PostForm form, Authentication auth) {
-		User user = null;
 		if (Objects.nonNull(auth)) {
-			user = (User) auth.getPrincipal();
-			form.setUser(user);
+			form.setUser((User) auth.getPrincipal());
 		}
 		if (Objects.nonNull(form.getId())) {
-			Optional<Post> post = postService.findById(form.getId());
-			Post updPost = post.get();
-			postService.update(updPost.getUpdateModel(updPost, form));
+			Optional<Post> postWrapper = postService.findById(form.getId());
+			postService.update(postWrapper.get().getUpdateModel(form));
 			return "redirect:/posts/" + form.getCategory();
 		}
 		postService.save(form);
@@ -76,6 +75,7 @@ public class PostController extends PageController {
 
 	@GetMapping(value = "/posts/view/{postId}")
 	public String view(@PathVariable("postId") Long postId, Model model, Authentication auth) {
+		model = createLayout(model, auth);
 		User user = null;
 		if (Objects.nonNull(auth)) {
 			user = (User) auth.getPrincipal();
@@ -84,13 +84,13 @@ public class PostController extends PageController {
 		if (Objects.isNull(post)) {
 			return "redirect:/";
 		}
-		model = createLayout(model, user);
-		model.addAttribute("bean", new PostBean(messageSource, user, post.get(), null));
+		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
 		return "posts/view";
 	}
 
 	@GetMapping(value = "/posts/update/{postId}")
 	public String update(@PathVariable("postId") Long postId, Model model, Authentication auth) {
+		model = createLayout(model, auth);
 		User user = null;
 		if (Objects.nonNull(auth)) {
 			user = (User) auth.getPrincipal();
@@ -99,15 +99,14 @@ public class PostController extends PageController {
 		if (Objects.isNull(post)) {
 			return "redirect:/";
 		}
-		model = createLayout(model, user);
-		model.addAttribute("bean", new PostBean(messageSource, user, post.get(), null));
+		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
 		model.addAttribute("categoryName", post.get().getCategory().toString());
 		model.addAttribute("postForm", post.get().toPostForm());
 		return "posts/write";
 	}
 
 	@GetMapping(value = "/posts/delete/{postId}")
-	public String delete(@PathVariable("postId") Long postId, Model model, Authentication auth) {
+	public String delete(@PathVariable("postId") Long postId) {
 		return "redirect:/posts/" + postService.delete(postId);
 	}
 }

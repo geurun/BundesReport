@@ -15,12 +15,15 @@ import lombok.Setter;
 @Setter
 public class PostBean extends MessageBean {
 
-	public PostBean(MessageSource msgSrc, User user, Post post, CategoryType category) {
+	public PostBean(MessageSource msgSrc, User user, Post post, String category) {
 		super(msgSrc, user);
 		this.post = post;
-		this.category = category;
 
-		if (Objects.isNull(category) && Objects.nonNull(post)) {
+		if (Objects.nonNull(category)) {
+			this.category = CategoryType.valueOf(category.toUpperCase());
+		}
+
+		if (Objects.isNull(this.category) && Objects.nonNull(post)) {
 			this.category = post.getCategory();
 		}
 

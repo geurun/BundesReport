@@ -25,8 +25,8 @@ public class PostForm {
 	private boolean deleted;
 	private User user;
 
-	public PostForm(CategoryType category, User user) {
-		this.category = category;
+	public PostForm(String category, User user) {
+		this.category = CategoryType.valueOf(category.toUpperCase());
 		this.user = user;
 	}
 
