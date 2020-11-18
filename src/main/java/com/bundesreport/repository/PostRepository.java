@@ -10,5 +10,5 @@ import com.bundesreport.type.CategoryType;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-	public List<Post> findByCategoryOrderByCreatedDateAsc(CategoryType categoryType);
+	public List<Post> findByCategory(CategoryType categoryType);
 }

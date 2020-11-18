@@ -31,8 +31,8 @@ public class PostService {
 		return postRepository.findAll();
 	}
 
-	public List<Post> findByCategoryOrderByCreatedDateAsc(CategoryType categoryType) {
-		return postRepository.findByCategoryOrderByCreatedDateAsc(categoryType);
+	public List<Post> findByCategory(CategoryType categoryType) {
+		return postRepository.findByCategory(categoryType);
 	}
 
 	public void save(PostForm postForm) {

@@ -35,8 +35,8 @@ public class PostController extends PageController {
 				user = (User) auth.getPrincipal();
 			}
 			model = createLayout(model, user);
-			model.addAttribute("bean", new PostListBean(messageSource, user,
-					postService.findByCategoryOrderByCreatedDateAsc(category), category));
+			model.addAttribute("bean",
+					new PostListBean(messageSource, user, postService.findByCategory(category), category));
 			return "posts/list";
 		} catch (IllegalArgumentException e) {
 			return "redirect:/404";

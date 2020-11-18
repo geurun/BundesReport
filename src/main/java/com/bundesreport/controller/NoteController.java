@@ -37,7 +37,7 @@ public class NoteController extends PageController {
 			User user = (User) auth.getPrincipal();
 			model = createLayout(model, user);
 			model.addAttribute("bean",
-					new NoteListBean(messageSource, user, noteService.findByReceiverOrderByCreatedDateAsc(user)));
+					new NoteListBean(messageSource, user, noteService.findByReceiver(user)));
 		}
 		return "note/list";
 	}

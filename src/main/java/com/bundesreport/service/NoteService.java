@@ -26,8 +26,8 @@ public class NoteService {
 		return repository.findById(id);
 	}
 
-	public List<Note> findByReceiverOrderByCreatedDateAsc(User user) {
-		return repository.findByReceiverOrderByCreatedDateAsc(user);
+	public List<Note> findByReceiver(User user) {
+		return repository.findByReceiver(user);
 	}
 
 	public void save(NoteForm noteForm) {

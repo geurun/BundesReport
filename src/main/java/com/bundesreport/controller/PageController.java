@@ -31,7 +31,7 @@ public class PageController {
 	protected Model createLayout(Model model, User user) {
 		List<Note> noteList = new ArrayList<>();
 		if (Objects.nonNull(user)) {
-			noteList = noteService.findByReceiverOrderByCreatedDateAsc(user);
+			noteList = noteService.findByReceiver(user);
 		}
 		// ToDo: Use User's initial Language or Selected Language
 		model.addAttribute("sidebar", new SidebarBean(messageSource, user));
