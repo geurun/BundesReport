@@ -1,6 +1,5 @@
 package com.bundesreport.controller;
 
-import java.util.Locale;
 import java.util.Objects;
 
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ import com.bundesreport.config.AjaxResponseBody;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
-import com.bundesreport.util.MessageUtil;
+import com.bundesreport.util.MsgUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -52,9 +51,7 @@ public class UserController extends PageController {
 	@PostMapping(value = "/user/profile/check")
 	public ResponseEntity<?> userProfileValidationViaAjax(@RequestBody UserForm userForm, Authentication auth) {
 
-		// ToDo: Use selected Locale
-		Locale locale = Locale.ROOT;
-		MessageUtil util = new MessageUtil();
+		MsgUtil util = new MsgUtil(messageSource);
 
 		AjaxResponseBody result = new AjaxResponseBody();
 
@@ -66,7 +63,7 @@ public class UserController extends PageController {
 		}
 		// Email check
 		if (userService.findByEmail(userForm.getEmail()).size() > 0) {
-			result.getMsgs().add(util.getMessage(messageSource, "user.error.email", locale));
+			result.getMsgs().add(util.getMessage("user.error.email"));
 		}
 		return ResponseEntity.ok(result);
 	}

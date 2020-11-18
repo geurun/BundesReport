@@ -1,27 +1,18 @@
 package com.bundesreport.component;
 
-import java.util.Locale;
-
 import org.springframework.context.MessageSource;
 
 import com.bundesreport.domain.User;
-import com.bundesreport.util.MessageUtil;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserProfileBean {
+public class UserProfileBean extends MessageBean {
 
-	public UserProfileBean(MessageSource messageSource, User user) {
-		// ToDo: Selected Locale
-		Locale locale = Locale.ROOT;
-
-		if (user != null) {
-			this.user = user;
-			locale = user.getLanguageStatus().getLocale();
-		}
+	public UserProfileBean(MessageSource msgSrc, User user) {
+		super(msgSrc, user);
 
 		// ToDo: get from post
 		postCount = 0;
@@ -31,52 +22,33 @@ public class UserProfileBean {
 		commentCount = 0;
 		commentLikeCount = 0;
 
-		MessageUtil msgUtil = new MessageUtil();
-		title = msgUtil.getMessage(messageSource, "user.title", locale);
-		myPostCount = msgUtil.getMessage(messageSource, "user.myPostCount", locale);
-		myPostLikeCount = msgUtil.getMessage(messageSource, "user.myPostLikeCount", locale);
-		myCommentCount = msgUtil.getMessage(messageSource, "user.myCommentCount", locale);
-		myCommentLikeCount = msgUtil.getMessage(messageSource, "user.myCommentLikeCount", locale);
-		modifyUserInfo = msgUtil.getMessage(messageSource, "user.modifyUserInfo", locale);
-		userName = msgUtil.getMessage(messageSource, "user.username", locale);
-		password = msgUtil.getMessage(messageSource, "user.password", locale);
-		email = msgUtil.getMessage(messageSource, "user.email", locale);
-		languageStatus = msgUtil.getMessage(messageSource, "user.languageStatus", locale);
-		withdrawal = msgUtil.getMessage(messageSource, "user.withdrawal", locale);
-		save = msgUtil.getMessage(messageSource, "user.save", locale);
+		title = msgUtil.getMessage("user.title");
+		myPostCount = msgUtil.getMessage("user.myPostCount");
+		myPostLikeCount = msgUtil.getMessage("user.myPostLikeCount");
+		myCommentCount = msgUtil.getMessage("user.myCommentCount");
+		myCommentLikeCount = msgUtil.getMessage("user.myCommentLikeCount");
+		modifyUserInfo = msgUtil.getMessage("user.modifyUserInfo");
+		userName = msgUtil.getMessage("user.username");
+		password = msgUtil.getMessage("user.password");
+		email = msgUtil.getMessage("user.email");
+		languageStatus = msgUtil.getMessage("user.languageStatus");
+		withdrawal = msgUtil.getMessage("user.withdrawal");
+		save = msgUtil.getMessage("user.save");
 	}
 
-	private User user;
-
 	private int postCount;
-
 	private int postLikeCount;
-
 	private int commentCount;
-
 	private int commentLikeCount;
-
-	private String title;
-
 	private String myPostCount;
-
 	private String myPostLikeCount;
-
 	private String myCommentCount;
-
 	private String myCommentLikeCount;
-
 	private String modifyUserInfo;
-
 	private String userName;
-
 	private String password;
-
 	private String email;
-
 	private String languageStatus;
-
 	private String withdrawal;
-
 	private String save;
 }

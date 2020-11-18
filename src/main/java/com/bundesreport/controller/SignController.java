@@ -1,6 +1,5 @@
 package com.bundesreport.controller;
 
-import java.util.Locale;
 import java.util.Objects;
 
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import com.bundesreport.config.AjaxResponseBody;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
-import com.bundesreport.util.MessageUtil;
+import com.bundesreport.util.MsgUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -54,20 +53,18 @@ public class SignController extends PageController {
 	@PostMapping(value = "/signup/check")
 	public ResponseEntity<?> userValidationViaAjax(@RequestBody UserForm userForm) {
 
-		// ToDo: Use selected Locale
-		Locale locale = Locale.ROOT;
-		MessageUtil util = new MessageUtil();
+		MsgUtil util = new MsgUtil(messageSource);
 
 		AjaxResponseBody result = new AjaxResponseBody();
 
 		// ID check
 		if (Objects.nonNull(userService.findByUserName(userForm.getUserName()))) {
-			result.getMsgs().add(util.getMessage(messageSource, "signup.error.id", locale));
+			result.getMsgs().add(util.getMessage("signup.error.id"));
 		}
 
 		// Email check
 		if (userService.findByEmail(userForm.getEmail()).size() > 0) {
-			result.getMsgs().add(util.getMessage(messageSource, "signup.error.email", locale));
+			result.getMsgs().add(util.getMessage("signup.error.email"));
 		}
 
 		return ResponseEntity.ok(result);

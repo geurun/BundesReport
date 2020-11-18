@@ -1,78 +1,50 @@
 package com.bundesreport.component;
 
-import java.util.Locale;
-
 import org.springframework.context.MessageSource;
 
 import com.bundesreport.domain.User;
-import com.bundesreport.util.MessageUtil;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SidebarBean {
+public class SidebarBean extends MessageBean {
 
-	public SidebarBean(MessageSource messageSource, User user) {
-		// ToDo: Selected Locale
-		Locale locale = Locale.ROOT;
+	public SidebarBean(MessageSource msgSrc, User user) {
+		super(msgSrc, user);
 
-		if (user != null) {
-			this.user = user;
-			locale = user.getLanguageStatus().getLocale();
-		}
-
-		MessageUtil msgUtil = new MessageUtil();
-		title = msgUtil.getMessage(messageSource, "title", locale);
-		home = msgUtil.getMessage(messageSource, "menu.home", locale);
-		menu = msgUtil.getMessage(messageSource, "menu.menu", locale);
-		board = msgUtil.getMessage(messageSource, "menu.board", locale);
-		freeBoard = msgUtil.getMessage(messageSource, "menu.freeBoard", locale);
-		abroadBoard = msgUtil.getMessage(messageSource, "menu.abroadBoard", locale);
-		livingQA = msgUtil.getMessage(messageSource, "menu.livingQA", locale);
-		fleaMarket = msgUtil.getMessage(messageSource, "menu.fleaMarket", locale);
-		jobSearch = msgUtil.getMessage(messageSource, "menu.jobSearch", locale);
-		club = msgUtil.getMessage(messageSource, "menu.club", locale);
-		eventNotification = msgUtil.getMessage(messageSource, "menu.eventNotification", locale);
-		recipe = msgUtil.getMessage(messageSource, "menu.recipe", locale);
-		gallery = msgUtil.getMessage(messageSource, "menu.gallery", locale);
-		event = msgUtil.getMessage(messageSource, "menu.event", locale);
-		miniGame = msgUtil.getMessage(messageSource, "menu.miniGame", locale);
-		rain = msgUtil.getMessage(messageSource, "menu.rain", locale);
+		title = msgUtil.getMessage("title");
+		home = msgUtil.getMessage("menu.home");
+		menu = msgUtil.getMessage("menu.menu");
+		board = msgUtil.getMessage("menu.board");
+		freeBoard = msgUtil.getMessage("menu.freeBoard");
+		abroadBoard = msgUtil.getMessage("menu.abroadBoard");
+		livingQA = msgUtil.getMessage("menu.livingQA");
+		fleaMarket = msgUtil.getMessage("menu.fleaMarket");
+		jobSearch = msgUtil.getMessage("menu.jobSearch");
+		club = msgUtil.getMessage("menu.club");
+		eventNotification = msgUtil.getMessage("menu.eventNotification");
+		recipe = msgUtil.getMessage("menu.recipe");
+		gallery = msgUtil.getMessage("menu.gallery");
+		event = msgUtil.getMessage("menu.event");
+		miniGame = msgUtil.getMessage("menu.miniGame");
+		rain = msgUtil.getMessage("menu.rain");
 	}
 
-	private User user;
-
-	private String title;
-
 	private String home;
-
 	private String menu;
-
 	private String board;
-
 	private String freeBoard;
-
 	private String abroadBoard;
-
 	private String livingQA;
-
 	private String fleaMarket;
-
 	private String jobSearch;
-
 	private String club;
-
 	private String eventNotification;
-
 	private String recipe;
-
 	private String gallery;
-
 	private String event;
-
 	private String miniGame;
-
 	private String rain;
 }

@@ -1,58 +1,38 @@
 package com.bundesreport.component;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.type.CategoryType;
-import com.bundesreport.util.MessageUtil;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PostListBean {
+public class PostListBean extends MessageBean {
 
-	public PostListBean(MessageSource messageSource, User user, List<Post> posts, CategoryType category) {
-		// ToDo: Selected Locale
-		Locale locale = Locale.ROOT;
-
-		if (user != null) {
-			this.user = user;
-			locale = user.getLanguageStatus().getLocale();
-		}
-
+	public PostListBean(MessageSource msgSrc, User user, List<Post> posts, CategoryType category) {
+		super(msgSrc, user);
 		this.posts = posts;
 		this.category = category;
 
-		MessageUtil msgUtil = new MessageUtil();
-		title = msgUtil.getMessage(messageSource, category.getMessageCode(), locale);
-		number = msgUtil.getMessage(messageSource, "post.list.number", locale);
-		postTitle = msgUtil.getMessage(messageSource, "post.list.postTitle", locale);
-		createdUser = msgUtil.getMessage(messageSource, "post.list.createdUser", locale);
-		createdDate = msgUtil.getMessage(messageSource, "post.list.createdDate", locale);
-		write = msgUtil.getMessage(messageSource, "post.list.write", locale);
+		title = msgUtil.getMessage(this.category.getMessageCode());
+		number = msgUtil.getMessage("post.list.number");
+		postTitle = msgUtil.getMessage("post.list.postTitle");
+		createdUser = msgUtil.getMessage("post.list.createdUser");
+		createdDate = msgUtil.getMessage("post.list.createdDate");
+		write = msgUtil.getMessage("post.list.write");
 	}
 
-	private User user;
-
 	private List<Post> posts;
-
 	private CategoryType category;
-
-	private String title;
-
 	private String number;
-
 	private String postTitle;
-
 	private String createdUser;
-
 	private String createdDate;
-
 	private String write;
 }
