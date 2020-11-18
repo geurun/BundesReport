@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.bundesreport.config.AjaxResponseBody;
+import com.bundesreport.config.AjaxResponse;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
@@ -55,7 +55,7 @@ public class SignController extends PageController {
 
 		MsgUtil util = new MsgUtil(messageSource);
 
-		AjaxResponseBody result = new AjaxResponseBody();
+		AjaxResponse result = new AjaxResponse();
 
 		// ID check
 		if (Objects.nonNull(userService.findByUserName(userForm.getUserName()))) {

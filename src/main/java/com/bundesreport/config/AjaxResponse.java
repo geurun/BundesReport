@@ -8,6 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AjaxResponseBody {
+public class AjaxResponse {
 	List<String> msgs = new ArrayList<>();
 }

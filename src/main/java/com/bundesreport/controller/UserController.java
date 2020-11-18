@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.bundesreport.component.UserProfileBean;
-import com.bundesreport.config.AjaxResponseBody;
+import com.bundesreport.config.AjaxResponse;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
@@ -53,7 +53,7 @@ public class UserController extends PageController {
 
 		MsgUtil util = new MsgUtil(messageSource);
 
-		AjaxResponseBody result = new AjaxResponseBody();
+		AjaxResponse result = new AjaxResponse();
 
 		if (Objects.nonNull(auth)) {
 			User user = (User) auth.getPrincipal();
