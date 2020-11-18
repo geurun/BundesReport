@@ -15,12 +15,12 @@ import lombok.Setter;
 @Setter
 public class TopbarBean extends MessageBean {
 
-	public TopbarBean(MessageSource msgSrc, User user, List<Note> messages) {
+	public TopbarBean(MessageSource msgSrc, User user, List<Note> messages, int count) {
 		super(msgSrc, user);
 
 		if (Objects.nonNull(user)) {
 			this.messages = messages;
-			this.messageCount = messages.size();
+			this.messageCount = count;
 			if (messageCount > 99) {
 				messageCount = 99;
 			}
