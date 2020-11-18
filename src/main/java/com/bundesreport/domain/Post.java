@@ -22,10 +22,13 @@ import org.hibernate.annotations.Where;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.type.CategoryType;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
@@ -74,12 +77,6 @@ public class Post {
 		this.category = category;
 		this.user = user;
 		this.deleted = deleted;
-
-		// this.createdDate = LocalDateTime.now();
-	}
-
-	public Post() {
-
 	}
 
 	// ==relational method==//
@@ -93,4 +90,9 @@ public class Post {
 				.build();
 	}
 
+	public Post getUpdateModel(Post post, PostForm form) {
+		post.setTitle(form.getTitle());
+		post.setContent(form.getContent());
+		return post;
+	}
 }

@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.type.CategoryType;
-import com.bundesreport.type.LanguageStatus;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +23,11 @@ public class PostForm {
 	private LocalDateTime updatedDate;
 	private boolean deleted;
 	private User user;
+
+	public PostForm(CategoryType category, User user) {
+		this.category = category;
+		this.user = user;
+	}
 
 	public Post toEntity() {
 		return Post.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)

@@ -1,8 +1,10 @@
 package com.bundesreport.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,48 +16,40 @@ import com.bundesreport.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class PostService {
 
+	@Autowired
 	private final PostRepository postRepository;
 
-	/** 글 조회 */
-	public Post findPost(Long postId) {
-		return postRepository.findOne(postId);
+	public Optional<Post> findById(Long id) {
+		return postRepository.findById(id);
 	}
 
 	public List<Post> findPosts() {
 		return postRepository.findAll();
 	}
 
-	public List<Post> findPostsByCategory(CategoryType categoryType) {
-		return postRepository.findByCategory(categoryType);
+	public List<Post> findByCategoryOrderByCreatedDateAsc(CategoryType categoryType) {
+		return postRepository.findByCategoryOrderByCreatedDateAsc(categoryType);
 	}
 
-	@Transactional
-	public Long createPost(PostForm postForm) {
-		// postForm.setUser(user);
-		Post post = postForm.toEntity();
+	public void save(PostForm postForm) {
+		postRepository.save(postForm.toEntity());
+	}
+
+	public void update(Post post) {
 		postRepository.save(post);
-		return post.getId();
 	}
 
-	@Transactional
-	public Long updatePost(PostForm postForm, Long postId) {
-		Post post = postRepository.findOne(postId);
-		post.setTitle(postForm.getTitle());
-		post.setContent(postForm.getContent());
-		post.setCategory(postForm.getCategory());
-		post.setUpdatedDate(LocalDateTime.now());
-		return post.getId();
+	public String delete(Long postId) {
+		Optional<Post> post = postRepository.findById(postId);
+		String categoryName = "";
+		if (Objects.nonNull(post)) {
+			categoryName = post.get().getCategory().toString();
+			postRepository.delete(post.get());
+		}
+		return categoryName;
 	}
-
-	@Transactional
-	public Long deletePost(Long postId) {
-		Post post = postRepository.findOne(postId);
-		postRepository.delete(post);
-		return post.getId();
-	}
-
 }

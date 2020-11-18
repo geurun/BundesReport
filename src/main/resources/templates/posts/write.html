@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/ckeditorWrite">
+<th:block layout:fragment="content">
+	<div class="container-fluid">
+		<!-- Page Wrapper -->
+		<div id="wrapper">
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Main Content -->
+				<div id="content">
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800" th:text="${bean.title}"></h1>
+						</div>
+						<div class="card shadow mb-4">
+							<div class="card-body">
+								<div class="table-responsive">
+									<form th:action="@{/posts/new}" th:object="${postForm}" method="post">
+										<input type="hidden" id="id" name="id" th:field="*{id}" />
+										<input type="hidden" id="user" name="user" th:field="*{user}" />
+										<input type="hidden" id="category" name="category" th:field="*{category}" />
+										<table class="table talbe-bordered">
+											<tbody>
+												<tr>
+													<th style="width: 15%" th:text="${bean.postTitle}"></th>
+													<td style="width: 85%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.postTitle}" th:field="*{title}" th:text="${title}" required /></td>
+												</tr>
+												<tr>
+													<th th:text="${bean.postContent}"></th>
+													<td><textarea id="editor" name="editor" th:field="*{content}" th:utext="${content}" class="form-control" rows="10"></textarea></td>
+												</tr>
+												<tr>
+													<th>
+														<a class="btn btn-secondary" th:href="@{/posts/{categoryName} (categoryName=${categoryName})}" role="button"><span th:text="${bean.btnList}"></span></a>
+													</th>
+													<td class="text-right">
+														<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${bean.btnSave}" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

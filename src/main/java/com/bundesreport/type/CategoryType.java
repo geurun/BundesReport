@@ -1,8 +1,43 @@
 package com.bundesreport.type;
 
-public enum CategoryType {
-	FREE_BOARD, ABROAD_BOARD, LIVING_QA, FLEA_MARKET, JOB_SEARCH, CLUB, EVENT_NOTIFICATION, RECIPE, GALLERY;
+import lombok.Getter;
 
-	CategoryType() {
+@Getter
+public enum CategoryType {
+	FREE_BOARD(0), ABROAD_BOARD(1), LIVING_QA(2), FLEA_MARKET(3), JOB_SEARCH(4), CLUB(5), EVENT_NOTIFICATION(6),
+	RECIPE(7), GALLERY(8);
+
+	CategoryType(int value) {
+		this.value = value;
+	}
+
+	private int value;
+
+	public String getMessageCode() {
+		if (FREE_BOARD.getValue() == this.value) {
+			return "post.title.freeBoard";
+		}
+		if (ABROAD_BOARD.getValue() == this.value) {
+			return "post.title.abroadBoard";
+		}
+		if (LIVING_QA.getValue() == this.value) {
+			return "post.title.livingQA";
+		}
+		if (FLEA_MARKET.getValue() == this.value) {
+			return "post.title.fleaMarket";
+		}
+		if (JOB_SEARCH.getValue() == this.value) {
+			return "post.title.jobSearch";
+		}
+		if (CLUB.getValue() == this.value) {
+			return "post.title.club";
+		}
+		if (EVENT_NOTIFICATION.getValue() == this.value) {
+			return "post.title.eventNotification";
+		}
+		if (RECIPE.getValue() == this.value) {
+			return "post.title.recipe";
+		}
+		return "post.title.gallery";
 	}
 }
