@@ -47,7 +47,7 @@ public class PostService {
 		Optional<Post> post = postRepository.findById(postId);
 		String categoryName = "";
 		if (Objects.nonNull(post)) {
-			categoryName = post.get().getCategory().toString();
+			categoryName = post.get().getCategory().toString().toLowerCase();
 			postRepository.delete(post.get());
 		}
 		return categoryName;

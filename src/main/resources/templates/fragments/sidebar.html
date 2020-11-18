@@ -2,52 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="sidebarFragment">
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-				<div>
-					<img class="sidebar-full-logo" th:src="@{/img/BundesReportLogo.png}">
-					<img class="sidebar-mini-logo" th:src="@{/img/BundesReportLogoMini.png}">
-				</div>
-			</a>
-			<hr class="sidebar-divider" />
-			<div class="sidebar-heading" th:text="${sidebar.menu}"></div>
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-					<i class="far fa-clipboard"></i><span th:text=${sidebar.board}></span>
-				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/posts/FREE_BOARD"><span th:text="${sidebar.freeBoard}"></span></a>
-						<a class="collapse-item" href="/posts/ABROAD_BOARD"><span th:text="${sidebar.abroadBoard}"></span></a>
-						<a class="collapse-item" href="/posts/LIVING_QA"><span th:text="${sidebar.livingQA}"></span></a>
-						<a class="collapse-item" href="/posts/FLEA_MARKET"><span th:text="${sidebar.fleaMarket}"></span></a>
-						<a class="collapse-item" href="/posts/JOB_SEARCH"><span th:text="${sidebar.jobSearch}"></span></a>
-						<a class="collapse-item" href="/posts/CLUB"><span th:text="${sidebar.club}"></span></a>
-						<a class="collapse-item" href="/posts/EVENT_NOTIFICATION"><span th:text="${sidebar.eventNotification}"></span></a>
-						<a class="collapse-item" href="/posts/RECIPE"><span th:text="${sidebar.recipe}"></span></a>
-						<a class="collapse-item" href="/posts/GALLERY"><span th:text="${sidebar.gallery}"></span></a>
-					</div>
-				</div>
-			</li>
-			<hr class="sidebar-divider">
-			<div class="sidebar-heading" th:text="${sidebar.event}"></div>
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-					<i class="fas fa-gamepad"></i><span th:text=${sidebar.miniGame}></span>
-				</a>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/game/rain"><span th:text="${sidebar.rain}"></span></a>
-					</div>
-				</div>
-			</li>
-			<hr class="sidebar-divider d-none d-md-block">
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+			<div>
+				<img class="sidebar-full-logo" th:src="@{/img/BundesReportLogo.png}">
+				<img class="sidebar-mini-logo" th:src="@{/img/BundesReportLogoMini.png}">
 			</div>
-		</ul>
+		</a>
+		<hr class="sidebar-divider" />
+		<div class="sidebar-heading" th:text="${sidebar.menu}"></div>
+		<!-- Nav Item - Pages Collapse Menu -->
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				<i class="far fa-clipboard"></i><span th:text=${sidebar.board}></span>
+			</a>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<a class="collapse-item" href="/post/list/free_board"><span th:text="${sidebar.freeBoard}"></span></a>
+					<a class="collapse-item" href="/post/list/abroad_board"><span th:text="${sidebar.abroadBoard}"></span></a>
+					<a class="collapse-item" href="/post/list/living_qa"><span th:text="${sidebar.livingQA}"></span></a>
+					<a class="collapse-item" href="/post/flea_market"><span th:text="${sidebar.fleaMarket}"></span></a>
+					<a class="collapse-item" href="/post/job_search"><span th:text="${sidebar.jobSearch}"></span></a>
+					<a class="collapse-item" href="/post/club"><span th:text="${sidebar.club}"></span></a>
+					<a class="collapse-item" href="/post/event_notification"><span th:text="${sidebar.eventNotification}"></span></a>
+					<a class="collapse-item" href="/post/recipe"><span th:text="${sidebar.recipe}"></span></a>
+					<a class="collapse-item" href="/post/gallery"><span th:text="${sidebar.gallery}"></span></a>
+				</div>
+			</div>
+		</li>
+		<hr class="sidebar-divider">
+		<div class="sidebar-heading" th:text="${sidebar.event}"></div>
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+				<i class="fas fa-gamepad"></i><span th:text=${sidebar.miniGame}></span>
+			</a>
+			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<a class="collapse-item" href="/game/rain"><span th:text="${sidebar.rain}"></span></a>
+				</div>
+			</div>
+		</li>
+		<hr class="sidebar-divider d-none d-md-block">
+		<!-- Sidebar Toggler (Sidebar) -->
+		<div class="text-center d-none d-md-inline">
+			<button class="rounded-circle border-0" id="sidebarToggle"></button>
+		</div>
 	</ul>
 </th:block>
 </html>

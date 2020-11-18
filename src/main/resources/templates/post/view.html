@@ -38,11 +38,11 @@
 											</tr>
 											<tr>
 												<th>
-													<a class="btn btn-secondary" th:href="@{/posts/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
+													<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 												</th>
 												<td class="text-right">
-													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/posts/delete/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
-													<a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/posts/update/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnModify}"></span></a>
+													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
+													<a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"><span th:text="${bean.btnModify}"></span></a>
 												</td>
 											</tr>
 										</tbody>
