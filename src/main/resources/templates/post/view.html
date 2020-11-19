@@ -53,16 +53,20 @@
 						<div class="d-sm-flex align-items-center justify-content-between mb-4">
 							<h1 class="h3 mb-0 text-gray-800" th:text="${commentListBean.commentHeader}"></h1>
 						</div>
-						<div class="card shadow mb-4" th:each="comment : ${commentListBean.comments}">
+						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-reponsive">
 									<form th:action="@{/comment/write}" th:object="${commentForm}" method="post">
-										<input type="hidden" id="id" name="id" th:field="*{id}" /> <input type="hidden" id="user" name="user" th:field="*{user}" /> <input type="hidden" id="post" name="post" th:field="*{post}" />
+										<input type="hidden" id="id" name="id" th:field="*{id}" />
+										<input type="hidden" id="user" name="user" th:field="*{user}" />
+										<input type="hidden" id="post" name="post" th:field="*{post}" />
 										<table class="table-bordered">
-											<tr>
-												<th th:text="${commentListBean.commentContent}"></th>
-												<td><input type="text" class="form-control" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /></td>
-											</tr>
+											<tbody>
+												<tr>
+													<th th:text="${commentListBean.commentContent}"></th>
+													<td><input type="text" class="form-control" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /></td>
+												</tr>
+											</tbody>
 										</table>
 										<dd class="text-right">
 											<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${commentListBean.btnSave}" />

@@ -16,7 +16,9 @@ import com.bundesreport.component.PostBean;
 import com.bundesreport.component.PostListBean;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
+import com.bundesreport.dto.CommentForm;
 import com.bundesreport.dto.PostForm;
+import com.bundesreport.service.CommentService;
 import com.bundesreport.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,9 @@ public class PostController extends PageController {
 
 	@Autowired
 	private final PostService postService;
+	
+	@Autowired
+	private final CommentService commentService;
 
 	@GetMapping(value = "/post/list/{category}")
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
@@ -87,6 +92,7 @@ public class PostController extends PageController {
 		}
 		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
 		model.addAttribute("commentListBean", new CommentListBean(msgSrc, user, post.get(), post.get().getComments()));
+		model.addAttribute("commentForm", new CommentForm(user, post.get()));
 		return "post/view";
 	}
 
