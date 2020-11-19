@@ -14,9 +14,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommentBean extends MessageBean {
+public class CommentListBean extends MessageBean {
 	
-	public CommentBean(MessageSource msgSrc, User user, Post post, Comment comment) {
+	public CommentListBean(MessageSource msgSrc, User user, Post post, Comment comment) {
 		super(msgSrc, user);
 		this.comment = comment;
 	
