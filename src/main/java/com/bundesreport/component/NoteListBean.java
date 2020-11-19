@@ -18,18 +18,18 @@ public class NoteListBean extends MessageBean {
 		super(msgSrc, user);
 		this.messages = messages;
 
-		title = msgUtil.getMessage("note.list.title");
-		noteTitle = msgUtil.getMessage("note.list.noteTitle");
-		noteContent = msgUtil.getMessage("note.list.noteContent");
-		sender = msgUtil.getMessage("note.list.sender");
-		date = msgUtil.getMessage("note.list.date");
-		readed = msgUtil.getMessage("note.list.readed");
-		readedTrue = msgUtil.getMessage("note.list.readed.true");
-		readedFalse = msgUtil.getMessage("note.list.readed.false");
-		btnPrevious = msgUtil.getMessage("note.list.paging.previous");
-		btnNext = msgUtil.getMessage("note.list.paging.next");
-		btnDelete = msgUtil.getMessage("note.list.delete");
-		btnMessageSend = msgUtil.getMessage("note.list.note.send");
+		setTitle(getMsgUtil().getMessage("note.list.title"));
+		noteTitle = getMsgUtil().getMessage("note.list.noteTitle");
+		noteContent = getMsgUtil().getMessage("note.list.noteContent");
+		sender = getMsgUtil().getMessage("note.list.sender");
+		date = getMsgUtil().getMessage("note.list.date");
+		readed = getMsgUtil().getMessage("note.list.readed");
+		readedTrue = getMsgUtil().getMessage("note.list.readed.true");
+		readedFalse = getMsgUtil().getMessage("note.list.readed.false");
+		btnPrevious = getMsgUtil().getMessage("note.list.paging.previous");
+		btnNext = getMsgUtil().getMessage("note.list.paging.next");
+		btnDelete = getMsgUtil().getMessage("note.list.delete");
+		btnMessageSend = getMsgUtil().getMessage("note.list.note.send");
 	}
 
 	private List<Note> messages;

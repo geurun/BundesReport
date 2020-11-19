@@ -16,16 +16,16 @@ public class NoteBean extends MessageBean {
 		super(msgSrc, user);
 		this.message = message;
 
-		title = msgUtil.getMessage("note.title");
-		noteTitle = msgUtil.getMessage("note.noteTitle");
-		noteContent = msgUtil.getMessage("note.noteContent");
-		sender = msgUtil.getMessage("note.sender");
-		receiver = msgUtil.getMessage("note.receiver");
-		date = msgUtil.getMessage("note.date");
-		btnList = msgUtil.getMessage("note.list");
-		btnSend = msgUtil.getMessage("note.send");
-		btnReply = msgUtil.getMessage("note.reply");
-		btnDelete = msgUtil.getMessage("note.delete");
+		setTitle(getMsgUtil().getMessage("note.title"));
+		noteTitle = getMsgUtil().getMessage("note.noteTitle");
+		noteContent = getMsgUtil().getMessage("note.noteContent");
+		sender = getMsgUtil().getMessage("note.sender");
+		receiver = getMsgUtil().getMessage("note.receiver");
+		date = getMsgUtil().getMessage("note.date");
+		btnList = getMsgUtil().getMessage("note.list");
+		btnSend = getMsgUtil().getMessage("note.send");
+		btnReply = getMsgUtil().getMessage("note.reply");
+		btnDelete = getMsgUtil().getMessage("note.delete");
 	}
 
 	private Note message;

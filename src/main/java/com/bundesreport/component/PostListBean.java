@@ -20,12 +20,12 @@ public class PostListBean extends MessageBean {
 		this.posts = posts;
 		this.category = CategoryType.valueOf(category.toUpperCase());
 
-		title = msgUtil.getMessage(this.category.getMessageCode());
-		number = msgUtil.getMessage("post.list.number");
-		postTitle = msgUtil.getMessage("post.list.postTitle");
-		createdUser = msgUtil.getMessage("post.list.createdUser");
-		createdDate = msgUtil.getMessage("post.list.createdDate");
-		write = msgUtil.getMessage("post.list.write");
+		setTitle(getMsgUtil().getMessage(this.category.getMessageCode()));
+		number = getMsgUtil().getMessage("post.list.number");
+		postTitle = getMsgUtil().getMessage("post.list.postTitle");
+		createdUser = getMsgUtil().getMessage("post.list.createdUser");
+		createdDate = getMsgUtil().getMessage("post.list.createdDate");
+		write = getMsgUtil().getMessage("post.list.write");
 	}
 
 	private List<Post> posts;

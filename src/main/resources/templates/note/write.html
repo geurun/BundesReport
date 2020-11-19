@@ -18,7 +18,7 @@
 								<div class="table-responsive">
 									<form th:action="@{/note/new}" th:object="${noteForm}" method="post">
 										<input type="hidden" id="receiver" name="receiver" th:field="*{receiver}" />
-										<table class="table talbe-bordered">
+										<table class="table table-bordered">
 											<tbody>
 												<tr>
 													<th style="width: 30%" th:text="${bean.noteTitle}"></th>

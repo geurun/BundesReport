@@ -15,10 +15,10 @@ import lombok.Setter;
 @Setter
 public class MessageBean {
 
-	User user;
-	Locale locale = Locale.ROOT;
-	MsgUtil msgUtil;
-	String title;
+	private User user;
+	private Locale locale = Locale.ROOT;
+	private MsgUtil msgUtil;
+	private String title;
 
 	public MessageBean(MessageSource msgSrc, User user) {
 		if (Objects.nonNull(user)) {

@@ -26,12 +26,12 @@ public class TopbarBean extends MessageBean {
 			}
 		}
 
-		messageCenter = msgUtil.getMessage("topbar.messageCenter");
-		readMore = msgUtil.getMessage("topbar.readMore");
-		signin = msgUtil.getMessage("topbar.button.signin");
-		signup = msgUtil.getMessage("topbar.button.signup");
-		profile = msgUtil.getMessage("topbar.button.profile");
-		signout = msgUtil.getMessage("topbar.button.signout");
+		messageCenter = getMsgUtil().getMessage("topbar.messageCenter");
+		readMore = getMsgUtil().getMessage("topbar.readMore");
+		signin = getMsgUtil().getMessage("topbar.button.signin");
+		signup = getMsgUtil().getMessage("topbar.button.signup");
+		profile = getMsgUtil().getMessage("topbar.button.profile");
+		signout = getMsgUtil().getMessage("topbar.button.signout");
 	}
 
 	private List<Note> messages;

@@ -33,16 +33,16 @@ public class PostBean extends MessageBean {
 			}
 		}
 
-		title = msgUtil.getMessage(this.category.getMessageCode());
-		postTitle = msgUtil.getMessage("post.postTitle");
-		postContent = msgUtil.getMessage("post.postContent");
-		createdUser = msgUtil.getMessage("post.createdUser");
-		createdDate = msgUtil.getMessage("post.createdDate");
-		updatedDate = msgUtil.getMessage("post.updatedDate");
-		btnList = msgUtil.getMessage("post.btnList");
-		btnSave = msgUtil.getMessage("post.btnSave");
-		btnModify = msgUtil.getMessage("post.btnModify");
-		btnDelete = msgUtil.getMessage("post.btnDelete");
+		setTitle(getMsgUtil().getMessage(this.category.getMessageCode()));
+		postTitle = getMsgUtil().getMessage("post.postTitle");
+		postContent = getMsgUtil().getMessage("post.postContent");
+		createdUser = getMsgUtil().getMessage("post.createdUser");
+		createdDate = getMsgUtil().getMessage("post.createdDate");
+		updatedDate = getMsgUtil().getMessage("post.updatedDate");
+		btnList = getMsgUtil().getMessage("post.btnList");
+		btnSave = getMsgUtil().getMessage("post.btnSave");
+		btnModify = getMsgUtil().getMessage("post.btnModify");
+		btnDelete = getMsgUtil().getMessage("post.btnDelete");
 	}
 
 	private Post post;

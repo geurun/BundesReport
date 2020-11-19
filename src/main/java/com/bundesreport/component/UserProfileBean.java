@@ -22,18 +22,18 @@ public class UserProfileBean extends MessageBean {
 		commentCount = 0;
 		commentLikeCount = 0;
 
-		title = msgUtil.getMessage("user.title");
-		myPostCount = msgUtil.getMessage("user.myPostCount");
-		myPostLikeCount = msgUtil.getMessage("user.myPostLikeCount");
-		myCommentCount = msgUtil.getMessage("user.myCommentCount");
-		myCommentLikeCount = msgUtil.getMessage("user.myCommentLikeCount");
-		modifyUserInfo = msgUtil.getMessage("user.modifyUserInfo");
-		userName = msgUtil.getMessage("user.username");
-		password = msgUtil.getMessage("user.password");
-		email = msgUtil.getMessage("user.email");
-		languageStatus = msgUtil.getMessage("user.languageStatus");
-		withdrawal = msgUtil.getMessage("user.withdrawal");
-		save = msgUtil.getMessage("user.save");
+		setTitle(getMsgUtil().getMessage("user.title"));
+		myPostCount = getMsgUtil().getMessage("user.myPostCount");
+		myPostLikeCount = getMsgUtil().getMessage("user.myPostLikeCount");
+		myCommentCount = getMsgUtil().getMessage("user.myCommentCount");
+		myCommentLikeCount = getMsgUtil().getMessage("user.myCommentLikeCount");
+		modifyUserInfo = getMsgUtil().getMessage("user.modifyUserInfo");
+		userName = getMsgUtil().getMessage("user.username");
+		password = getMsgUtil().getMessage("user.password");
+		email = getMsgUtil().getMessage("user.email");
+		languageStatus = getMsgUtil().getMessage("user.languageStatus");
+		withdrawal = getMsgUtil().getMessage("user.withdrawal");
+		save = getMsgUtil().getMessage("user.save");
 	}
 
 	private int postCount;
