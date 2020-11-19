@@ -29,6 +29,7 @@ public class NoteListBean extends MessageBean {
 		btnPrevious = msgUtil.getMessage("note.list.paging.previous");
 		btnNext = msgUtil.getMessage("note.list.paging.next");
 		btnDelete = msgUtil.getMessage("note.list.delete");
+		btnMessageSend = msgUtil.getMessage("note.list.note.send");
 	}
 
 	private List<Note> messages;
@@ -43,4 +44,5 @@ public class NoteListBean extends MessageBean {
 	private String btnPrevious;
 	private String btnNext;
 	private String btnDelete;
+	private String btnMessageSend;
 }

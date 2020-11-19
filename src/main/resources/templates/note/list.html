@@ -28,7 +28,20 @@
 										<tbody>
 											<tr th:each="message: ${bean.messages}">
 												<td><a th:href="@{/note/{id} (id=${message.id})}"><span th:text="${message.title}"></span></a></td>
-												<td th:text="${message.sender.username}"></td>
+												<td>
+													<ul class="navbar-nav ml-auto">
+														<li class="nav-item dropdown no-arrow">
+															<a class="nav-link dropdown-toggle" href="#" id="writerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																<span class="mr-2 d-none d-lg-inline" th:text="${message.sender.username}"></span>
+															</a>
+															<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="writerDropdown">
+																<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${message.sender.id})}">
+																	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> <span th:text="${bean.btnMessageSend}"></span>
+																</a>
+															</div>
+														</li>
+													</ul>
+												</td>
 												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(message.createdDate, 'yyyy-MM-dd')}"></td>
 												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'dd-MM-yyyy')}"></td>
 												<td th:if="${message.readed}" th:text="${bean.readedTrue}"></td>
