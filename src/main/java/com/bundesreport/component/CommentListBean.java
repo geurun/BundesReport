@@ -16,15 +16,10 @@ import lombok.Setter;
 @Setter
 public class CommentListBean extends MessageBean {
 	
-	public CommentListBean(MessageSource msgSrc, User user, Post post, Comment comment) {
+	public CommentListBean(MessageSource msgSrc, User user, Post post, List<Comment> comments) {
 		super(msgSrc, user);
-		this.comment = comment;
-	
-		if (Objects.nonNull(user) && Objects.nonNull(comment)) {
-			if (user.getUsername().equals(comment.getUser().getUsername())) {
-				this.hasPermit = 1;
-			}
-		}
+		this.comments = comments;
+		this.post = post;
 		
 		commentHeader = msgUtil.getMessage("comment.commentHeader");
 		createdDate = msgUtil.getMessage("comment.createdDate");
@@ -35,7 +30,7 @@ public class CommentListBean extends MessageBean {
 	
 	}
 	
-	private Comment comment;
+	private List<Comment> comments;
 	private Post post;
 	private String commentHeader;
 	private String createdUser;
