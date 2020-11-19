@@ -1,6 +1,7 @@
 package com.bundesreport.component;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.context.MessageSource;
 
@@ -15,15 +16,29 @@ import lombok.Setter;
 @Setter
 public class CommentBean extends MessageBean {
 	
-	public CommentBean(MessageSource msgSrc, User user, Post post, List<Comment> comments) {
+	public CommentBean(MessageSource msgSrc, User user, Post post, Comment comment) {
 		super(msgSrc, user);
-		this.comments = comments;
+		this.comment = comment;
+	
+		if (Objects.nonNull(user) && Objects.nonNull(comment)) {
+			if (user.getUsername().equals(comment.getUser().getUsername())) {
+				this.hasPermit = 1;
+			}
+		}
+		
+		commentHeader = msgUtil.getMessage("comment.commentHeader");
+		createdDate = msgUtil.getMessage("comment.createdDate");
+		updatedDate = msgUtil.getMessage("comment.updatedDate");
+		btnSave = msgUtil.getMessage("comment.btnSave");
+		btnModify = msgUtil.getMessage("comment.btnModify");
+		btnDelete = msgUtil.getMessage("comment.btnDelete");
+	
 	}
 	
-	private List<Comment> comments;
+	private Comment comment;
 	private Post post;
 	private String commentHeader;
-	private String commentContent;
+	private String createdUser;
 	private String createdDate;
 	private String updatedDate;
 	private String btnSave;
