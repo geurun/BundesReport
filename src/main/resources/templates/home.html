@@ -33,99 +33,99 @@
 			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only"> &gt; </span>
 			</a>
 		</div>
-		<!-- top slider end -->
-		<!-- first row -->
-		<div class="row">
-			<div class="col mb-5">
-				<h2>What We Do</h2>
-				<hr>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam
-					laboriosam. Repellat explicabo, maiores!</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci
-					nesciunt voluptate. Voluptatum.</p>
-				<a class="btn btn-info btn-lg" href="#">Call to Action &raquo;</a>
-			</div>
-		</div>
-		<!-- first row end -->
-		<!-- second row -->
 		<div class="row">
 			<div class="col-md-6 mb-5">
-				<h3><a class="home-board-title" href="/post/list/free_board"><span th:text="${free.freeBoard}"></span></a></h3>
-				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-bordered" id="freeBoard" width="50%" cellspacing="0">
-							<thead>
-								<tr>
-									<th style="width:80%"></th>
-									<th style="width:20%"></th>
-								</tr>
-								<tr th:each="post : ${free.posts}">
-									<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-									<td><span th:text="${post.user.username}"></span></td>
-								</tr>
-							</thead>
-						</table>
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title"><a class="home-board-title" href="/post/list/free_board"><span th:text="${free.freeBoard}"></span></a></h4>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table" id="freeBoard">
+									<thead>
+										<tr>
+											<th style="width:80%"></th>
+											<th style="width:20%"></th>
+										</tr>
+										<tr th:each="post : ${free.posts}">
+											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
+											<td><span th:text="${post.user.username}"></span></td>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6 mb-5">
-				<h3><a class="home-board-title" href="/post/list/living_qa"><span th:text="${life.livingQA}"></span></a></h3>
-				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-bordered" id="livingQA" width="50%" cellspacing="0">
-							<thead>
-								<tr>
-									<th style="width:80%"></th>
-									<th style="width:20%"></th>
-								</tr>
-								<tr th:each="post : ${life.posts}">
-									<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-									<td><span th:text="${post.user.username}"></span></td>
-								</tr>
-							</thead>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- second row end -->
-		<!-- third row -->
-		<div class="row">
-			<div class="col-md-4 mb-5">
 				<div class="card h-100">
 					<div class="card-body">
-						<h2 class="card-title">Card One</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-info btn-sm">More Info</a>
+						<h4 class="card-title"><a class="home-board-title" href="/post/list/living_qa"><span th:text="${life.livingQA}"></span></a></h4>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table" id="livingQA">
+									<thead>
+										<tr>
+											<th style="width:80%"></th>
+											<th style="width:20%"></th>
+										</tr>
+										<tr th:each="post : ${life.posts}">
+											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
+											<td><span th:text="${post.user.username}"></span></td>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 mb-5">
+			<div class="col-md-6 mb-5">
 				<div class="card h-100">
 					<div class="card-body">
-						<h2 class="card-title">Card Two</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore
-							voluptates quos eligendi labore.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-info btn-sm">More Info</a>
+						<h4 class="card-title"><a class="home-board-title" href="/post/list/free_board"><span th:text="${free.freeBoard}"></span></a></h4>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table" id="freeBoard" width="50%" cellspacing="0">
+									<thead>
+										<tr>
+											<th style="width:80%"></th>
+											<th style="width:20%"></th>
+										</tr>
+										<tr th:each="post : ${free.posts}">
+											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
+											<td><span th:text="${post.user.username}"></span></td>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 mb-5">
+			<div class="col-md-6 mb-5">
 				<div class="card h-100">
 					<div class="card-body">
-						<h2 class="card-title">Card Three</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-info btn-sm">More Info</a>
+						<h4 class="card-title"><a class="home-board-title" href="/post/list/living_qa"><span th:text="${life.livingQA}"></span></a></h4>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table" id="freeBoard" width="50%" cellspacing="0">
+									<thead>
+										<tr>
+											<th style="width:80%"></th>
+											<th style="width:20%"></th>
+										</tr>
+										<tr th:each="post : ${life.posts}">
+											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
+											<td><span th:text="${post.user.username}"></span></td>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<!-- third row end -->
 			<!-- fourth row -->
 			<div class="row">
 				<div class="col-lg-4 col-md-6 mb-4">
