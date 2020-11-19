@@ -28,7 +28,8 @@
 											</tr>
 											<tr>
 												<th th:text="${bean.date}"></th>
-												<td th:text="${bean.message.createdDate}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.message.createdDate, 'yyyy-MM-dd')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.message.createdDate, 'dd-MM-yyyy')}"></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.noteContent}"></th>

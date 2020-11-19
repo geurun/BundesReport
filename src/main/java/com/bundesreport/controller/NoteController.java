@@ -45,15 +45,18 @@ public class NoteController extends PageController {
 	public String view(@PathVariable("id") Long id, Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		if (Objects.nonNull(auth)) {
-			Optional<Note> note = noteService.findById(id);
-			if (Objects.isNull(note)) {
+			Optional<Note> noteWrapper = noteService.findById(id);
+			if (Objects.isNull(noteWrapper)) {
 				return "redirect:/note/list";
 			}
 			User user = (User) auth.getPrincipal();
-			if (!user.getUsername().equals(note.get().getReceiver().getUsername())) {
+			Note note = noteWrapper.get();
+			if (!user.getUsername().equals(note.getReceiver().getUsername())) {
 				return "redirect:/note/list";
 			}
-			model.addAttribute("bean", new NoteBean(msgSrc, user, note.get()));
+			note.setReaded(true);
+			noteService.save(note);
+			model.addAttribute("bean", new NoteBean(msgSrc, user, note));
 		}
 		return "note/view";
 	}

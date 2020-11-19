@@ -30,6 +30,18 @@ public class NoteService {
 		return repository.findByReceiver(user);
 	}
 
+	public List<Note> findTop5ByReceiverOrderByCreatedDateDesc(User user) {
+		return repository.findTop5ByReceiverOrderByCreatedDateDesc(user);
+	}
+	
+	public int countByReceiverAndReadedFalse(User user) {
+		return repository.countByReceiverAndReadedFalse(user);
+	}
+
+	public void save(Note note) {
+		repository.save(note);
+	}
+
 	public void save(NoteForm noteForm) {
 		repository.save(noteForm.toEntity());
 	}

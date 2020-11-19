@@ -27,7 +27,11 @@
 					<h6 class="dropdown-header" th:text=${topbar.messageCenter}></h6>
 					<a class="dropdown-item d-flex align-items-center" th:href="@{/note/{id} (id=${note.id})}" th:each="note: ${topbar.messages}">
 						<!-- ToDo: Already Read -->
-						<div class="font-weight-bold">
+						<div th:if="${note.readed}">
+							<div class="text-truncate" th:text=${note.content}></div>
+							<div class="small text-gray-500" th:text="${note.sender.username}"></div>
+						</div>
+						<div th:if="${!note.readed}" class="font-weight-bold">
 							<div class="text-truncate" th:text=${note.content}></div>
 							<div class="small text-gray-500" th:text="${note.sender.username}"></div>
 						</div>
