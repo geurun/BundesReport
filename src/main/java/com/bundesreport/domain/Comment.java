@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.bundesreport.dto.CommentForm;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,5 +62,18 @@ public class Comment {
 	public void setUser(User user) {
 		this.user = user;
 		user.getComments().add(this);
+	}
+
+	@Builder
+	public Comment(Long id, String content, User user, Post post, boolean deleted) {
+		this.id = id;
+		this.content = content;
+		this.user = user;
+		this.post = post;
+		this.deleted = deleted;
+	}
+
+	public CommentForm toCommentForm() {
+		return CommentForm.builder().id(id).content(content).user(user).post(post).deleted(deleted).build();
 	}
 }
