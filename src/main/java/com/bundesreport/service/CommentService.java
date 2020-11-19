@@ -21,6 +21,10 @@ public class CommentService {
 	@Autowired
 	private final CommentRepository commentRepository;
 
+	public Optional<Comment> findById(Long id) {
+		return commentRepository.findById(id);
+	}
+
 	public Long delete(Long commentId) {
 		Optional<Comment> comment = commentRepository.findById(commentId);
 		Long postId = null;
