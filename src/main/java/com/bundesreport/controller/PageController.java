@@ -28,12 +28,14 @@ public class PageController {
 	protected Model createLayout(Model model, Authentication auth) {
 		User user = null;
 		List<Note> noteList = new ArrayList<>();
+		int unreadMessageCount = 0;
 		if (Objects.nonNull(auth)) {
 			user = (User) auth.getPrincipal();
-			noteList = noteService.findByReceiver(user);
+			noteList = noteService.findTop5ByReceiverOrderByCreatedDateDesc(user);
+			unreadMessageCount = noteService.countByReceiverAndReadedFalse(user);
 		}
 		model.addAttribute("sidebar", new SidebarBean(msgSrc, user));
-		model.addAttribute("topbar", new TopbarBean(msgSrc, user, noteList));
+		model.addAttribute("topbar", new TopbarBean(msgSrc, user, noteList, unreadMessageCount));
 		return model;
 	}
 }

@@ -49,6 +49,9 @@ public class Note {
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 
+	@Column
+	private boolean readed;
+
 	@ManyToOne
 	@JoinColumn(name = "SENDER_ID")
 	private User sender;

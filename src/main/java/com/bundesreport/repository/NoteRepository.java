@@ -11,4 +11,6 @@ import com.bundesreport.domain.User;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
 	public List<Note> findByReceiver(User user);
+	public List<Note> findTop5ByReceiverOrderByCreatedDateDesc(User user);
+	public int countByReceiverAndReadedFalse(User user);
 }
