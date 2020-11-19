@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="fragments/editorHeader :: editorHeaderFragment"></th:block>
 <body id="page-top">
 	<div id="wrapper">
 		<!-- side bar -->
@@ -18,6 +18,6 @@
 		</div>
 	</div>
 	<!-- Script -->
-	<th:block th:replace="fragments/ckeditorScript :: ckeditorScriptFragment"></th:block>
+	<th:block th:replace="fragments/editorScript :: editorScriptFragment"></th:block>
 </body>
 </html>
