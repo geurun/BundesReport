@@ -115,6 +115,7 @@ public class PostController extends PageController {
 
 	@GetMapping(value = "/post/delete/{postId}")
 	public String delete(@PathVariable("postId") Long postId) {
-		return "redirect:/post/list" + postService.delete(postId);
+		return "redirect:/post/list/" + postService.delete(postId);
 	}
+	
 }

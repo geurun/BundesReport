@@ -17,10 +17,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.bundesreport.dto.CommentForm;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
@@ -76,4 +79,9 @@ public class Comment {
 	public CommentForm toCommentForm() {
 		return CommentForm.builder().id(id).content(content).user(user).post(post).deleted(deleted).build();
 	}
-}
+	
+	public Comment getUpdateModel (CommentForm form) {
+		setContent(form.getContent());
+		return this;
+	}			
+}			
