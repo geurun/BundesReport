@@ -22,6 +22,7 @@ public class CommentListBean extends MessageBean {
 		this.post = post;
 
 		commentHeader = msgUtil.getMessage("comment.commentHeader");
+		commentContent = msgUtil.getMessage("comment.commentContent");
 		createdDate = msgUtil.getMessage("comment.createdDate");
 		updatedDate = msgUtil.getMessage("comment.updatedDate");
 		btnSave = msgUtil.getMessage("comment.btnSave");
@@ -33,6 +34,7 @@ public class CommentListBean extends MessageBean {
 	private List<Comment> comments;
 	private Post post;
 	private String commentHeader;
+	private String commentContent;
 	private String createdUser;
 	private String createdDate;
 	private String updatedDate;
