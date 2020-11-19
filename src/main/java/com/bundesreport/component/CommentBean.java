@@ -22,6 +22,7 @@ public class CommentBean extends MessageBean {
 	
 	private List<Comment> comments;
 	private Post post;
+	private String commentHeader;
 	private String commentContent;
 	private String createdDate;
 	private String updatedDate;
