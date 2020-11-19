@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bundesreport.component.CommentListBean;
 import com.bundesreport.component.PostBean;
 import com.bundesreport.component.PostListBean;
 import com.bundesreport.domain.Post;
@@ -85,6 +86,7 @@ public class PostController extends PageController {
 			return "redirect:/";
 		}
 		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
+		model.addAttribute("commentListBean", new CommentListBean(msgSrc, user, post.get(), post.get().getComments()));
 		return "post/view";
 	}
 
