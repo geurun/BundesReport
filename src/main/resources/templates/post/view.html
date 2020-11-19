@@ -46,7 +46,31 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div><!--End Page Content-->
+					<!--Begin Comment Content-->
+					<div class="container-fluid">
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800" th:text="${commentListBean.commentHeader}"></h1>
+						</div>
+						<div class="card shadow mb-4" th:each="comment : ${commentListBean.comments}">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table talbe-bordered">
+										<tbody>
+											<tr>
+												<td th:text="${comment.user.username}"></td>
+												<td><span th:if="${comment.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd')}"></span> <span
+													th:if="${comment.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.cretedDate, 'dd-MM-yyyy')}"></span></td>
+											</tr>
+											<tr>
+												<td><span th:utext="${comment.content}"></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div><!--End Comment Content-->
 				</div>
 			</div>
 		</div>
