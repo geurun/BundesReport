@@ -16,7 +16,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table talbe-bordered">
+									<table class="table table-bordered">
 										<tbody>
 											<tr>
 												<th style="width: 30%" th:text="${bean.postTitle}"></th>
@@ -46,7 +46,8 @@
 								</div>
 							</div>
 						</div>
-					</div><!--End Page Content-->
+					</div>
+					<!--End Page Content-->
 					<!--Begin Comment Content-->
 					<div class="container-fluid">
 						<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -55,22 +56,23 @@
 						<div class="card shadow mb-4" th:each="comment : ${commentListBean.comments}">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table talbe-bordered">
+									<table class="table table-bordered">
 										<tbody>
 											<tr>
 												<td th:text="${comment.user.username}"></td>
-												<td><span th:if="${comment.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd')}"></span> <span
-													th:if="${comment.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.cretedDate, 'dd-MM-yyyy')}"></span></td>
+												<td class="text-right" th:if="${comment.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${comment.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.cretedDate, 'HH:mm dd-MM-yyyy')}"></td>
 											</tr>
 											<tr>
-												<td><span th:utext="${comment.content}"></span></td>
+												<td colspan="2"><span th:utext="${comment.content}"></span></td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
-					</div><!--End Comment Content-->
+					</div>
+					<!--End Comment Content-->
 				</div>
 			</div>
 		</div>
