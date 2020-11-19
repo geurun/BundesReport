@@ -55,6 +55,24 @@
 						</div>
 						<div class="card shadow mb-4" th:each="comment : ${commentListBean.comments}">
 							<div class="card-body">
+								<div class="table-reponsive">
+									<form th:action="@{/comment/write}" th:object="${commentForm}" method="post">
+										<input type="hidden" id="id" name="id" th:field="*{id}" /> <input type="hidden" id="user" name="user" th:field="*{user}" /> <input type="hidden" id="post" name="post" th:field="*{post}" />
+										<table class="table-bordered">
+											<tr>
+												<th th:text="${commentListBean.commentContent}"></th>
+												<td><input type="text" class="form-control" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /></td>
+											</tr>
+										</table>
+										<dd class="text-right">
+											<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${commentListBean.btnSave}" />
+										</dd>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="card shadow mb-4" th:each="comment : ${commentListBean.comments}">
+							<div class="card-body">
 								<dd class="text-right">
 									<a class="btn btn-outline-danger" th:if="${commentListBean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}"
 										role="button"><span th:text="${commentListBean.btnDelete}"></span></a> <a class="btn btn-secondary" th:if="${commentListBean.user.getUsername() == comment.getUser().getUsername()}"
