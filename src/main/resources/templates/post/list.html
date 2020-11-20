@@ -19,7 +19,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table talbe-bordered" id="postListDT" width="100%" cellspacing="0">
+									<table class="table table-bordered" id="postListDT">
 										<thead>
 											<tr>
 												<th style="width: 10%" th:text="${bean.number}"></th>
@@ -30,11 +30,25 @@
 										</thead>
 										<tbody>
 											<tr th:each="post : ${bean.posts}">
-												<td><span th:text="${post.id}"></span></td>
+												<td th:text="${post.id}"></td>
 												<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-												<td><span th:text="${post.user.username}"></span></td>
-												<td><span th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></span> <span
-													th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></span></td>
+												<td>
+													<ul class="navbar-nav ml-auto">
+														<li class="nav-item dropdown no-arrow">
+															<a class="nav-link dropdown-toggle" href="#" id="writerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																<span class="mr-2 d-none d-lg-inline" th:text="${post.user.username}"></span>
+															</a>
+															<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="writerDropdown">
+																<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
+																	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+																</a>
+															</div>
+														</li>
+													</ul>
+												</td>
+												<td th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></td>
 											</tr>
 										</tbody>
 									</table>

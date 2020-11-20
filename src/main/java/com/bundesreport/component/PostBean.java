@@ -43,6 +43,7 @@ public class PostBean extends MessageBean {
 		btnSave = getMsgUtil().getMessage("post.btnSave");
 		btnModify = getMsgUtil().getMessage("post.btnModify");
 		btnDelete = getMsgUtil().getMessage("post.btnDelete");
+		btnMessageSend = getMsgUtil().getMessage("post.note.send");
 	}
 
 	private Post post;
@@ -56,5 +57,6 @@ public class PostBean extends MessageBean {
 	private String btnSave;
 	private String btnModify;
 	private String btnDelete;
+	private String btnMessageSend;
 	private int hasPermit = 0;
 }

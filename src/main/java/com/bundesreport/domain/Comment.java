@@ -2,7 +2,6 @@ package com.bundesreport.domain;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,13 +26,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "COMMENTS")
+@Table(name = "comments")
 public class Comment {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "comment_id")
 	private Long id;
+
+	private boolean deleted;
 
 	@Lob
 	private String content;
@@ -44,10 +44,6 @@ public class Comment {
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
 
-	private int good;
-
-	private boolean deleted;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -55,6 +51,10 @@ public class Comment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "like_id")
+	private Like like;
 
 	// ==relational method==//
 	public void setPost(Post post) {
@@ -68,20 +68,20 @@ public class Comment {
 	}
 
 	@Builder
-	public Comment(Long id, String content, User user, Post post, boolean deleted) {
+	public Comment(Long id, boolean deleted, String content, User user, Post post) {
 		this.id = id;
+		this.deleted = deleted;
 		this.content = content;
 		this.user = user;
 		this.post = post;
-		this.deleted = deleted;
 	}
 
 	public CommentForm toCommentForm() {
-		return CommentForm.builder().id(id).content(content).user(user).post(post).deleted(deleted).build();
+		return CommentForm.builder().id(id).deleted(deleted).content(content).user(user).post(post).build();
 	}
-	
-	public Comment getUpdateModel (CommentForm form) {
+
+	public Comment getUpdateModel(CommentForm form) {
 		setContent(form.getContent());
 		return this;
-	}			
-}			
+	}
+}

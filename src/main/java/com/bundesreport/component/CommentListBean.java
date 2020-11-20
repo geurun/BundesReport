@@ -1,7 +1,6 @@
 package com.bundesreport.component;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.context.MessageSource;
 
@@ -21,13 +20,13 @@ public class CommentListBean extends MessageBean {
 		this.comments = comments;
 		this.post = post;
 
-		commentHeader = msgUtil.getMessage("comment.commentHeader");
-		commentContent = msgUtil.getMessage("comment.commentContent");
-		createdDate = msgUtil.getMessage("comment.createdDate");
-		updatedDate = msgUtil.getMessage("comment.updatedDate");
-		btnSave = msgUtil.getMessage("comment.btnSave");
-		btnModify = msgUtil.getMessage("comment.btnModify");
-		btnDelete = msgUtil.getMessage("comment.btnDelete");
+		commentHeader = getMsgUtil().getMessage("comment.commentHeader");
+		commentContent = getMsgUtil().getMessage("comment.commentContent");
+		createdDate = getMsgUtil().getMessage("comment.createdDate");
+		updatedDate = getMsgUtil().getMessage("comment.updatedDate");
+		btnSave = getMsgUtil().getMessage("comment.btnSave");
+		btnModify = getMsgUtil().getMessage("comment.btnModify");
+		btnDelete = getMsgUtil().getMessage("comment.btnDelete");
 
 	}
 

@@ -28,16 +28,17 @@
 											</tr>
 											<tr>
 												<th th:text="${bean.createdDate}"></th>
-												<td><span th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd')}"></span> <span
-													th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'dd-MM-yyyy')}"></span></td>
+												<td th:if="${bean.user == null}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.postContent}"></th>
 												<td><span th:utext="${bean.post.content}"></span></td>
 											</tr>
 											<tr>
-												<th><a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a></th>
-												<td class="text-right"><a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span
+												<th style="border: none;"><a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a></th>
+												<td style="border: none;" class="text-right"><a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span
 														th:text="${bean.btnDelete}"></span></a> <a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"><span
 														th:text="${bean.btnModify}"></span></a></td>
 											</tr>

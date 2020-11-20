@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Where(clause = "deleted = false")
 @Table(name = "likes")
 public class Like {
 
@@ -29,13 +32,16 @@ public class Like {
 
 	private boolean deleted;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "post_id")
 	private Post post;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "comment_id")
 	private Comment comment;
 
 	@CreationTimestamp

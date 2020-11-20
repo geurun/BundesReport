@@ -46,11 +46,11 @@ public class Note {
 	private boolean readed;
 
 	@ManyToOne
-	@JoinColumn(name = "SENDER_ID")
+	@JoinColumn(name = "sender_id")
 	private User sender;
 
 	@ManyToOne
-	@JoinColumn(name = "RECEIVER_ID")
+	@JoinColumn(name = "receiver_id")
 	private User receiver;
 
 	@Builder

@@ -40,7 +40,7 @@
 													<a class="btn btn-secondary" href="/note/list" role="button"><span th:text="${bean.btnList}"></span></a>
 													<a class="btn btn-secondary" th:href="@{/note/new/{receiverId} (receiverId=${bean.message.sender.id})}" role="button"><span th:text="${bean.btnReply}"></span></a>
 												</th>
-												<td class="text-right" style="border: none;">
+												<td style="border: none;" class="text-right">
 													<a class="btn btn-outline-danger" th:href="@{/note/delete/{id} (id=${bean.message.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
 												</td>
 											</tr>

@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -68,10 +67,10 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "user")
 	private List<Like> likes = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
+	@OneToMany(mappedBy = "sender")
 	private List<Note> sendNotes = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+	@OneToMany(mappedBy = "receiver")
 	private List<Note> receiveNotes = new ArrayList<>();
 
 	@Builder

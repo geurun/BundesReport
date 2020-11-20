@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,15 +32,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Where(clause = "deleted = false")
-@Table(name = "POSTS")
+@Table(name = "posts")
 public class Post {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "post_id")
 	private Long id;
 
-	@Column(columnDefinition = "TEXT")
+	private boolean deleted;
+
 	private String title;
 
 	@Lob
@@ -55,10 +54,6 @@ public class Post {
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
 
-	private int good;
-
-	private boolean deleted = false;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -67,20 +62,23 @@ public class Post {
 	private List<Comment> comments = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post")
+	private List<Like> likes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();
 
 	@Builder
-	public Post(Long id, String title, String content, CategoryType category, User user, boolean deleted) {
+	public Post(Long id, boolean deleted, String title, String content, CategoryType category, User user) {
 		this.id = id;
+		this.deleted = deleted;
 		this.title = title;
 		this.content = content;
 		this.category = category;
 		this.user = user;
-		this.deleted = deleted;
 	}
 
 	public PostForm toPostForm() {
-		return PostForm.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
+		return PostForm.builder().id(id).deleted(deleted).title(title).content(content).category(category).user(user)
 				.build();
 	}
 
