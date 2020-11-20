@@ -14,22 +14,22 @@ public class SidebarBean extends MessageBean {
 	public SidebarBean(MessageSource msgSrc, User user) {
 		super(msgSrc, user);
 
-		title = msgUtil.getMessage("title");
-		home = msgUtil.getMessage("menu.home");
-		menu = msgUtil.getMessage("menu.menu");
-		board = msgUtil.getMessage("menu.board");
-		freeBoard = msgUtil.getMessage("menu.freeBoard");
-		abroadBoard = msgUtil.getMessage("menu.abroadBoard");
-		livingQA = msgUtil.getMessage("menu.livingQA");
-		fleaMarket = msgUtil.getMessage("menu.fleaMarket");
-		jobSearch = msgUtil.getMessage("menu.jobSearch");
-		club = msgUtil.getMessage("menu.club");
-		eventNotification = msgUtil.getMessage("menu.eventNotification");
-		recipe = msgUtil.getMessage("menu.recipe");
-		gallery = msgUtil.getMessage("menu.gallery");
-		event = msgUtil.getMessage("menu.event");
-		miniGame = msgUtil.getMessage("menu.miniGame");
-		rain = msgUtil.getMessage("menu.rain");
+		setTitle(getMsgUtil().getMessage("title"));
+		home = getMsgUtil().getMessage("menu.home");
+		menu = getMsgUtil().getMessage("menu.menu");
+		board = getMsgUtil().getMessage("menu.board");
+		freeBoard = getMsgUtil().getMessage("menu.freeBoard");
+		abroadBoard = getMsgUtil().getMessage("menu.abroadBoard");
+		livingQA = getMsgUtil().getMessage("menu.livingQA");
+		fleaMarket = getMsgUtil().getMessage("menu.fleaMarket");
+		jobSearch = getMsgUtil().getMessage("menu.jobSearch");
+		club = getMsgUtil().getMessage("menu.club");
+		eventNotification = getMsgUtil().getMessage("menu.eventNotification");
+		recipe = getMsgUtil().getMessage("menu.recipe");
+		gallery = getMsgUtil().getMessage("menu.gallery");
+		event = getMsgUtil().getMessage("menu.event");
+		miniGame = getMsgUtil().getMessage("menu.miniGame");
+		rain = getMsgUtil().getMessage("menu.rain");
 	}
 
 	private String home;

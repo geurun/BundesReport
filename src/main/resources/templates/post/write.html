@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/ckeditorWrite">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/write">
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<!-- Page Wrapper -->
@@ -28,7 +28,7 @@
 												</tr>
 												<tr>
 													<th th:text="${bean.postContent}"></th>
-													<td><textarea id="editor" name="editor" th:field="*{content}" th:utext="${content}" class="form-control" rows="10"></textarea></td>
+													<td><textarea id="editor" name="editor" th:field="*{content}" th:utext="${content}" class="form-control"></textarea></td>
 												</tr>
 												<tr>
 													<th>

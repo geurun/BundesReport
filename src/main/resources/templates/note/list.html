@@ -16,7 +16,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table talbe-bordered" id="noteListDT" width="100%" cellspacing="0">
+									<table class="table table-bordered" id="noteListDT" width="100%" cellspacing="0">
 										<thead>
 											<tr>
 												<th style="width: 50%" th:text="${bean.noteTitle}"></th>
@@ -36,14 +36,14 @@
 															</a>
 															<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="writerDropdown">
 																<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${message.sender.id})}">
-																	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> <span th:text="${bean.btnMessageSend}"></span>
+																	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
 																</a>
 															</div>
 														</li>
 													</ul>
 												</td>
-												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(message.createdDate, 'yyyy-MM-dd')}"></td>
-												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'dd-MM-yyyy')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(message.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
 												<td th:if="${message.readed}" th:text="${bean.readedTrue}"></td>
 												<td th:if="${!message.readed}" th:text="${bean.readedFalse}"></td>
 											</tr>

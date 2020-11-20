@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bundesreport.domain.Post;
+import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.repository.PostRepository;
 import com.bundesreport.type.CategoryType;
@@ -33,6 +34,18 @@ public class PostService {
 
 	public List<Post> findByCategory(String categoryName) {
 		return postRepository.findByCategory(CategoryType.valueOf(categoryName.toUpperCase()));
+	}
+
+	public List<Post> findByCategory(CategoryType category) {
+		return postRepository.findByCategory(category);
+	}
+
+	public List<Post> findByTitleOrContent(String searchKey) {
+		return postRepository.findByTitleContainsOrContentContainsOrderById(searchKey, searchKey);
+	}
+
+	public int countByUser(User user) {
+		return postRepository.countByUser(user);
 	}
 
 	public void save(PostForm postForm) {

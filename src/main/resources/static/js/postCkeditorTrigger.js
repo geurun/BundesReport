@@ -1,1 +1,0 @@
-ClassicEditor.create(document.querySelector('#editor'), {simpleUpload: {uploadUrl: 'post/upload'},}, { toolbar: ['heading', '|', 'bold', 'italic', 'alignment', '|', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'imageUpload', 'undo', 'redo'] }).then(editor => { window.editor = editor; }).catch(err => { console.error(err.stack); });

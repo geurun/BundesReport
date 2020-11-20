@@ -32,14 +32,14 @@ public class SignController extends PageController {
 	public String signin(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signin";
+		return "/user/signin";
 	}
 
 	@GetMapping(value = "/signup")
 	public String signup(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signup";
+		return "/user/signup";
 	}
 
 	@PostMapping(value = "/signup/check")
@@ -48,7 +48,7 @@ public class SignController extends PageController {
 		AjaxResponse result = new AjaxResponse();
 
 		// ID check
-		if (Objects.nonNull(userService.findByUserName(userForm.getUserName()))) {
+		if (Objects.nonNull(userService.findByUsername(userForm.getUsername()))) {
 			result.getMsgs().add(util.getMessage("signup.error.id"));
 		}
 

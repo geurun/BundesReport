@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,24 +24,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "NOTES")
+@Where(clause = "deleted = false")
+@Table(name = "notes")
 public class Note {
-
-	@Builder
-	public Note(Long id, String title, String content, User sender, User receiver) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.sender = sender;
-		this.receiver = receiver;
-	}
 
 	@Id
 	@GeneratedValue
-	@Column(name = "note_id")
 	private Long id;
 
-	@Column(columnDefinition = "TEXT")
+	private boolean deleted;
+
 	private String title;
 
 	@Lob
@@ -59,4 +52,14 @@ public class Note {
 	@ManyToOne
 	@JoinColumn(name = "RECEIVER_ID")
 	private User receiver;
+
+	@Builder
+	public Note(Long id, String title, String content, User sender, User receiver) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.sender = sender;
+		this.receiver = receiver;
+	}
+
 }
