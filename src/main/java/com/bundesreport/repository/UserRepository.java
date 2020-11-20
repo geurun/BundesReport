@@ -10,7 +10,7 @@ import com.bundesreport.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	User findByUserName(String userName);
+	User findByUsername(String username);
 
 	List<User> findByEmail(String email);
 }

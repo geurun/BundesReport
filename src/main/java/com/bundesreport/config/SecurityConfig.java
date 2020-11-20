@@ -36,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/signin", "/signup").permitAll().antMatchers("/user/**", "/note/**")
 				.authenticated().and().formLogin().loginPage("/signin").loginProcessingUrl("/signin")
-				.defaultSuccessUrl("/").failureUrl("/signin?error").usernameParameter("userName")
-				.passwordParameter("hashedPassword").and().logout()
+				.defaultSuccessUrl("/").failureUrl("/signin?error").usernameParameter("username")
+				.passwordParameter("password").and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/")
 				.invalidateHttpSession(true).and().exceptionHandling();
 	}

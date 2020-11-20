@@ -2,7 +2,7 @@ $(form).submit(function(event) {
 	event.preventDefault();
 
 	var userForm = {};
-	userForm["userName"] = $("#username").val();
+	userForm["username"] = $("#username").val();
 	userForm["email"] = $("#email").val();
 
 	$("#signup").prop("disabled", true);

@@ -29,7 +29,7 @@ public class ProfileBean extends MessageBean {
 		myCommentCount = getMsgUtil().getMessage("user.myCommentCount");
 		myCommentLikeCount = getMsgUtil().getMessage("user.myCommentLikeCount");
 		modifyUserInfo = getMsgUtil().getMessage("user.modifyUserInfo");
-		userName = getMsgUtil().getMessage("user.username");
+		username = getMsgUtil().getMessage("user.username");
 		password = getMsgUtil().getMessage("user.password");
 		email = getMsgUtil().getMessage("user.email");
 		languageStatus = getMsgUtil().getMessage("user.languageStatus");
@@ -46,7 +46,7 @@ public class ProfileBean extends MessageBean {
 	private String myCommentCount;
 	private String myCommentLikeCount;
 	private String modifyUserInfo;
-	private String userName;
+	private String username;
 	private String password;
 	private String email;
 	private String languageStatus;

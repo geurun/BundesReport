@@ -48,7 +48,7 @@ public class SignController extends PageController {
 		AjaxResponse result = new AjaxResponse();
 
 		// ID check
-		if (Objects.nonNull(userService.findByUserName(userForm.getUserName()))) {
+		if (Objects.nonNull(userService.findByUsername(userForm.getUsername()))) {
 			result.getMsgs().add(util.getMessage("signup.error.id"));
 		}
 

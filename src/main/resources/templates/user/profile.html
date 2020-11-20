@@ -86,11 +86,11 @@
 										<div class="card-body">
 											<form id="form" th:action="@{/user/profile}" th:object="${userForm}" method="post">
 												<input type="hidden" id="id" name="id" th:field="*{id}" />
-												<input type="hidden" id="userName" name="userName" th:field="*{userName}" />
+												<input type="hidden" id="username" name="username" th:field="*{username}" />
 												<table class="table">
 													<tbody>
 														<tr>
-															<th class="h5 mb-0 font-weight-bold text-gray-800 first-col" scope="row" th:text=${bean.userName}></th>
+															<th class="h5 mb-0 font-weight-bold text-gray-800 first-col" scope="row" th:text=${bean.username}></th>
 															<td class="second-col" th:text="${bean.user.username}"></td>
 															<td rowspan="6" class="third-col"><img th:src="@{/img/profile.jpeg}" class="profile-img" alt="Profile"/></td>
 														</tr>
