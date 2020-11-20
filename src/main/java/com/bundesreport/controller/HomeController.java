@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bundesreport.component.HomeBean;
 import com.bundesreport.domain.User;
 import com.bundesreport.service.PostService;
-import com.bundesreport.type.CategoryType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,11 +28,7 @@ public class HomeController extends PageController {
 		if (Objects.nonNull(auth)) {
 			user = (User) auth.getPrincipal();
 		}
-		model.addAttribute("bean",
-				new HomeBean(msgSrc, user, postService.findByCategory(CategoryType.FREE_BOARD),
-						postService.findByCategory(CategoryType.LIVING_QA),
-						postService.findByCategory(CategoryType.FLEA_MARKET),
-						postService.findByCategory(CategoryType.JOB_SEARCH)));
+		model.addAttribute("bean", new HomeBean(msgSrc, user, postService));
 		return "home";
 	}
 }
