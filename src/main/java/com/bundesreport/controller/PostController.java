@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bundesreport.component.CommentListBean;
 import com.bundesreport.component.PostBean;
 import com.bundesreport.component.PostListBean;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
+import com.bundesreport.dto.CommentForm;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.dto.SearchForm;
+import com.bundesreport.service.CommentService;
 import com.bundesreport.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,9 @@ public class PostController extends PageController {
 
 	@Autowired
 	private final PostService postService;
+
+	@Autowired
+	private final CommentService commentService;
 
 	@GetMapping(value = "/post/list/{category}")
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
@@ -101,6 +107,8 @@ public class PostController extends PageController {
 			return "redirect:/";
 		}
 		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
+		model.addAttribute("commentListBean", new CommentListBean(msgSrc, user, post.get(), post.get().getComments()));
+		model.addAttribute("commentForm", new CommentForm(user, post.get()));
 		return "post/view";
 	}
 
@@ -123,6 +131,7 @@ public class PostController extends PageController {
 
 	@GetMapping(value = "/post/delete/{postId}")
 	public String delete(@PathVariable("postId") Long postId) {
-		return "redirect:/post/list" + postService.delete(postId);
+		return "redirect:/post/list/" + postService.delete(postId);
 	}
+
 }

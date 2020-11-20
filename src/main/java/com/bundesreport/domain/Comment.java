@@ -15,9 +15,15 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.bundesreport.dto.CommentForm;
+
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
@@ -60,4 +66,22 @@ public class Comment {
 		this.user = user;
 		user.getComments().add(this);
 	}
-}
+
+	@Builder
+	public Comment(Long id, String content, User user, Post post, boolean deleted) {
+		this.id = id;
+		this.content = content;
+		this.user = user;
+		this.post = post;
+		this.deleted = deleted;
+	}
+
+	public CommentForm toCommentForm() {
+		return CommentForm.builder().id(id).content(content).user(user).post(post).deleted(deleted).build();
+	}
+	
+	public Comment getUpdateModel (CommentForm form) {
+		setContent(form.getContent());
+		return this;
+	}			
+}			
