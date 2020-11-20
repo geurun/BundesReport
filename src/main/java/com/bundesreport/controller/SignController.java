@@ -32,14 +32,14 @@ public class SignController extends PageController {
 	public String signin(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signin";
+		return "/user/signin";
 	}
 
 	@GetMapping(value = "/signup")
 	public String signup(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signup";
+		return "/user/signup";
 	}
 
 	@PostMapping(value = "/signup/check")

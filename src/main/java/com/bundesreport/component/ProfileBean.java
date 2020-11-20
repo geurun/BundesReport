@@ -1,26 +1,27 @@
 package com.bundesreport.component;
 
+import java.util.Objects;
+
 import org.springframework.context.MessageSource;
 
 import com.bundesreport.domain.User;
+import com.bundesreport.service.PostService;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserProfileBean extends MessageBean {
+public class ProfileBean extends MessageBean {
 
-	public UserProfileBean(MessageSource msgSrc, User user) {
+	public ProfileBean(MessageSource msgSrc, User user, PostService postService) {
 		super(msgSrc, user);
-
-		// ToDo: get from post
-		postCount = 0;
-		postLikeCount = 0;
-
-		// ToDo: get from comment
-		commentCount = 0;
-		commentLikeCount = 0;
+		if (Objects.nonNull(user)) {
+			this.postCount = postService.countByUser(user);
+//			this.postLikeCount = postLikeCount;
+//			this.commentCount = commentCount;
+//			this.commentLikeCount = commentLikeCount;
+		}
 
 		setTitle(getMsgUtil().getMessage("user.title"));
 		myPostCount = getMsgUtil().getMessage("user.myPostCount");
