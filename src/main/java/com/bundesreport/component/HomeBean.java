@@ -14,16 +14,27 @@ import lombok.Setter;
 @Setter
 public class HomeBean extends MessageBean {
 
-	public HomeBean(MessageSource msgSrc, User user, List<Post> posts) {
+	public HomeBean(MessageSource msgSrc, User user, List<Post> freePosts, List<Post> livingPosts, List<Post> fleaPosts,
+			List<Post> jobPosts) {
 		super(msgSrc, user);
-		this.posts = posts;
+		this.freePosts = freePosts;
+		this.livingPosts = livingPosts;
+		this.fleaPosts = fleaPosts;
+		this.jobPosts = jobPosts;
 
 		freeBoard = getMsgUtil().getMessage("home.freeBoard");
 		livingQA = getMsgUtil().getMessage("home.livingQA");
+		fleaMarket = getMsgUtil().getMessage("home.fleaMarket");
+		jobSearch = getMsgUtil().getMessage("home.jobSearch");
 	}
 
-	private List<Post> posts;
+	private List<Post> freePosts;
+	private List<Post> livingPosts;
+	private List<Post> fleaPosts;
+	private List<Post> jobPosts;
 
 	private String freeBoard;
 	private String livingQA;
+	private String fleaMarket;
+	private String jobSearch;
 }

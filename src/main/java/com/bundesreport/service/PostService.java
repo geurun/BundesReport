@@ -35,6 +35,10 @@ public class PostService {
 		return postRepository.findByCategory(CategoryType.valueOf(categoryName.toUpperCase()));
 	}
 
+	public List<Post> findByCategory(CategoryType category) {
+		return postRepository.findByCategory(category);
+	}
+
 	public List<Post> findByTitleOrContent(String searchKey) {
 		return postRepository.findByTitleContainsOrContentContainsOrderById(searchKey, searchKey);
 	}
