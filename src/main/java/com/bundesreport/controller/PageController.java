@@ -14,6 +14,7 @@ import com.bundesreport.component.SidebarBean;
 import com.bundesreport.component.TopbarBean;
 import com.bundesreport.domain.Note;
 import com.bundesreport.domain.User;
+import com.bundesreport.dto.SearchForm;
 import com.bundesreport.service.NoteService;
 
 @Controller
@@ -36,6 +37,7 @@ public class PageController {
 		}
 		model.addAttribute("sidebar", new SidebarBean(msgSrc, user));
 		model.addAttribute("topbar", new TopbarBean(msgSrc, user, noteList, unreadMessageCount));
+		model.addAttribute("searchForm", new SearchForm());
 		return model;
 	}
 }
