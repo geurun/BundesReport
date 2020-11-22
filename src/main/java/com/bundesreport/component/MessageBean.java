@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.User;
 import com.bundesreport.util.MsgUtil;
@@ -20,9 +21,9 @@ public class MessageBean {
 	private MsgUtil msgUtil;
 	private String title;
 
-	public MessageBean(MessageSource msgSrc, User user) {
-		if (Objects.nonNull(user)) {
-			this.user = user;
+	public MessageBean(MessageSource msgSrc, Authentication auth) {
+		if (Objects.nonNull(auth)) {
+			this.user = (User) auth.getPrincipal();
 			this.locale = user.getLanguageStatus().getLocale();
 		}
 		this.msgUtil = new MsgUtil(msgSrc, locale);

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -58,22 +59,22 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private LanguageStatus languageStatus; // [KO, DE]
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Post> posts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<PostLike> postLikes = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Comment> comments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<CommentLike> commentLikes = new ArrayList<>();
 
 	@OneToMany(mappedBy = "sender")
 	private List<Note> sendNotes = new ArrayList<>();
 
-	@OneToMany(mappedBy = "receiver")
+	@OneToMany(mappedBy = "receiver", cascade = { CascadeType.ALL })
 	private List<Note> receiveNotes = new ArrayList<>();
 
 	@Builder

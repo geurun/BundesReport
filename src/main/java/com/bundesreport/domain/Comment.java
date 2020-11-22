@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import com.bundesreport.dto.CommentForm;
 
@@ -44,9 +44,6 @@ public class Comment {
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 
-	@UpdateTimestamp
-	private LocalDateTime updatedDate;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -55,31 +52,19 @@ public class Comment {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
-	@OneToMany(mappedBy = "comment")
+	@OneToMany(mappedBy = "comment", cascade = { CascadeType.ALL })
 	private List<CommentLike> likes = new ArrayList<>();
 
-	// ==relational method==//
-	public void setPost(Post post) {
-		this.post = post;
-		post.getComments().add(this);
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-		user.getComments().add(this);
-	}
-
 	@Builder
-	public Comment(Long id, boolean deleted, String content, User user, Post post) {
+	public Comment(Long id, String content, User user, Post post) {
 		this.id = id;
-		this.deleted = deleted;
 		this.content = content;
 		this.user = user;
 		this.post = post;
 	}
 
 	public CommentForm toCommentForm() {
-		return CommentForm.builder().id(id).deleted(deleted).content(content).user(user).post(post).build();
+		return CommentForm.builder().id(id).content(content).user(user).post(post).build();
 	}
 
 	public Comment getUpdateModel(CommentForm form) {

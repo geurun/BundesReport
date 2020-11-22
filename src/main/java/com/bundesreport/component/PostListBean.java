@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Post;
-import com.bundesreport.domain.User;
 import com.bundesreport.type.CategoryType;
 
 import lombok.Getter;
@@ -16,16 +16,15 @@ import lombok.Setter;
 @Setter
 public class PostListBean extends MessageBean {
 
-	public PostListBean(MessageSource msgSrc, User user, List<Post> posts) {
-		super(msgSrc, user);
+	public PostListBean(MessageSource msgSrc, Authentication auth, List<Post> posts, boolean isComeFromMenu) {
+		super(msgSrc, auth);
 		this.posts = posts;
-		setNames();
-	}
 
-	public PostListBean(MessageSource msgSrc, User user, List<Post> posts, String category) {
-		super(msgSrc, user);
-		this.posts = posts;
-		this.category = CategoryType.valueOf(category.toUpperCase());
+		if (isComeFromMenu) {
+			for (Post post : posts) {
+				this.category = post.getCategory().getLowerString();
+			}
+		}
 		setNames();
 	}
 
@@ -33,7 +32,7 @@ public class PostListBean extends MessageBean {
 		if (Objects.isNull(this.category)) {
 			setTitle(getMsgUtil().getMessage("post.title"));
 		} else {
-			setTitle(getMsgUtil().getMessage(this.category.getMessageCode()));
+			setTitle(getMsgUtil().getMessage(CategoryType.valueOf(this.category.toUpperCase()).getMessageCode()));
 		}
 		number = getMsgUtil().getMessage("post.list.number");
 		postTitle = getMsgUtil().getMessage("post.list.postTitle");
@@ -44,7 +43,7 @@ public class PostListBean extends MessageBean {
 	}
 
 	private List<Post> posts;
-	private CategoryType category;
+	private String category;
 	private String number;
 	private String postTitle;
 	private String createdUser;

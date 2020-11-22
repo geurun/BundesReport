@@ -1,9 +1,9 @@
 package com.bundesreport.component;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Note;
-import com.bundesreport.domain.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 public class NoteBean extends MessageBean {
 
-	public NoteBean(MessageSource msgSrc, User user, Note message) {
-		super(msgSrc, user);
+	public NoteBean(MessageSource msgSrc, Authentication auth, Note message) {
+		super(msgSrc, auth);
 		this.message = message;
 
 		setTitle(getMsgUtil().getMessage("note.title"));

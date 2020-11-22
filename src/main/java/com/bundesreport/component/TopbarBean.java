@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Note;
-import com.bundesreport.domain.User;
+import com.bundesreport.service.NoteService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,12 +16,12 @@ import lombok.Setter;
 @Setter
 public class TopbarBean extends MessageBean {
 
-	public TopbarBean(MessageSource msgSrc, User user, List<Note> messages, int count) {
-		super(msgSrc, user);
+	public TopbarBean(MessageSource msgSrc, Authentication auth, NoteService noteService) {
+		super(msgSrc, auth);
 
-		if (Objects.nonNull(user)) {
-			this.messages = messages;
-			this.messageCount = count;
+		if (Objects.nonNull(getUser())) {
+			this.messages = noteService.findTop5ByReceiverOrderByCreatedDateDesc(getUser());
+			this.messageCount = noteService.countByReceiverAndReadedFalse(getUser());
 			if (messageCount > 99) {
 				messageCount = 99;
 			}

@@ -42,11 +42,7 @@ public class PostController extends PageController {
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
-			User user = null;
-			if (Objects.nonNull(auth)) {
-				user = (User) auth.getPrincipal();
-			}
-			model.addAttribute("bean", new PostListBean(msgSrc, user, postService.findByCategory(category), category));
+			model.addAttribute("bean", new PostListBean(msgSrc, auth, postService.findByCategory(category), true));
 			return "post/list";
 		} catch (Exception e) {
 			return "redirect:/404";
@@ -57,11 +53,8 @@ public class PostController extends PageController {
 	public String search(SearchForm form, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
-			User user = null;
-			if (Objects.nonNull(auth)) {
-				user = (User) auth.getPrincipal();
-			}
-			model.addAttribute("bean", new PostListBean(msgSrc, user, postService.findByTitleOrContent(form.getKey())));
+			model.addAttribute("bean",
+					new PostListBean(msgSrc, auth, postService.findByTitleOrContent(form.getKey()), false));
 			return "post/list";
 		} catch (Exception e) {
 			return "redirect:/404";
@@ -76,9 +69,8 @@ public class PostController extends PageController {
 			if (Objects.nonNull(auth)) {
 				user = (User) auth.getPrincipal();
 			}
-			model.addAttribute("bean", new PostBean(msgSrc, user, null, category));
+			model.addAttribute("bean", new PostBean(msgSrc, auth, null, category));
 			model.addAttribute("postForm", new PostForm(category, user));
-			model.addAttribute("categoryName", category);
 			return "post/write";
 		} catch (Exception e) {
 			return "redirect:/404";
@@ -102,35 +94,30 @@ public class PostController extends PageController {
 	@GetMapping(value = "/post/view/{postId}")
 	public String view(@PathVariable("postId") Long postId, Model model, Authentication auth) {
 		model = createLayout(model, auth);
-		User user = null;
-		if (Objects.nonNull(auth)) {
-			user = (User) auth.getPrincipal();
-		}
 		Optional<Post> post = postService.findById(postId);
 		if (Objects.isNull(post)) {
 			return "redirect:/";
 		}
-		PostBean bean = new PostBean(msgSrc, user, post.get(), null);
+		User user = null;
+		if (Objects.nonNull(auth)) {
+			user = (User) auth.getPrincipal();
+		}
+		PostBean bean = new PostBean(msgSrc, auth, post.get(), null);
 		bean.setHasLike(postLikeService.countByPostAndUser(post.get(), user));
 		model.addAttribute("bean", bean);
-		model.addAttribute("commentListBean", new CommentListBean(msgSrc, user, post.get(), post.get().getComments()));
 		model.addAttribute("commentForm", new CommentForm(user, post.get()));
+		model.addAttribute("commentListBean", new CommentListBean(msgSrc, auth, post.get(), post.get().getComments()));
 		return "post/view";
 	}
 
 	@GetMapping(value = "/post/update/{postId}")
 	public String update(@PathVariable("postId") Long postId, Model model, Authentication auth) {
 		model = createLayout(model, auth);
-		User user = null;
-		if (Objects.nonNull(auth)) {
-			user = (User) auth.getPrincipal();
-		}
 		Optional<Post> post = postService.findById(postId);
 		if (Objects.isNull(post)) {
 			return "redirect:/";
 		}
-		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
-		model.addAttribute("categoryName", post.get().getCategory().toString());
+		model.addAttribute("bean", new PostBean(msgSrc, auth, post.get(), null));
 		model.addAttribute("postForm", post.get().toPostForm());
 		return "post/write";
 	}
@@ -139,5 +126,4 @@ public class PostController extends PageController {
 	public String delete(@PathVariable("postId") Long postId) {
 		return "redirect:/post/list/" + postService.delete(postId);
 	}
-
 }

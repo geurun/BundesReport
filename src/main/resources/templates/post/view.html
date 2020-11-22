@@ -31,7 +31,7 @@
 												<th th:text="${bean.createdDate}"></th>
 												<td th:if="${bean.user == null}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.postContent}"></th>
@@ -83,13 +83,22 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td><i class="far fa-user-circle" style="margin: 0 5px;"></i><span class="font-weight-bold" th:text="${comment.user.username}"></span></td>
-												<td class="text-right"><i class="far fa-clock" style="margin: 0 5px;"></i><span class="font-weight-light font-italic" th:if="${comment.user.getLanguageStatus().getString().equals('KOREAN')}"
-													th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span> <span th:if="${comment.user.getLanguageStatus().getString().equals('DEUTSCH')}"
-													th:text="${#temporals.format(comment.createdDate, 'HH:mm dd-MM-yyyy')}"></span> <a class="btn btn-outline-danger"
-													th:if="${commentListBean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button"><span
-														th:text="${commentListBean.btnDelete}"></span></a> <a class="btn btn-secondary" th:if="${commentListBean.user.getUsername() == comment.getUser().getUsername()}"
-													th:href="@{/comment/update/{commentId} (commentId=${comment.id})}" role="button"><span th:text="${commentListBean.btnModify}"></span></a></td>
+												<td>
+													<i class="far fa-user-circle" style="margin: 0 5px;"></i>
+													<span class="font-weight-bold" th:text="${comment.user.username}"></span>
+												</td>
+												<td class="text-right">
+													<i class="far fa-clock" style="margin: 0 5px;"></i>
+													<span th:if="${bean.user == null}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
+													<a class="btn btn-outline-danger" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button">
+														<span th:text="${commentListBean.btnDelete}"></span>
+													</a>
+													<a class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/update/{commentId} (commentId=${comment.id})}" role="button">
+														<span th:text="${commentListBean.btnModify}"></span>
+													</a>
+												</td>
 											</tr>
 											<tr>
 												<td colspan="2"><span th:utext="${comment.content}"></span></td>

@@ -17,6 +17,7 @@ import com.bundesreport.component.ProfileBean;
 import com.bundesreport.config.AjaxResponse;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
+import com.bundesreport.service.CommentService;
 import com.bundesreport.service.PostService;
 import com.bundesreport.service.UserService;
 import com.bundesreport.util.MsgUtil;
@@ -33,13 +34,15 @@ public class UserController extends PageController {
 	@Autowired
 	private final PostService postService;
 
+	@Autowired
+	private final CommentService commentService;
+
 	@GetMapping(value = "/user/profile")
 	public String userProfile(Model model, Authentication auth) {
 		if (Objects.nonNull(auth)) {
 			model = createLayout(model, auth);
-			User user = (User) auth.getPrincipal();
-			model.addAttribute("bean", new ProfileBean(msgSrc, user, postService));
-			model.addAttribute("userForm", user.toUserForm());
+			model.addAttribute("bean", new ProfileBean(msgSrc, auth, postService, commentService));
+			model.addAttribute("userForm", ((User) auth.getPrincipal()).toUserForm());
 		}
 		return "/user/profile";
 	}

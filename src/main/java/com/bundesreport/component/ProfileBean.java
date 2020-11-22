@@ -3,8 +3,11 @@ package com.bundesreport.component;
 import java.util.Objects;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
-import com.bundesreport.domain.User;
+import com.bundesreport.domain.Comment;
+import com.bundesreport.domain.Post;
+import com.bundesreport.service.CommentService;
 import com.bundesreport.service.PostService;
 
 import lombok.Getter;
@@ -14,13 +17,18 @@ import lombok.Setter;
 @Setter
 public class ProfileBean extends MessageBean {
 
-	public ProfileBean(MessageSource msgSrc, User user, PostService postService) {
-		super(msgSrc, user);
-		if (Objects.nonNull(user)) {
-			this.postCount = postService.countByUser(user);
-//			this.postLikeCount = postLikeCount;
-//			this.commentCount = commentCount;
-//			this.commentLikeCount = commentLikeCount;
+	public ProfileBean(MessageSource msgSrc, Authentication auth, PostService postService,
+			CommentService commentService) {
+		super(msgSrc, auth);
+		if (Objects.nonNull(getUser())) {
+			for (Post post : postService.findByUser(getUser())) {
+				this.postCount++;
+				this.postLikeCount += post.getLikes().size();
+			}
+			for (Comment comment : commentService.findByUser(getUser())) {
+				this.commentCount++;
+				this.commentLikeCount += comment.getLikes().size();
+			}
 		}
 
 		setTitle(getMsgUtil().getMessage("user.title"));

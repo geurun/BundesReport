@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
+import com.bundesreport.repository.PostLikeRepository;
 import com.bundesreport.repository.PostRepository;
 import com.bundesreport.type.CategoryType;
 
@@ -44,8 +45,8 @@ public class PostService {
 		return postRepository.findByTitleContainsOrContentContainsOrderById(searchKey, searchKey);
 	}
 
-	public int countByUser(User user) {
-		return postRepository.countByUser(user);
+	public List<Post> findByUser(User user) {
+		return postRepository.findByUser(user);
 	}
 
 	public void save(PostForm postForm) {
@@ -58,11 +59,10 @@ public class PostService {
 
 	public String delete(Long postId) {
 		Optional<Post> post = postRepository.findById(postId);
-		String categoryName = "";
 		if (Objects.nonNull(post)) {
-			categoryName = post.get().getCategory().toString().toLowerCase();
 			postRepository.delete(post.get());
+			return post.get().getCategory().getLowerString();
 		}
-		return categoryName;
+		return "";
 	}
 }

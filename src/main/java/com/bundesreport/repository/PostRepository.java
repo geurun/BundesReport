@@ -16,5 +16,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 	public List<Post> findByTitleContainsOrContentContainsOrderById(String title, String content);
 
-	public int countByUser(User user);
+	public List<Post> findByUser(User user);
 }

@@ -34,16 +34,12 @@ public class NoteController extends PageController {
 	@GetMapping(value = "/note/list")
 	public String list(Model model, Authentication auth) {
 		model = createLayout(model, auth);
-		if (Objects.nonNull(auth)) {
-			User user = (User) auth.getPrincipal();
-			model.addAttribute("bean", new NoteListBean(msgSrc, user, noteService.findByReceiver(user)));
-		}
+		model.addAttribute("bean", new NoteListBean(msgSrc, auth, noteService));
 		return "note/list";
 	}
 
 	@GetMapping(value = "/note/{id}")
 	public String view(@PathVariable("id") Long id, Model model, Authentication auth) {
-		model = createLayout(model, auth);
 		if (Objects.nonNull(auth)) {
 			Optional<Note> noteWrapper = noteService.findById(id);
 			if (Objects.isNull(noteWrapper)) {
@@ -56,19 +52,17 @@ public class NoteController extends PageController {
 			}
 			note.setReaded(true);
 			noteService.save(note);
-			model.addAttribute("bean", new NoteBean(msgSrc, user, note));
+			model.addAttribute("bean", new NoteBean(msgSrc, auth, note));
 		}
+		model = createLayout(model, auth);
 		return "note/view";
 	}
 
 	@GetMapping(value = "/note/new/{receiverId}")
 	public String write(@PathVariable("receiverId") Long receiverId, Model model, Authentication auth) {
+		model.addAttribute("bean", new NoteBean(msgSrc, auth, null));
+		model.addAttribute("noteForm", new NoteForm(userService.findById(receiverId)));
 		model = createLayout(model, auth);
-		if (Objects.nonNull(auth)) {
-			User user = (User) auth.getPrincipal();
-			model.addAttribute("bean", new NoteBean(msgSrc, user, null));
-			model.addAttribute("noteForm", new NoteForm(userService.findById(receiverId)));
-		}
 		return "note/write";
 	}
 

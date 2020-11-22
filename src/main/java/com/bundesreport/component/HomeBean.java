@@ -3,9 +3,9 @@ package com.bundesreport.component;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Post;
-import com.bundesreport.domain.User;
 import com.bundesreport.service.PostService;
 import com.bundesreport.type.CategoryType;
 
@@ -16,8 +16,8 @@ import lombok.Setter;
 @Setter
 public class HomeBean extends MessageBean {
 
-	public HomeBean(MessageSource msgSrc, User user, PostService postService) {
-		super(msgSrc, user);
+	public HomeBean(MessageSource msgSrc, Authentication auth, PostService postService) {
+		super(msgSrc, auth);
 		this.freePosts = postService.findByCategory(CategoryType.FREE_BOARD);
 		this.livingPosts = postService.findByCategory(CategoryType.LIVING_QA);
 		this.fleaPosts = postService.findByCategory(CategoryType.FLEA_MARKET);

@@ -3,9 +3,10 @@ package com.bundesreport.component;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Note;
-import com.bundesreport.domain.User;
+import com.bundesreport.service.NoteService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +15,9 @@ import lombok.Setter;
 @Setter
 public class NoteListBean extends MessageBean {
 
-	public NoteListBean(MessageSource msgSrc, User user, List<Note> messages) {
-		super(msgSrc, user);
-		this.messages = messages;
+	public NoteListBean(MessageSource msgSrc, Authentication auth, NoteService noteService) {
+		super(msgSrc, auth);
+		this.messages = noteService.findByReceiver(getUser());
 
 		setTitle(getMsgUtil().getMessage("note.list.title"));
 		noteTitle = getMsgUtil().getMessage("note.list.noteTitle");

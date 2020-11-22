@@ -43,7 +43,7 @@
 													</ul>
 												</td>
 												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(message.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(message.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
 												<td th:if="${message.readed}" th:text="${bean.readedTrue}"></td>
 												<td th:if="${!message.readed}" th:text="${bean.readedFalse}"></td>
 											</tr>
