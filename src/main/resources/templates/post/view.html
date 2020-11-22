@@ -39,7 +39,7 @@
 											</tr>
 											<tr>
 												<th style="border: none;">
-													<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
+													<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 												</th>
