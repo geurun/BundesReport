@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/view">
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<!-- Page Wrapper -->
@@ -16,6 +16,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
+									<input type="hidden" id="postId" name="postId" th:field="*{bean.post.id}" />
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
@@ -37,10 +38,19 @@
 												<td><span th:utext="${bean.post.content}"></span></td>
 											</tr>
 											<tr>
-												<th style="border: none;"><a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a></th>
-												<td style="border: none;" class="text-right"><a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button"><span
-														th:text="${bean.btnDelete}"></span></a> <a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"><span
-														th:text="${bean.btnModify}"></span></a></td>
+												<th style="border: none;">
+													<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
+													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+												</th>
+												<td style="border: none;" class="text-right">
+													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
+														<span th:text="${bean.btnDelete}"></span>
+													</a>
+													<a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button">
+														<span th:text="${bean.btnModify}"></span>
+													</a>
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -51,27 +61,20 @@
 					<!--End Page Content-->
 					<!--Begin Comment Content-->
 					<div class="container-fluid">
-						<div class="d-sm-flex align-items-center justify-content-between mb-4">
-							<h1 class="h3 mb-0 text-gray-800" th:text="${commentListBean.commentHeader}"></h1>
-						</div>
-						<div class="card shadow mb-4">
+						<div th:if="${bean.user != null}" class="card shadow mb-4">
+							<h5 class="card-header" th:text="${commentListBean.commentHeader}"></h5>
 							<div class="card-body">
-								<div class="table-reponsive">
-									<form th:action="@{/comment/write}" th:object="${commentForm}" method="post">
-										<input type="hidden" id="id" name="id" th:field="*{id}" /> <input type="hidden" id="user" name="user" th:field="*{user}" /> <input type="hidden" id="post" name="post" th:field="*{post}" />
-										<table class="table table-bordered">
-											<tbody>
-												<tr>
-													<th th:text="${commentListBean.commentContent}"></th>
-													<td><input type="text" class="form-control" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /></td>
-												</tr>
-											</tbody>
-										</table>
-										<dd class="text-right">
-											<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${commentListBean.btnSave}" />
-										</dd>
-									</form>
-								</div>
+								<form th:action="@{/comment/write}" th:object="${commentForm}" method="post">
+									<input type="hidden" id="id" name="id" th:field="*{id}" />
+									<input type="hidden" id="user" name="user" th:field="*{user}" />
+									<input type="hidden" id="post" name="post" th:field="*{post}" />
+									<div class="form-group">
+										<div class="form-inline">
+											<input class="form-control" type="text" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required />
+											<input class="btn btn-secondary ml-1" type="submit" name="btnSave" id="btnSave" th:value="${commentListBean.btnSave}" />
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 						<div class="card shadow mb-4">

@@ -62,7 +62,7 @@ public class Post {
 	private List<Comment> comments = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post")
-	private List<Like> likes = new ArrayList<>();
+	private List<PostLike> likes = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post")
 	private List<File> files = new ArrayList<>();

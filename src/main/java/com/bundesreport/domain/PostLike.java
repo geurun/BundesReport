@@ -23,8 +23,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Where(clause = "deleted = false")
-@Table(name = "likes")
-public class Like {
+@Table(name = "post_likes")
+public class PostLike {
 
 	@Id
 	@GeneratedValue
@@ -40,18 +40,13 @@ public class Like {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
-	@ManyToOne
-	@JoinColumn(name = "comment_id")
-	private Comment comment;
-
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 
 	@Builder
-	public Like(Long id, User user, Post post, Comment comment) {
+	public PostLike(Long id, User user, Post post) {
 		this.id = id;
 		this.user = user;
 		this.post = post;
-		this.comment = comment;
 	}
 }

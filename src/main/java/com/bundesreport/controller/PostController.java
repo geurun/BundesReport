@@ -20,6 +20,7 @@ import com.bundesreport.dto.CommentForm;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.dto.SearchForm;
 import com.bundesreport.service.CommentService;
+import com.bundesreport.service.PostLikeService;
 import com.bundesreport.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,9 @@ public class PostController extends PageController {
 
 	@Autowired
 	private final PostService postService;
+
+	@Autowired
+	private final PostLikeService postLikeService;
 
 	@Autowired
 	private final CommentService commentService;
@@ -106,7 +110,9 @@ public class PostController extends PageController {
 		if (Objects.isNull(post)) {
 			return "redirect:/";
 		}
-		model.addAttribute("bean", new PostBean(msgSrc, user, post.get(), null));
+		PostBean bean = new PostBean(msgSrc, user, post.get(), null);
+		bean.setHasLike(postLikeService.countByPostAndUser(post.get(), user));
+		model.addAttribute("bean", bean);
 		model.addAttribute("commentListBean", new CommentListBean(msgSrc, user, post.get(), post.get().getComments()));
 		model.addAttribute("commentForm", new CommentForm(user, post.get()));
 		return "post/view";

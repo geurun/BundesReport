@@ -59,4 +59,5 @@ public class PostBean extends MessageBean {
 	private String btnDelete;
 	private String btnMessageSend;
 	private int hasPermit = 0;
+	private int hasLike = 0;
 }

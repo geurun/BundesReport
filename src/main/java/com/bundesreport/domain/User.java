@@ -62,10 +62,13 @@ public class User implements UserDetails {
 	private List<Post> posts = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
+	private List<PostLike> postLikes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
-	private List<Like> likes = new ArrayList<>();
+	private List<CommentLike> commentLikes = new ArrayList<>();
 
 	@OneToMany(mappedBy = "sender")
 	private List<Note> sendNotes = new ArrayList<>();
