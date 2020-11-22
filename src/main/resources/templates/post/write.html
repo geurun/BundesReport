@@ -32,7 +32,7 @@
 												</tr>
 												<tr>
 													<th style="border: none;">
-														<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${category})}" role="button"><span th:text="${bean.btnList}"></span></a>
+														<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 													</th>
 													<td style="border: none;" class="text-right">
 														<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${bean.btnSave}" />

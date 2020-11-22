@@ -42,7 +42,9 @@ public class PostController extends PageController {
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
-			model.addAttribute("bean", new PostListBean(msgSrc, auth, postService.findByCategory(category), true));
+			PostListBean bean = new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true);
+			bean.setCategory(category);
+			model.addAttribute("bean", bean);
 			return "post/list";
 		} catch (Exception e) {
 			return "redirect:/404";
@@ -54,7 +56,7 @@ public class PostController extends PageController {
 		try {
 			model = createLayout(model, auth);
 			model.addAttribute("bean",
-					new PostListBean(msgSrc, auth, postService.findByTitleOrContent(form.getKey()), false));
+					new PostListBean(msgSrc, auth, postService.findByTitleOrContent(form.getKey()), null, false));
 			return "post/list";
 		} catch (Exception e) {
 			return "redirect:/404";

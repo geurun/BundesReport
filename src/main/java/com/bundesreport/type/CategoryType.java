@@ -35,7 +35,10 @@ public enum CategoryType {
 		if (EVENT_NOTIFICATION.getValue() == this.value) {
 			return "post.title.eventNotification";
 		}
-		return "post.title.recipe";
+		if (RECIPE.getValue() == this.value) {
+			return "post.title.recipe";
+		}
+		return "post.title.gallery";
 	}
 
 	public String getLowerString() {
@@ -60,6 +63,9 @@ public enum CategoryType {
 		if (EVENT_NOTIFICATION.getValue() == this.value) {
 			return "event_notification";
 		}
-		return "recipe";
+		if (RECIPE.getValue() == this.value) {
+			return "recipe";
+		}
+		return "gallery";
 	}
 }

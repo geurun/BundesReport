@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.PostForm;
-import com.bundesreport.repository.PostLikeRepository;
 import com.bundesreport.repository.PostRepository;
 import com.bundesreport.type.CategoryType;
 
@@ -33,8 +32,8 @@ public class PostService {
 		return postRepository.findAll();
 	}
 
-	public List<Post> findByCategory(String categoryName) {
-		return postRepository.findByCategory(CategoryType.valueOf(categoryName.toUpperCase()));
+	public List<Post> findByCategory(String category) {
+		return postRepository.findByCategory(CategoryType.valueOf(category.toUpperCase()));
 	}
 
 	public List<Post> findByCategory(CategoryType category) {
