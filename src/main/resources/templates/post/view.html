@@ -48,20 +48,14 @@
 												<td><span th:utext="${bean.post.content}"></span></td>
 											</tr>
 											<tr>
-												<th style="border: none;">
-													<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
-													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
-													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
-													<span class="badge badge-pill badge-secondary" style="margin:0 5px;" id="postLikeCount" th:text="${bean.post.getLikesCount()}"></span>
-												</th>
-												<td style="border: none;" class="text-right">
-													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
+												<th style="border: none;"><a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a> <a
+													th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> <a
+													th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> <span
+													class="badge badge-pill badge-secondary" style="margin: 0 5px;" id="postLikeCount" th:text="${bean.post.getLikesCount()}"></span></th>
+												<td style="border: none;" class="text-right"><a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
 														<span th:text="${bean.btnDelete}"></span>
-													</a>
-													<a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button">
-														<span th:text="${bean.btnModify}"></span>
-													</a>
-												</td>
+												</a> <a class="btn btn-secondary" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"> <span th:text="${bean.btnModify}"></span>
+												</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -76,13 +70,11 @@
 							<h5 class="card-header" th:text="${commentListBean.commentHeader}"></h5>
 							<div class="card-body">
 								<form th:action="@{/comment/write}" th:object="${commentForm}" method="post">
-									<input type="hidden" id="id" name="id" th:field="*{id}" />
-									<input type="hidden" id="user" name="user" th:field="*{user}" />
-									<input type="hidden" id="post" name="post" th:field="*{post}" />
+									<input type="hidden" id="id" name="id" th:field="*{id}" /> <input type="hidden" id="user" name="user" th:field="*{user}" /> <input type="hidden" id="post" name="post" th:field="*{post}" />
 									<div class="form-group">
 										<div class="form-inline">
-											<input class="form-control" type="text" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required />
-											<input class="btn btn-secondary ml-1" type="submit" name="btnSave" id="btnSave" th:value="${commentListBean.btnSave}" />
+											<input class="form-control" type="text" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /> <input class="btn btn-secondary ml-1"
+												type="submit" name="btnSave" id="btnSave" th:value="${commentListBean.btnSave}" />
 										</div>
 									</div>
 								</form>

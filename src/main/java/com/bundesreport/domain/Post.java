@@ -92,4 +92,13 @@ public class Post {
 	public int getLikesCount() {
 		return getLikes().size();
 	}
+	
+	public String getFirstImage() {
+		String target = "<img src=";
+		int target_num = getContent().indexOf(target);
+		if (target_num == -1) {
+			return "<img src=\"/img/no-image.png\">";
+		}
+		return getContent().substring(target_num, ((getContent().substring(target_num).indexOf(">") + 1) + target_num));
+	}
 }
