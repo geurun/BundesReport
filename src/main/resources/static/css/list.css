@@ -11,3 +11,8 @@ td {
 	height: 75%;
 	padding: 5px;
 }
+
+.page-item.active .page-link {
+	background-color: #36b9cc;
+	border-color: #36b9cc;
+}
