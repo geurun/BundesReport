@@ -38,6 +38,11 @@ public class PostController extends PageController {
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
+			if ((category.equals("GALLERY")) || (category.equals("gallery"))) {
+				model.addAttribute("bean",
+						new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true));
+				return "post/gallery";
+			}
 			model.addAttribute("bean",
 					new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true));
 			return "post/list";
@@ -123,17 +128,5 @@ public class PostController extends PageController {
 	public String delete(@PathVariable("postId") Long postId) {
 		return "redirect:/post/list/" + postService.delete(postId);
 	}
-	
-	@GetMapping(value = "/gallery/list")
-	public String gallery(Model model, Authentication auth) {
-		try {
-			model = createLayout(model, auth);
-			String category = "gallery";
-			model.addAttribute("bean",
-					new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true));
-			return "post/gallery";
-		} catch (Exception e) {
-			return "redirect:/404";
-		}
-	}
+
 }
