@@ -95,13 +95,15 @@
 													<a class="btn btn-outline-danger" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button">
 														<span th:text="${commentListBean.btnDelete}"></span>
 													</a>
-													<a class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/update/{commentId} (commentId=${comment.id})}" role="button">
+													<a th:id="'btnModify__${comment.id}__'" class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" role="button">
 														<span th:text="${commentListBean.btnModify}"></span>
 													</a>
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2"><span th:utext="${comment.content}"></span></td>
+												<td colspan="2">
+													<input th:id="'txtComment__${comment.id}__'" class="form-control" type="text" th:value="${comment.content}" th:readonly="true" th:required="true" />
+												</td>
 											</tr>
 										</tbody>
 									</table>
