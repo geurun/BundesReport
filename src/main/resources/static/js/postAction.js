@@ -19,9 +19,11 @@ $("#btnPostLike").on("click", function() {
 			if ($("#btnPostLike").hasClass("btn-success")) {
 				$("#btnPostLike").removeClass("btn-success");
 				$("#btnPostLike").addClass("btn-outline-danger");
+				$("#postLikeCount").text(Number($("#postLikeCount").text() + 1));
 			} else {
 				$("#btnPostLike").removeClass("btn-outline-danger");
 				$("#btnPostLike").addClass("btn-success");
+				$("#postLikeCount").text(Number($("#postLikeCount").text() - 1));
 			}
 			$("#btnPostLike").prop("disabled", false);
 		}, error: function(e) {
@@ -95,9 +97,11 @@ function commentLikeAction(btnCommentLike, num) {
 			if (btnCommentLike.hasClass("btn-success")) {
 				btnCommentLike.removeClass("btn-success");
 				btnCommentLike.addClass("btn-outline-danger");
+				$('#commentLikeCount' + num).text(Number($('#commentLikeCount' + num).text() + 1));
 			} else {
 				btnCommentLike.removeClass("btn-outline-danger");
 				btnCommentLike.addClass("btn-success");
+				$('#commentLikeCount' + num).text(Number($('#commentLikeCount' + num).text() - 1));
 			}
 			btnCommentLike.prop("disabled", false);
 		}, error: function(e) {

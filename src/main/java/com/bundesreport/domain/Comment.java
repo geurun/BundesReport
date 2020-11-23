@@ -80,4 +80,8 @@ public class Comment {
 		}
 		return false;
 	}
+
+	public int getLikesCount() {
+		return getLikes().size();
+	}
 }
