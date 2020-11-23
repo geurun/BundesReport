@@ -116,6 +116,26 @@
 			</exclusions>
 		</dependency>
 
+		<!-- reCAPTCHA -->
+		<dependency>
+			<groupId>com.google.code.maven-play-plugin.net.tanesha.recaptcha4j</groupId>
+			<artifactId>recaptcha4j</artifactId>
+			<version>0.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
