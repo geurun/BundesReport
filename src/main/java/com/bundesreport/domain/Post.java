@@ -88,4 +88,8 @@ public class Post {
 		setContent(form.getContent());
 		return this;
 	}
+
+	public int getLikesCount() {
+		return getLikes().size();
+	}
 }

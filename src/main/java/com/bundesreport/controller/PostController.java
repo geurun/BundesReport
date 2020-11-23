@@ -19,7 +19,6 @@ import com.bundesreport.domain.User;
 import com.bundesreport.dto.CommentForm;
 import com.bundesreport.dto.PostForm;
 import com.bundesreport.dto.SearchForm;
-import com.bundesreport.service.CommentService;
 import com.bundesreport.service.PostLikeService;
 import com.bundesreport.service.PostService;
 
@@ -35,16 +34,12 @@ public class PostController extends PageController {
 	@Autowired
 	private final PostLikeService postLikeService;
 
-	@Autowired
-	private final CommentService commentService;
-
 	@GetMapping(value = "/post/list/{category}")
 	public String list(@PathVariable("category") String category, Model model, Authentication auth) {
 		try {
 			model = createLayout(model, auth);
-			PostListBean bean = new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true);
-			bean.setCategory(category);
-			model.addAttribute("bean", bean);
+			model.addAttribute("bean",
+					new PostListBean(msgSrc, auth, postService.findByCategory(category), category, true));
 			return "post/list";
 		} catch (Exception e) {
 			return "redirect:/404";

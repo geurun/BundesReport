@@ -42,6 +42,7 @@
 													<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<span class="badge badge-pill badge-secondary" style="margin:0 5px;" id="postLikeCount" th:text="${bean.post.getLikesCount()}"></span>
 												</th>
 												<td style="border: none;" class="text-right">
 													<a class="btn btn-outline-danger" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
@@ -95,13 +96,18 @@
 													<a class="btn btn-outline-danger" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button">
 														<span th:text="${commentListBean.btnDelete}"></span>
 													</a>
-													<a class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/update/{commentId} (commentId=${comment.id})}" role="button">
+													<a th:id="'btnModify__${comment.id}__'" class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" role="button">
 														<span th:text="${commentListBean.btnModify}"></span>
 													</a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<span th:id="'commentLikeCount__${comment.id}__'" class="badge badge-pill badge-secondary" style="margin:0 5px;" th:text="${comment.getLikesCount()}"></span>
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2"><span th:utext="${comment.content}"></span></td>
+												<td colspan="2">
+													<input th:id="'txtComment__${comment.id}__'" class="form-control" type="text" th:value="${comment.content}" th:readonly="true" th:required="true" />
+												</td>
 											</tr>
 										</tbody>
 									</table>

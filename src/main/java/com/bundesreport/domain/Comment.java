@@ -71,4 +71,17 @@ public class Comment {
 		setContent(form.getContent());
 		return this;
 	}
+
+	public boolean hasMineLike(User user) {
+		for (CommentLike commentLike : getLikes()) {
+			if (commentLike.getUser().getUsername().equals(user.getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int getLikesCount() {
+		return getLikes().size();
+	}
 }
