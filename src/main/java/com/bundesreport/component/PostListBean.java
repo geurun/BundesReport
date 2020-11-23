@@ -16,10 +16,11 @@ import lombok.Setter;
 @Setter
 public class PostListBean extends MessageBean {
 
-	public PostListBean(MessageSource msgSrc, Authentication auth, List<Post> posts, boolean isComeFromMenu) {
+	public PostListBean(MessageSource msgSrc, Authentication auth, List<Post> posts, String category,
+			boolean isComeFromMenu) {
 		super(msgSrc, auth);
 		this.posts = posts;
-
+		this.category = category;
 		if (isComeFromMenu) {
 			for (Post post : posts) {
 				this.category = post.getCategory().getLowerString();
