@@ -17,12 +17,19 @@
 							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-secondary"><span th:text="${bean.write}"></span></a>
 						</div>
 						<div class="row">
-							<div class="col-3 mb-4" th:each="post : ${bean.posts}">
-								<div class="card shadow mb-4">
-									<div class="card-body">
+							<div class="col-lg-4 mb-4" th:each="post : ${bean.posts}">
+								<div class="card shadow" style="height:400px;">
+									<div class="card-body gallery-body" >
 										<a href="@{/post/view/{postId} (postId=${post.id})}" th:utext="${post.getFirstImage()}"></a>
-										<p th:text="${post.user.username}"></p>
-										<p th:text="${post.createdDate}"></p>
+										<div class="post-info" style="padding:0 5px; display:block;height:20%;">
+											<h2 th:text="${post.title}" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;display:block;height:50%;"></h2>
+											<span th:text="${post.user.username}"></span>
+											<div class="font-italic text-right" style="display:inline-flex; width:100%;">
+												<i class="far fa-clock" style="line-height:1.3rem;"></i>
+												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
+												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
