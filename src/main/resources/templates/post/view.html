@@ -20,12 +20,22 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<th style="width: 30%" th:text="${bean.postTitle}"></th>
-												<td style="width: 70%" th:text="${bean.post.title}"></td>
+												<th style="width: 25%" th:text="${bean.postTitle}"></th>
+												<td style="width: 75%" th:text="${bean.post.title}"></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.createdUser}"></th>
-												<td th:text="${bean.post.user.username}"></td>
+												<td th:if="${bean.user == null}" th:text="${bean.post.user.username}"></td>
+												<td th:if="${bean.user != null}">
+													<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<span th:text="${bean.post.user.username}"></span>
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${bean.post.user.id})}">
+															<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+														</a>
+													</div>
+												</td>
 											</tr>
 											<tr>
 												<th th:text="${bean.createdDate}"></th>
@@ -84,11 +94,23 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td>
+												<td style="border: none;" th:if="${bean.user == null}">
 													<i class="far fa-user-circle" style="margin: 0 5px;"></i>
 													<span class="font-weight-bold" th:text="${comment.user.username}"></span>
 												</td>
-												<td class="text-right">
+												<td style="border: none;" th:if="${bean.user != null}">
+													<div class="btn-group dropright">
+														<a id="btnMessage" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="far fa-user-circle" style="margin: 0 5px;"></i><span class="mr-2 d-none d-lg-inline" th:text="${comment.user.username}"></span>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${comment.user.id})}">
+																<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+															</a>
+														</div>
+													</div>
+												</td>
+												<td style="border: none;" class="text-right">
 													<i class="far fa-clock" style="margin: 0 5px;"></i>
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
@@ -105,12 +127,13 @@
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2">
+												<td style="border: none;" colspan="2">
 													<input th:id="'txtComment__${comment.id}__'" class="form-control" type="text" th:value="${comment.content}" th:readonly="true" th:required="true" />
 												</td>
 											</tr>
 										</tbody>
 									</table>
+									<hr />
 								</div>
 							</div>
 						</div>
