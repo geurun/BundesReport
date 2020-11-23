@@ -98,6 +98,8 @@
 													<a th:id="'btnModify__${comment.id}__'" class="btn btn-secondary" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" role="button">
 														<span th:text="${commentListBean.btnModify}"></span>
 													</a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 												</td>
 											</tr>
 											<tr>

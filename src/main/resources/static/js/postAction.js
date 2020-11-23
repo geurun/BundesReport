@@ -23,6 +23,7 @@ $("#btnPostLike").on("click", function() {
 				$("#btnPostLike").removeClass("btn-outline-danger");
 				$("#btnPostLike").addClass("btn-success");
 			}
+			$("#btnPostLike").prop("disabled", false);
 		}, error: function(e) {
 			$("#btnPostLike").prop("disabled", false);
 		}
@@ -39,6 +40,10 @@ $(".btn").click(function() {
 		} else {
 			commentModifyAction($(btnId), txtComment, num);
 		}
+	}
+	if (btnId.indexOf("btnCommentLike") != -1) {
+		var num = btnId.substring(14);
+		commentLikeAction($('#' + btnId), num);
 	}
 });
 
@@ -66,6 +71,37 @@ function commentModifyAction(btnModify, txtComment, num) {
 		}, error: function(e) {
 			txtComment.attr("readonly", true);
 			btnModify.prop("disabled", false);
+		}
+	});
+};
+
+function commentLikeAction(btnCommentLike, num) {
+	event.preventDefault();
+	btnCommentLike.prop("disabled", true);
+	var likeForm = {};
+	likeForm["commentId"] = num;
+
+	$.ajax({
+		type: "POST",
+		contentType: "application/json",
+		url: "/like/comment",
+		data: JSON.stringify(likeForm),
+		dataType: 'json',
+		cache: false,
+		timeout: 600000,
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+		}, success: function(data) {
+			if (btnCommentLike.hasClass("btn-success")) {
+				btnCommentLike.removeClass("btn-success");
+				btnCommentLike.addClass("btn-outline-danger");
+			} else {
+				btnCommentLike.removeClass("btn-outline-danger");
+				btnCommentLike.addClass("btn-success");
+			}
+			btnCommentLike.prop("disabled", false);
+		}, error: function(e) {
+			btnCommentLike.prop("disabled", false);
 		}
 	});
 };
