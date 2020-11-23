@@ -22,7 +22,7 @@
 					<span class="badge badge-danger badge-counter" th:text="${topbar.messageCount}" th:if="${topbar.messageCount} > 0"></span>
 				</a>
 				<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-					<h6 class="dropdown-header" th:text=${topbar.messageCenter}></h6>
+					<h6 class="dropdown-header bg-info border-info" th:text=${topbar.messageCenter}></h6>
 					<a class="dropdown-item d-flex align-items-center" th:href="@{/note/{id} (id=${note.id})}" th:each="note: ${topbar.messages}">
 						<!-- ToDo: Already Read -->
 						<div th:if="${note.readed}">
