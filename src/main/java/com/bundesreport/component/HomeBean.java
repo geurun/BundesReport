@@ -27,6 +27,8 @@ public class HomeBean extends MessageBean {
 		livingQA = getMsgUtil().getMessage("home.livingQA");
 		fleaMarket = getMsgUtil().getMessage("home.fleaMarket");
 		jobSearch = getMsgUtil().getMessage("home.jobSearch");
+
+		btnMessageSend = getMsgUtil().getMessage("home.btnMessageSend");
 	}
 
 	private List<Post> freePosts;
@@ -38,4 +40,6 @@ public class HomeBean extends MessageBean {
 	private String livingQA;
 	private String fleaMarket;
 	private String jobSearch;
+
+	private String btnMessageSend;
 }
