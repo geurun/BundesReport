@@ -13,7 +13,7 @@
 						<div class="d-sm-flex align-items-center justify-content-between mb-4">
 							<h1 class="h3 mb-0 text-gray-800" th:text="${bean.title}"></h1>
 						</div>
-						<div class="text-right pb-2" th:if="${bean.user} != null or ${bean.category != null}">
+						<div class="text-right pb-2" th:if="${bean.user} != null and ${bean.category != null}">
 							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-secondary"><span th:text="${bean.write}"></span></a>
 						</div>
 						<div class="card shadow mb-4">
