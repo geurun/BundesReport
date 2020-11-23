@@ -17,11 +17,13 @@
 							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-secondary"><span th:text="${bean.write}"></span></a>
 						</div>
 						<div class="row">
-							<div class="col-6 mb-4">
-								<div class="card-body" th:each="post : ${bean.posts}">
-									<a href="@{/post/view/{postId} (postId=${post.id})}" th:utext=""></a>
-									<p th:text="${post.user.username}"></p>
-									<p th:text="${post.createdDate}"></p>
+							<div class="col-3 mb-4">
+								<div class="card shadow mb-4">
+									<div class="card-body" th:each="post : ${bean.posts}">
+										<a href="@{/post/view/{postId} (postId=${post.id})}" th:utext="${post.content}"></a>
+										<p th:text="${post.user.username}"></p>
+										<p th:text="${post.createdDate}"></p>
+									</div>
 								</div>
 							</div>
 						</div>
