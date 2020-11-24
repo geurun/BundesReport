@@ -106,6 +106,11 @@ public class PostController extends PageController {
 		}
 		PostBean bean = new PostBean(msgSrc, auth, post.get(), null);
 		bean.setHasLike(postLikeService.countByPostAndUser(post.get(), user));
+
+		PostForm postForm = post.get().toPostForm();
+		postForm.setViewCount(postForm.getViewCount() + 1);
+		postService.save(postForm);
+
 		model.addAttribute("bean", bean);
 		model.addAttribute("commentForm", new CommentForm(user, post.get()));
 		model.addAttribute("commentListBean", new CommentListBean(msgSrc, auth, post.get(), post.get().getComments()));

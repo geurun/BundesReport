@@ -54,10 +54,14 @@ public class Note {
 	private User receiver;
 
 	@Builder
-	public Note(Long id, String title, String content, User sender, User receiver) {
+	public Note(Long id, boolean deleted, String title, String content, LocalDateTime createdDate, boolean readed,
+			User sender, User receiver) {
 		this.id = id;
+		this.deleted = deleted;
 		this.title = title;
 		this.content = content;
+		this.createdDate = createdDate;
+		this.readed = readed;
 		this.sender = sender;
 		this.receiver = receiver;
 	}

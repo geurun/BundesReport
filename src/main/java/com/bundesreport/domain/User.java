@@ -78,19 +78,20 @@ public class User implements UserDetails {
 	private List<Note> receiveNotes = new ArrayList<>();
 
 	@Builder
-	public User(Long id, boolean deleted, String username, String password, String email,
+	public User(Long id, boolean deleted, String username, String password, String email, LocalDateTime createdDate,
 			LanguageStatus languageStatus) {
 		this.id = id;
 		this.deleted = deleted;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.createdDate = createdDate;
 		this.languageStatus = languageStatus;
 	}
 
 	public UserForm toUserForm() {
 		return UserForm.builder().id(id).deleted(deleted).username(username).password(password).email(email)
-				.languageStatus(languageStatus).build();
+				.createdDate(createdDate).languageStatus(languageStatus).build();
 	}
 
 	@Override

@@ -44,9 +44,11 @@ public class PostLike {
 	private LocalDateTime createdDate;
 
 	@Builder
-	public PostLike(Long id, User user, Post post) {
+	public PostLike(Long id, boolean deleted, User user, Post post, LocalDateTime createdDate) {
 		this.id = id;
+		this.deleted = deleted;
 		this.user = user;
 		this.post = post;
+		this.createdDate = createdDate;
 	}
 }

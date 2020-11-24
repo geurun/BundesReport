@@ -56,15 +56,18 @@ public class Comment {
 	private List<CommentLike> likes = new ArrayList<>();
 
 	@Builder
-	public Comment(Long id, String content, User user, Post post) {
+	public Comment(Long id, boolean deleted, String content, LocalDateTime createdDate, User user, Post post) {
 		this.id = id;
+		this.deleted = deleted;
 		this.content = content;
+		this.createdDate = createdDate;
 		this.user = user;
 		this.post = post;
 	}
 
 	public CommentForm toCommentForm() {
-		return CommentForm.builder().id(id).content(content).user(user).post(post).build();
+		return CommentForm.builder().id(id).deleted(deleted).content(content).createdDate(createdDate).user(user)
+				.post(post).build();
 	}
 
 	public Comment getUpdateModel(CommentForm form) {

@@ -17,8 +17,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class LikeForm {
-
 	private Long id;
+	private boolean deleted;
 	private User user;
 	private Long userId;
 	private Post post;
@@ -38,24 +38,27 @@ public class LikeForm {
 	}
 
 	public PostLike toPostLikeEntity() {
-		return PostLike.builder().id(id).user(user).post(post).build();
+		return PostLike.builder().id(id).deleted(deleted).user(user).post(post).createdDate(createdDate).build();
 	}
 
 	public CommentLike toCommentLikeEntity() {
-		return CommentLike.builder().id(id).user(user).comment(comment).build();
+		return CommentLike.builder().id(id).deleted(deleted).user(user).comment(comment).createdDate(createdDate)
+				.build();
 	}
 
 	@Builder
-	public LikeForm(Long id, User user, Post post, LocalDateTime createdDate) {
+	public LikeForm(Long id, boolean deleted, User user, Post post, LocalDateTime createdDate) {
 		this.id = id;
+		this.deleted = deleted;
 		this.user = user;
 		this.post = post;
 		this.createdDate = createdDate;
 	}
 
 	@Builder
-	public LikeForm(Long id, User user, Comment comment, LocalDateTime createdDate) {
+	public LikeForm(Long id, boolean deleted, User user, Comment comment, LocalDateTime createdDate) {
 		this.id = id;
+		this.deleted = deleted;
 		this.user = user;
 		this.comment = comment;
 		this.createdDate = createdDate;

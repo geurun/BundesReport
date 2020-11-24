@@ -1,5 +1,7 @@
 package com.bundesreport.dto;
 
+import java.time.LocalDateTime;
+
 import com.bundesreport.domain.Comment;
 import com.bundesreport.domain.Post;
 import com.bundesreport.domain.User;
@@ -13,9 +15,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CommentForm {
-
 	private Long id;
+	private boolean deleted;
 	private String content;
+	private LocalDateTime createdDate;
 	private User user;
 	private Post post;
 
@@ -25,13 +28,16 @@ public class CommentForm {
 	}
 
 	public Comment toEntity() {
-		return Comment.builder().id(id).content(content).user(user).post(post).build();
+		return Comment.builder().id(id).deleted(deleted).content(content).createdDate(createdDate).user(user).post(post)
+				.build();
 	}
 
 	@Builder
-	public CommentForm(Long id, String content, User user, Post post) {
+	public CommentForm(Long id, boolean deleted, String content, LocalDateTime createdDate, User user, Post post) {
 		this.id = id;
+		this.deleted = deleted;
 		this.content = content;
+		this.createdDate = createdDate;
 		this.user = user;
 		this.post = post;
 	}

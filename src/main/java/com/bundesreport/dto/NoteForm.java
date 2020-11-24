@@ -13,19 +13,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class NoteForm {
-
 	private Long id;
+	private boolean deleted;
 	private String title;
 	private String content;
+	private LocalDateTime createdDate;
+	private boolean readed;
 	private User sender;
 	private User receiver;
-	private LocalDateTime createdDate;
 
 	public NoteForm(User receiver) {
 		this.receiver = receiver;
 	}
 
 	public Note toEntity() {
-		return Note.builder().id(id).title(title).content(content).sender(sender).receiver(receiver).build();
+		return Note.builder().id(id).deleted(deleted).title(title).content(content).createdDate(createdDate)
+				.readed(readed).sender(sender).receiver(receiver).build();
 	}
 }
