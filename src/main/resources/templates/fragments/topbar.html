@@ -6,7 +6,7 @@
 			<i class="fa fa-bars"></i>
 		</button>
 		<form  th:action="@{/post/search}" th:object="${searchForm}" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group"><i class="fas fa-search"></i>
+			<div class="input-group">
 				<input type="text" th:field="*{key}" class="form-control bg-light border-0 small" aria-label="Search" aria-describedby="basic-addon2" />
 				<div class="input-group-append">
 					<button class="btn btn-light" type="button"><i class="fas fa-search fa-sm"></i></button>
