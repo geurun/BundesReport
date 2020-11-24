@@ -2,9 +2,10 @@
 	background-color: #e6e6e6;
 }
 
-.d-block{
-	display: block; 
-	margin: 0px auto;
+img{
+	object-fit: cover;
+    width: 100%;
+    max-height: 21rem;
 }
 
 .home-board-title, td>a{
