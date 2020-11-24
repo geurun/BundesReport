@@ -7,12 +7,12 @@ td {
 	text-decoration: none;
 }
 
-#postListDT a, #noteListDT a, .pagination a{
+#postListDT a, #noteListDT a, .pagination a, #btnMessage{
 	text-decoration: none;
 	color: #858796;
 }
 
-#postListDT a:hover, #noteListDT a:hover, .pagination a:hover{
+#postListDT a:hover, #noteListDT a:hover, .pagination a:hover, #btnMessage:hover{
 	color: #43444c;
 }
 
