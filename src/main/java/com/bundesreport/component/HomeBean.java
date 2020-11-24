@@ -3,9 +3,11 @@ package com.bundesreport.component;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 
 import com.bundesreport.domain.Post;
-import com.bundesreport.domain.User;
+import com.bundesreport.service.PostService;
+import com.bundesreport.type.CategoryType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,16 +16,30 @@ import lombok.Setter;
 @Setter
 public class HomeBean extends MessageBean {
 
-	public HomeBean(MessageSource msgSrc, User user, List<Post> posts) {
-		super(msgSrc, user);
-		this.posts = posts;
+	public HomeBean(MessageSource msgSrc, Authentication auth, PostService postService) {
+		super(msgSrc, auth);
+		this.freePosts = postService.findByCategory(CategoryType.FREE_BOARD);
+		this.livingPosts = postService.findByCategory(CategoryType.LIVING_QA);
+		this.fleaPosts = postService.findByCategory(CategoryType.FLEA_MARKET);
+		this.jobPosts = postService.findByCategory(CategoryType.JOB_SEARCH);
 
 		freeBoard = getMsgUtil().getMessage("home.freeBoard");
 		livingQA = getMsgUtil().getMessage("home.livingQA");
+		fleaMarket = getMsgUtil().getMessage("home.fleaMarket");
+		jobSearch = getMsgUtil().getMessage("home.jobSearch");
+
+		btnMessageSend = getMsgUtil().getMessage("home.btnMessageSend");
 	}
 
-	private List<Post> posts;
+	private List<Post> freePosts;
+	private List<Post> livingPosts;
+	private List<Post> fleaPosts;
+	private List<Post> jobPosts;
 
 	private String freeBoard;
 	private String livingQA;
+	private String fleaMarket;
+	private String jobSearch;
+
+	private String btnMessageSend;
 }

@@ -1,26 +1,35 @@
 package com.bundesreport.component;
 
-import org.springframework.context.MessageSource;
+import java.util.Objects;
 
-import com.bundesreport.domain.User;
+import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
+
+import com.bundesreport.domain.Comment;
+import com.bundesreport.domain.Post;
+import com.bundesreport.service.CommentService;
+import com.bundesreport.service.PostService;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserProfileBean extends MessageBean {
+public class ProfileBean extends MessageBean {
 
-	public UserProfileBean(MessageSource msgSrc, User user) {
-		super(msgSrc, user);
-
-		// ToDo: get from post
-		postCount = 0;
-		postLikeCount = 0;
-
-		// ToDo: get from comment
-		commentCount = 0;
-		commentLikeCount = 0;
+	public ProfileBean(MessageSource msgSrc, Authentication auth, PostService postService,
+			CommentService commentService) {
+		super(msgSrc, auth);
+		if (Objects.nonNull(getUser())) {
+			for (Post post : postService.findByUser(getUser())) {
+				this.postCount++;
+				this.postLikeCount += post.getLikes().size();
+			}
+			for (Comment comment : commentService.findByUser(getUser())) {
+				this.commentCount++;
+				this.commentLikeCount += comment.getLikes().size();
+			}
+		}
 
 		setTitle(getMsgUtil().getMessage("user.title"));
 		myPostCount = getMsgUtil().getMessage("user.myPostCount");
@@ -28,7 +37,7 @@ public class UserProfileBean extends MessageBean {
 		myCommentCount = getMsgUtil().getMessage("user.myCommentCount");
 		myCommentLikeCount = getMsgUtil().getMessage("user.myCommentLikeCount");
 		modifyUserInfo = getMsgUtil().getMessage("user.modifyUserInfo");
-		userName = getMsgUtil().getMessage("user.username");
+		username = getMsgUtil().getMessage("user.username");
 		password = getMsgUtil().getMessage("user.password");
 		email = getMsgUtil().getMessage("user.email");
 		languageStatus = getMsgUtil().getMessage("user.languageStatus");
@@ -45,7 +54,7 @@ public class UserProfileBean extends MessageBean {
 	private String myCommentCount;
 	private String myCommentLikeCount;
 	private String modifyUserInfo;
-	private String userName;
+	private String username;
 	private String password;
 	private String email;
 	private String languageStatus;

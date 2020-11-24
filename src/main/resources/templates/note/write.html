@@ -33,10 +33,10 @@
 													<td><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.noteContent}" th:field="*{content}" required /></td>
 												</tr>
 												<tr>
-													<th>
+													<th style="border: none;">
 														<a class="btn btn-secondary" href="/note/list" role="button"><span th:text="${bean.btnList}"></span></a>
 													</th>
-													<td class="text-right">
+													<td style="border: none;" class="text-right">
 														<input type="submit" name="save" id="save" class="btn btn-secondary" th:value="${bean.btnSend}" />
 													</td>
 												</tr>

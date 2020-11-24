@@ -28,19 +28,19 @@
 											</tr>
 											<tr>
 												<th th:text="${bean.date}"></th>
-												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.message.createdDate, 'yyyy-MM-dd')}"></td>
-												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.message.createdDate, 'dd-MM-yyyy')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.message.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.message.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
 											</tr>
 											<tr>
 												<th th:text="${bean.noteContent}"></th>
 												<td th:text="${bean.message.content}"></td>
 											</tr>
 											<tr>
-												<th>
+												<th style="border: none;">
 													<a class="btn btn-secondary" href="/note/list" role="button"><span th:text="${bean.btnList}"></span></a>
 													<a class="btn btn-secondary" th:href="@{/note/new/{receiverId} (receiverId=${bean.message.sender.id})}" role="button"><span th:text="${bean.btnReply}"></span></a>
 												</th>
-												<td class="text-right">
+												<td style="border: none;" class="text-right">
 													<a class="btn btn-outline-danger" th:href="@{/note/delete/{id} (id=${bean.message.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
 												</td>
 											</tr>

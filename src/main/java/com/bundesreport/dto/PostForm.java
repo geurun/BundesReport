@@ -15,15 +15,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostForm {
-
 	private Long id;
+	private boolean deleted;
 	private String title;
 	private String content;
 	private CategoryType category;
 	private LocalDateTime createdDate;
-	private LocalDateTime updatedDate;
-	private boolean deleted;
 	private User user;
+	private int viewCount;
 
 	public PostForm(String category, User user) {
 		this.category = CategoryType.valueOf(category.toUpperCase());
@@ -31,17 +30,20 @@ public class PostForm {
 	}
 
 	public Post toEntity() {
-		return Post.builder().id(id).title(title).content(content).category(category).deleted(deleted).user(user)
-				.build();
+		return Post.builder().id(id).deleted(deleted).title(title).content(content).category(category)
+				.createdDate(createdDate).user(user).viewCount(viewCount).build();
 	}
 
 	@Builder
-	public PostForm(Long id, String title, String content, CategoryType category, boolean deleted, User user) {
+	public PostForm(Long id, boolean deleted, String title, String content, CategoryType category,
+			LocalDateTime createdDate, User user, int viewCount) {
 		this.id = id;
+		this.deleted = deleted;
 		this.title = title;
 		this.content = content;
 		this.category = category;
-		this.deleted = deleted;
+		this.createdDate = createdDate;
 		this.user = user;
+		this.viewCount = viewCount;
 	}
 }

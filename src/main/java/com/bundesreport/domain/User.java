@@ -7,17 +7,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,19 +36,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Where(clause = "deleted = false")
 @Table(name = "USERS")
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = -1457804012376126489L;
 
 	@Id
-	@GeneratedValue
-	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String userName;
+	private boolean deleted;
 
-	private String hashedPassword;
+	private String username;
+
+	private String password;
 
 	private String email;
 
@@ -57,52 +60,51 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private LanguageStatus languageStatus; // [KO, DE]
 
-	private boolean deleted;
-
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Post> posts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<PostLike> postLikes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Comment> comments = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<CommentLike> commentLikes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "sender")
 	private List<Note> sendNotes = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+	@OneToMany(mappedBy = "receiver", cascade = { CascadeType.ALL })
 	private List<Note> receiveNotes = new ArrayList<>();
 
 	@Builder
-	public User(Long id, String userName, String hashedPassword, String email, LanguageStatus languageStatus,
-			boolean deleted) {
+	public User(Long id, boolean deleted, String username, String password, String email, LocalDateTime createdDate,
+			LanguageStatus languageStatus) {
 		this.id = id;
-		this.userName = userName;
-		this.hashedPassword = hashedPassword;
-		this.email = email;
-		this.languageStatus = languageStatus;
 		this.deleted = deleted;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.createdDate = createdDate;
+		this.languageStatus = languageStatus;
 	}
 
 	public UserForm toUserForm() {
-		return UserForm.builder().id(id).userName(userName).hashedPassword(hashedPassword).email(email)
-				.languageStatus(languageStatus).deleted(deleted).build();
+		return UserForm.builder().id(id).deleted(deleted).username(username).password(password).email(email)
+				.createdDate(createdDate).languageStatus(languageStatus).build();
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// ToDo: Administrator or User
 		Set<GrantedAuthority> roles = new HashSet<>();
 		roles.add(new SimpleGrantedAuthority("USER"));
 		return roles;
 	}
 
 	@Override
-	public String getPassword() {
-		return this.hashedPassword;
-	}
-
-	@Override
 	public String getUsername() {
-		return this.userName;
+		return this.username;
 	}
 
 	@Override

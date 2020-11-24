@@ -35,9 +35,9 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6 mb-5">
-				<div class="card h-100">
+				<div class="card h-100 shadow">
 					<div class="card-body">
-						<h4 class="card-title"><a class="home-board-title" href="/post/list/free_board"><span th:text="${free.freeBoard}"></span></a></h4>
+						<h4 class="card-title shadow-sm p-1 text-center" style="border-radius: 9px;"><a class="home-board-title" href="/post/list/free_board"><span th:text="${bean.freeBoard}"></span></a></h4>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table" id="freeBoard">
@@ -46,9 +46,19 @@
 											<th style="width:80%"></th>
 											<th style="width:20%"></th>
 										</tr>
-										<tr th:each="post : ${free.posts}">
+										<tr th:each="post : ${bean.freePosts}">
 											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-											<td><span th:text="${post.user.username}"></span></td>
+											<td th:if="${bean.user == null}" th:text="${post.user.username}"></td>
+											<td th:if="${bean.user != null}">
+												<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span th:text="${post.user.username}"></span>
+												</a>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
+														<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+													</a>
+												</div>
+											</td>
 										</tr>
 									</thead>
 								</table>
@@ -58,9 +68,9 @@
 				</div>
 			</div>
 			<div class="col-md-6 mb-5">
-				<div class="card h-100">
+				<div class="card h-100 shadow">
 					<div class="card-body">
-						<h4 class="card-title"><a class="home-board-title" href="/post/list/living_qa"><span th:text="${life.livingQA}"></span></a></h4>
+						<h4 class="card-title shadow-sm p-1 text-center" style="border-radius: 9px;"><a class="home-board-title" href="/post/list/living_qa"><span th:text="${bean.livingQA}"></span></a></h4>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table" id="livingQA">
@@ -69,9 +79,19 @@
 											<th style="width:80%"></th>
 											<th style="width:20%"></th>
 										</tr>
-										<tr th:each="post : ${life.posts}">
+										<tr th:each="post : ${bean.livingPosts}">
 											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-											<td><span th:text="${post.user.username}"></span></td>
+											<td th:if="${bean.user == null}" th:text="${post.user.username}"></td>
+											<td th:if="${bean.user != null}">
+												<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span th:text="${post.user.username}"></span>
+												</a>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
+														<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+													</a>
+												</div>
+											</td>
 										</tr>
 									</thead>
 								</table>
@@ -81,20 +101,30 @@
 				</div>
 			</div>
 			<div class="col-md-6 mb-5">
-				<div class="card h-100">
+				<div class="card h-100 shadow">
 					<div class="card-body">
-						<h4 class="card-title"><a class="home-board-title" href="/post/list/free_board"><span th:text="${free.freeBoard}"></span></a></h4>
+						<h4 class="card-title shadow-sm p-1 text-center" style="border-radius: 9px;"><a class="home-board-title" href="/post/list/flea_market"><span th:text="${bean.fleaMarket}"></span></a></h4>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table" id="freeBoard" width="50%" cellspacing="0">
+								<table class="table" id="fleaMarket">
 									<thead>
 										<tr>
 											<th style="width:80%"></th>
 											<th style="width:20%"></th>
 										</tr>
-										<tr th:each="post : ${free.posts}">
+										<tr th:each="post : ${bean.fleaPosts}">
 											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-											<td><span th:text="${post.user.username}"></span></td>
+											<td th:if="${bean.user == null}" th:text="${post.user.username}"></td>
+											<td th:if="${bean.user != null}">
+												<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span th:text="${post.user.username}"></span>
+												</a>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
+														<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+													</a>
+												</div>
+											</td>
 										</tr>
 									</thead>
 								</table>
@@ -104,69 +134,39 @@
 				</div>
 			</div>
 			<div class="col-md-6 mb-5">
-				<div class="card h-100">
+				<div class="card h-100 shadow">
 					<div class="card-body">
-						<h4 class="card-title"><a class="home-board-title" href="/post/list/living_qa"><span th:text="${life.livingQA}"></span></a></h4>
+						<h4 class="card-title shadow-sm p-1 text-center" style="border-radius: 9px;"><a class="home-board-title" href="/post/list/job_search"><span th:text="${bean.jobSearch}"></span></a></h4>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table" id="freeBoard" width="50%" cellspacing="0">
+								<table class="table" id="jobSearch">
 									<thead>
 										<tr>
 											<th style="width:80%"></th>
 											<th style="width:20%"></th>
 										</tr>
-										<tr th:each="post : ${life.posts}">
+										<tr th:each="post : ${bean.jobPosts}">
 											<td><a th:href="@{/post/view/{postId} (postId=${post.id})}"><span th:text="${post.title}"></span></a></td>
-											<td><span th:text="${post.user.username}"></span></td>
+											<td th:if="${bean.user == null}" th:text="${post.user.username}"></td>
+											<td th:if="${bean.user != null}">
+												<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<span th:text="${post.user.username}"></span>
+												</a>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
+														<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span th:text="${bean.btnMessageSend}"></span>
+													</a>
+												</div>
+											</td>
 										</tr>
 									</thead>
 								</table>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- fourth row -->
-			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">Item One</a>
-							</h4>
-							<h5>$24.99</h5>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">Item Two</a>
-							</h4>
-							<h5>$24.99</h5>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">Item Three</a>
-							</h4>
-							<h5>$24.99</h5>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- fourth row end -->
 	</div>
 </th:block>
 </html>

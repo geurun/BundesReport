@@ -31,9 +31,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public User update(UserForm userForm) {
-		User user = findByUserName(userForm.getUserName());
-		if (!StringUtils.isEmpty(userForm.getHashedPassword())) {
-			user.setHashedPassword(new BCryptPasswordEncoder().encode(userForm.getHashedPassword()));
+		User user = findByUsername(userForm.getUsername());
+		if (!StringUtils.isEmpty(userForm.getPassword())) {
+			user.setPassword(new BCryptPasswordEncoder().encode(userForm.getPassword()));
 		}
 		user.setEmail(userForm.getEmail());
 		user.setLanguageStatus(userForm.getLanguageStatus());
@@ -50,8 +50,8 @@ public class UserService implements UserDetailsService {
 		return userWrapper.get();
 	}
 
-	public User findByUserName(String userName) {
-		return userRepository.findByUserName(userName);
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	public List<User> findByEmail(String email) {
@@ -60,6 +60,6 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return findByUserName(username);
+		return findByUsername(username);
 	}
 }

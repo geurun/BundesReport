@@ -20,7 +20,7 @@
 										<input type="hidden" id="id" name="id" th:field="*{id}" />
 										<input type="hidden" id="user" name="user" th:field="*{user}" />
 										<input type="hidden" id="category" name="category" th:field="*{category}" />
-										<table class="table talbe-bordered">
+										<table class="table table-bordered">
 											<tbody>
 												<tr>
 													<th style="width: 15%" th:text="${bean.postTitle}"></th>
@@ -31,10 +31,10 @@
 													<td><textarea id="editor" name="editor" th:field="*{content}" th:utext="${content}" class="form-control"></textarea></td>
 												</tr>
 												<tr>
-													<th>
-														<a class="btn btn-secondary" th:href="@{/post/list/{categoryName} (categoryName=${categoryName})}" role="button"><span th:text="${bean.btnList}"></span></a>
+													<th style="border: none;">
+														<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 													</th>
-													<td class="text-right">
+													<td style="border: none;" class="text-right">
 														<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${bean.btnSave}" />
 													</td>
 												</tr>

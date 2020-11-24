@@ -40,4 +40,32 @@ public enum CategoryType {
 		}
 		return "post.title.gallery";
 	}
+
+	public String getLowerString() {
+		if (FREE_BOARD.getValue() == this.value) {
+			return "free_board";
+		}
+		if (ABROAD_BOARD.getValue() == this.value) {
+			return "abroad_board";
+		}
+		if (LIVING_QA.getValue() == this.value) {
+			return "living_qa";
+		}
+		if (FLEA_MARKET.getValue() == this.value) {
+			return "flea_market";
+		}
+		if (JOB_SEARCH.getValue() == this.value) {
+			return "job_search";
+		}
+		if (CLUB.getValue() == this.value) {
+			return "club";
+		}
+		if (EVENT_NOTIFICATION.getValue() == this.value) {
+			return "event_notification";
+		}
+		if (RECIPE.getValue() == this.value) {
+			return "recipe";
+		}
+		return "gallery";
+	}
 }

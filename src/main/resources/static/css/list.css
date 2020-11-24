@@ -1,0 +1,30 @@
+th, td {
+	vertical-align: middle!important;
+}
+
+td {
+	padding: 4px 8px!important;
+	text-decoration: none;
+}
+
+#postListDT a, #noteListDT a, .pagination a{
+	text-decoration: none;
+	color: #858796;
+}
+
+#postListDT a:hover, #noteListDT a:hover, .pagination a:hover{
+	color: #43444c;
+}
+
+.gallery-body >a> img {
+	width: 100% !important;
+	height: 75%;
+	padding: 5px;
+}
+
+.page-item.active .page-link {
+	background-color: #36b9cc;
+	border-color: #36b9cc;
+}
+
+

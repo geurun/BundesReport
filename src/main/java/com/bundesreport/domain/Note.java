@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,24 +25,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "NOTES")
+@Where(clause = "deleted = false")
+@Table(name = "notes")
 public class Note {
 
-	@Builder
-	public Note(Long id, String title, String content, User sender, User receiver) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.sender = sender;
-		this.receiver = receiver;
-	}
-
 	@Id
-	@GeneratedValue
-	@Column(name = "note_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(columnDefinition = "TEXT")
+	private boolean deleted;
+
 	private String title;
 
 	@Lob
@@ -53,10 +47,24 @@ public class Note {
 	private boolean readed;
 
 	@ManyToOne
-	@JoinColumn(name = "SENDER_ID")
+	@JoinColumn(name = "sender_id")
 	private User sender;
 
 	@ManyToOne
-	@JoinColumn(name = "RECEIVER_ID")
+	@JoinColumn(name = "receiver_id")
 	private User receiver;
+
+	@Builder
+	public Note(Long id, boolean deleted, String title, String content, LocalDateTime createdDate, boolean readed,
+			User sender, User receiver) {
+		this.id = id;
+		this.deleted = deleted;
+		this.title = title;
+		this.content = content;
+		this.createdDate = createdDate;
+		this.readed = readed;
+		this.sender = sender;
+		this.receiver = receiver;
+	}
+
 }

@@ -1,8 +1,7 @@
 package com.bundesreport.component;
 
 import org.springframework.context.MessageSource;
-
-import com.bundesreport.domain.User;
+import org.springframework.security.core.Authentication;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +10,8 @@ import lombok.Setter;
 @Setter
 public class SidebarBean extends MessageBean {
 
-	public SidebarBean(MessageSource msgSrc, User user) {
-		super(msgSrc, user);
+	public SidebarBean(MessageSource msgSrc, Authentication auth) {
+		super(msgSrc, auth);
 
 		setTitle(getMsgUtil().getMessage("title"));
 		home = getMsgUtil().getMessage("menu.home");

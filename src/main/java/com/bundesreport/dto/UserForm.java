@@ -19,30 +19,30 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserForm {
-
 	private Long id;
-	private String userName;
-	private String hashedPassword;
+	private boolean deleted;
+	private String username;
+	private String password;
 	private String email;
 	private LocalDateTime createdDate;
 	@Enumerated(EnumType.STRING)
 	private LanguageStatus languageStatus; // [KO, DE]
-	private boolean deleted;
 
 	public User toEntity() {
-		return User.builder().id(id).userName(userName)
-				.hashedPassword(new BCryptPasswordEncoder().encode(hashedPassword)).email(email)
-				.languageStatus(languageStatus).deleted(deleted).build();
+		return User.builder().id(id).deleted(deleted).username(username)
+				.password(new BCryptPasswordEncoder().encode(password)).email(email).createdDate(createdDate)
+				.languageStatus(languageStatus).build();
 	}
 
 	@Builder
-	public UserForm(Long id, String userName, String hashedPassword, String email, LanguageStatus languageStatus,
-			boolean deleted) {
+	public UserForm(Long id, boolean deleted, String username, String password, String email, LocalDateTime createdDate,
+			LanguageStatus languageStatus) {
 		this.id = id;
-		this.userName = userName;
-		this.hashedPassword = hashedPassword;
-		this.email = email;
-		this.languageStatus = languageStatus;
 		this.deleted = deleted;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.createdDate = createdDate;
+		this.languageStatus = languageStatus;
 	}
 }

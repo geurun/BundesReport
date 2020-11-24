@@ -1,6 +1,9 @@
 package com.bundesreport.controller;
 
+import java.io.IOException;
 import java.util.Objects;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bundesreport.config.AjaxResponse;
+import com.bundesreport.config.VerifyRecaptcha;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
@@ -32,14 +37,14 @@ public class SignController extends PageController {
 	public String signin(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signin";
+		return "/user/signin";
 	}
 
 	@GetMapping(value = "/signup")
 	public String signup(Model model, Authentication auth) {
 		model = createLayout(model, auth);
 		model.addAttribute("userForm", new UserForm());
-		return "signup";
+		return "/user/signup";
 	}
 
 	@PostMapping(value = "/signup/check")
@@ -48,7 +53,7 @@ public class SignController extends PageController {
 		AjaxResponse result = new AjaxResponse();
 
 		// ID check
-		if (Objects.nonNull(userService.findByUserName(userForm.getUserName()))) {
+		if (Objects.nonNull(userService.findByUsername(userForm.getUsername()))) {
 			result.getMsgs().add(util.getMessage("signup.error.id"));
 		}
 
@@ -58,6 +63,24 @@ public class SignController extends PageController {
 		}
 
 		return ResponseEntity.ok(result);
+	}
+
+	@ResponseBody
+	@PostMapping(value = "/verifyRecaptcha")
+	public ResponseEntity<?> VerifyRecaptcha(HttpServletRequest request) {
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		MsgUtil util = new MsgUtil(msgSrc);
+		AjaxResponse result = new AjaxResponse();
+		try {
+			if (VerifyRecaptcha.verify(gRecaptchaResponse)) {
+				return ResponseEntity.ok(result);
+			}
+			result.getMsgs().add(util.getMessage("signup.recaptcha.check"));
+			return ResponseEntity.ok(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(result);
+		}
 	}
 
 	@PostMapping("/signup")

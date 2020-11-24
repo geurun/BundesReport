@@ -1,4 +1,20 @@
 /* @extend display-flex; */
+.g-recaptcha {
+	transform:scale(0.77);
+	-webkit-transform:scal(0.77);
+	transform-origin:0 0;
+	-webkit-transform-origin:0 0;
+} 
+
+@media screen and (max-width: 575px) { 
+.g-recaptcha {
+	transform:scale(0.77);
+	-webkit-transform:scale(0.77);
+	transform-origin:0 0;
+	-webkit-transform-origin:0 0;
+	}
+}
+
 display-flex, .display-flex, .display-flex-center, .signup-content,
 	.signin-content, .social-login, .socials {
 	display: flex;

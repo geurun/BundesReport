@@ -4,6 +4,6 @@ $(document).ready(function() {
 		$('#postListDT').DataTable({"order": [[ 0, "desc" ]]});
 	}
 	if ($('#noteListDT').length) {
-		$('#noteListDT').DataTable({"order": [[ 3, "desc" ]]});
+		$('#noteListDT').DataTable({"order": [[ 2, "asc" ]]});
 	}
 });

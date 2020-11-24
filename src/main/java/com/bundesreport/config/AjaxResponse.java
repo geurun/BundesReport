@@ -9,5 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AjaxResponse {
+
 	List<String> msgs = new ArrayList<>();
+
+	boolean like = false;
 }
