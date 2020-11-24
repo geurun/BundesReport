@@ -19,7 +19,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserForm {
-
 	private Long id;
 	private boolean deleted;
 	private String username;
@@ -31,18 +30,19 @@ public class UserForm {
 
 	public User toEntity() {
 		return User.builder().id(id).deleted(deleted).username(username)
-				.password(new BCryptPasswordEncoder().encode(password)).email(email).languageStatus(languageStatus)
-				.build();
+				.password(new BCryptPasswordEncoder().encode(password)).email(email).createdDate(createdDate)
+				.languageStatus(languageStatus).build();
 	}
 
 	@Builder
-	public UserForm(Long id, boolean deleted, String username, String password, String email,
+	public UserForm(Long id, boolean deleted, String username, String password, String email, LocalDateTime createdDate,
 			LanguageStatus languageStatus) {
 		this.id = id;
 		this.deleted = deleted;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.createdDate = createdDate;
 		this.languageStatus = languageStatus;
 	}
 }

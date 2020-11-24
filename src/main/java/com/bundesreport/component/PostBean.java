@@ -38,7 +38,7 @@ public class PostBean extends MessageBean {
 		postContent = getMsgUtil().getMessage("post.postContent");
 		createdUser = getMsgUtil().getMessage("post.createdUser");
 		createdDate = getMsgUtil().getMessage("post.createdDate");
-		updatedDate = getMsgUtil().getMessage("post.updatedDate");
+		viewCount = getMsgUtil().getMessage("post.viewCount");
 		btnList = getMsgUtil().getMessage("post.btnList");
 		btnSave = getMsgUtil().getMessage("post.btnSave");
 		btnModify = getMsgUtil().getMessage("post.btnModify");
@@ -52,7 +52,7 @@ public class PostBean extends MessageBean {
 	private String postContent;
 	private String createdUser;
 	private String createdDate;
-	private String updatedDate;
+	private String viewCount;
 	private String btnList;
 	private String btnSave;
 	private String btnModify;

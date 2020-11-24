@@ -44,6 +44,10 @@
 												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
 											</tr>
 											<tr>
+												<th th:text="${bean.viewCount}"></th>
+												<td th:text="${bean.post.viewCount}"></td>
+											</tr>
+											<tr>
 												<th th:text="${bean.postContent}"></th>
 												<td><span th:utext="${bean.post.content}"></span></td>
 											</tr>

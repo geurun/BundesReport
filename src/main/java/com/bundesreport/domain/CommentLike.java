@@ -44,9 +44,11 @@ public class CommentLike {
 	private LocalDateTime createdDate;
 
 	@Builder
-	public CommentLike(Long id, User user, Comment comment) {
+	public CommentLike(Long id, boolean deleted, User user, Comment comment, LocalDateTime createdDate) {
 		this.id = id;
+		this.deleted = deleted;
 		this.user = user;
 		this.comment = comment;
+		this.createdDate = createdDate;
 	}
 }
