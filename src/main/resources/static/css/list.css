@@ -4,6 +4,16 @@ th, td {
 
 td {
 	padding: 4px 8px!important;
+	text-decoration: none;
+}
+
+#postListDT a {
+	text-decoration: none;
+	color: #858796;
+}
+
+#postListDT a:hover {
+	color: #43444c;
 }
 
 .gallery-body >a> img {
