@@ -90,7 +90,7 @@ public class PostController extends PageController {
 			return "redirect:/post/list/" + form.getCategory();
 		}
 		postService.save(form);
-		return "redirect:/post/list/" + form.getCategory();
+		return "redirect:/post/list/" + form.getCategory().getLowerString();
 	}
 
 	@GetMapping(value = "/post/view/{postId}")

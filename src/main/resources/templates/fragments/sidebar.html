@@ -11,37 +11,40 @@
 		<hr class="sidebar-divider" />
 		<div class="sidebar-heading" th:text="${sidebar.menu}"></div>
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item">
-			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+		<li id="navBoardItem" class="nav-item">
+			<a id="navBoardLink" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 				<i class="far fa-clipboard"></i><span th:text=${sidebar.board}></span>
 			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item" href="/post/list/free_board"><span th:text="${sidebar.freeBoard}"></span></a>
-					<a class="collapse-item" href="/post/list/abroad_board"><span th:text="${sidebar.abroadBoard}"></span></a>
-					<a class="collapse-item" href="/post/list/living_qa"><span th:text="${sidebar.livingQA}"></span></a>
-					<a class="collapse-item" href="/post/list/flea_market"><span th:text="${sidebar.fleaMarket}"></span></a>
-					<a class="collapse-item" href="/post/list/job_search"><span th:text="${sidebar.jobSearch}"></span></a>
-					<a class="collapse-item" href="/post/list/club"><span th:text="${sidebar.club}"></span></a>
-					<a class="collapse-item" href="/post/list/event_notification"><span th:text="${sidebar.eventNotification}"></span></a>
-					<a class="collapse-item" href="/post/list/recipe"><span th:text="${sidebar.recipe}"></span></a>
-					<a class="collapse-item" href="/post/list/gallery"><span th:text="${sidebar.gallery}"></span></a>
+					<a id="lnkFree" class="collapse-item" href="/post/list/free_board"><span th:text="${sidebar.freeBoard}"></span></a>
+					<a id="lnkAbroad"class="collapse-item" href="/post/list/abroad_board"><span th:text="${sidebar.abroadBoard}"></span></a>
+					<a id="lnkLiving" class="collapse-item" href="/post/list/living_qa"><span th:text="${sidebar.livingQA}"></span></a>
+					<a id="lnkFlea" class="collapse-item" href="/post/list/flea_market"><span th:text="${sidebar.fleaMarket}"></span></a>
+					<a id="lnkJob" class="collapse-item" href="/post/list/job_search"><span th:text="${sidebar.jobSearch}"></span></a>
+					<a id="lnkClub" class="collapse-item" href="/post/list/club"><span th:text="${sidebar.club}"></span></a>
+					<a id="lnkEvent" class="collapse-item" href="/post/list/event_notification"><span th:text="${sidebar.eventNotification}"></span></a>
+					<a id="lnkRecipe" class="collapse-item" href="/post/list/recipe"><span th:text="${sidebar.recipe}"></span></a>
+					<a id="lnkGallery" class="collapse-item" href="/post/list/gallery"><span th:text="${sidebar.gallery}"></span></a>
 				</div>
 			</div>
 		</li>
 		<hr class="sidebar-divider">
 		<div class="sidebar-heading" th:text="${sidebar.event}"></div>
-		<li class="nav-item">
-			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+		<li id="navGameItem" class="nav-item">
+			<a id="navGameLink" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 				<i class="fas fa-gamepad"></i><span th:text=${sidebar.miniGame}></span>
 			</a>
-			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item" href="/game/rain"><span th:text="${sidebar.rain}"></span></a>
+					<a id="lnkRain" class="collapse-item" href="/game/rain"><span th:text="${sidebar.rain}"></span></a>
 				</div>
 			</div>
 		</li>
 		<hr class="sidebar-divider d-none d-md-block">
+		<li id="navPresentation" class="nav-item">
+			<a class="nav-link collapsed" href="/presentation"><i class="fas fa-money-check"></i><span th:text=${sidebar.presentation}></span></a>
+		</li>
 		<!-- Sidebar Toggler (Sidebar) -->
 		<div class="text-center d-none d-md-inline">
 			<button class="rounded-circle border-0" id="sidebarToggle"></button>
