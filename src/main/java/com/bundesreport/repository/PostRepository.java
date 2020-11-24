@@ -14,6 +14,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 	public List<Post> findByCategory(CategoryType categoryType);
 
+	public List<Post> findTop5ByCategoryOrderByCreatedDateDesc(CategoryType categoryType);
+
 	public List<Post> findByTitleContainsOrContentContainsOrderById(String title, String content);
 
 	public List<Post> findByUser(User user);

@@ -40,6 +40,10 @@ public class PostService {
 		return postRepository.findByCategory(category);
 	}
 
+	public List<Post> findTop5ByCategory(CategoryType category) {
+		return postRepository.findTop5ByCategoryOrderByCreatedDateDesc(category);
+	}
+
 	public List<Post> findByTitleOrContent(String searchKey) {
 		return postRepository.findByTitleContainsOrContentContainsOrderById(searchKey, searchKey);
 	}

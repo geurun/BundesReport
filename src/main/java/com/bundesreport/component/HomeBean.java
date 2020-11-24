@@ -18,10 +18,10 @@ public class HomeBean extends MessageBean {
 
 	public HomeBean(MessageSource msgSrc, Authentication auth, PostService postService) {
 		super(msgSrc, auth);
-		this.freePosts = postService.findByCategory(CategoryType.FREE_BOARD);
-		this.livingPosts = postService.findByCategory(CategoryType.LIVING_QA);
-		this.fleaPosts = postService.findByCategory(CategoryType.FLEA_MARKET);
-		this.jobPosts = postService.findByCategory(CategoryType.JOB_SEARCH);
+		this.freePosts = postService.findTop5ByCategory(CategoryType.FREE_BOARD);
+		this.livingPosts = postService.findTop5ByCategory(CategoryType.LIVING_QA);
+		this.fleaPosts = postService.findTop5ByCategory(CategoryType.FLEA_MARKET);
+		this.jobPosts = postService.findTop5ByCategory(CategoryType.JOB_SEARCH);
 
 		freeBoard = getMsgUtil().getMessage("home.freeBoard");
 		livingQA = getMsgUtil().getMessage("home.livingQA");
