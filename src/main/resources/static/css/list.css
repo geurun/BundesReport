@@ -4,6 +4,16 @@ th, td {
 
 td {
 	padding: 4px 8px!important;
+	text-decoration: none;
+}
+
+#postListDT a, .pagination a{
+	text-decoration: none;
+	color: #858796;
+}
+
+#postListDT a:hover, .pagination a:hover{
+	color: #43444c;
 }
 
 .gallery-body >a> img {
@@ -16,3 +26,5 @@ td {
 	background-color: #36b9cc;
 	border-color: #36b9cc;
 }
+
+
