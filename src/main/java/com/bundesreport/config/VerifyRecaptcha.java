@@ -1,4 +1,4 @@
-package com.bundesreport;
+package com.bundesreport.config;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

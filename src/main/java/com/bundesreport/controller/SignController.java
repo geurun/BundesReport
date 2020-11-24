@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bundesreport.VerifyRecaptcha;
 import com.bundesreport.config.AjaxResponse;
+import com.bundesreport.config.VerifyRecaptcha;
 import com.bundesreport.domain.User;
 import com.bundesreport.dto.UserForm;
 import com.bundesreport.service.UserService;
