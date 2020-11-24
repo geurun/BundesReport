@@ -33,11 +33,11 @@ public class PostService {
 	}
 
 	public List<Post> findByCategory(String category) {
-		return postRepository.findByCategory(CategoryType.valueOf(category.toUpperCase()));
+		return postRepository.findByCategoryOrderByCreatedDateDesc(CategoryType.valueOf(category.toUpperCase()));
 	}
 
 	public List<Post> findByCategory(CategoryType category) {
-		return postRepository.findByCategory(category);
+		return postRepository.findByCategoryOrderByCreatedDateDesc(category);
 	}
 
 	public List<Post> findTop5ByCategory(CategoryType category) {
