@@ -16,3 +16,6 @@
     background-size: cover !important;
 }
 
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active {
+	color: var(--info);
+}

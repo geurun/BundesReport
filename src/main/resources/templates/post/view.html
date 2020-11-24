@@ -28,7 +28,7 @@
 												<th th:text="${bean.createdUser}"></th>
 												<td th:if="${bean.user == null}" th:text="${bean.post.user.username}"></td>
 												<td th:if="${bean.user != null}">
-													<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 														<span th:text="${bean.post.user.username}"></span>
 													</a>
 													<div class="dropdown-menu">
