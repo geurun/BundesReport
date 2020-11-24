@@ -36,6 +36,7 @@
 											</span>
 											<div class="font-italic text-right" style="display: inline-flex; width: 100%;">
 												<i class="far fa-clock" style="line-height: 1.3rem;"></i>
+												<p th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
 												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
 												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></p>
 											</div>
