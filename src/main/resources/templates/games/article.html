@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
+<th:block layout:fragment="content">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/game/article.css}" />
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<div id="canvas">
+			<div id="inner">
+				<div id="word"></div>
+				<div id="buttons">
+					<button id="button-der" onclick="keydown(49)" class="btn btn-primary article-button mr-3">Der</button>
+					<button id="button-die" onclick="keydown(50)" class="btn btn-danger article-button mr-3">Die</button>
+					<button id="button-das" onclick="keydown(51)" class="btn btn-warning article-button mr-3">Das</button>
+				</div>
+				<div id="answer" class="mt-3"></div>
+				<div id="score" class="text-success mt-3"></div>
+				<div id="result" class="mt-3"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		var keyword = [];
+		var article = [];
+		
+		var keyword_cnt = 0;
+		var point = 0;
+		
+		var word = document.getElementById('word');
+		var der_button=document.getElementById('button-der');
+		var die_button=document.getElementById('button-die');
+		var das_button=document.getElementById('button-das');
+		
+		function getQuerystring(paramName) {
+			var _tempUrl = window.location.search.substring(1);
+			var _tempArray = _tempUrl.split('&');
+
+			for (var i = 0; _tempArray.length; i++) {
+				var _keyValuePair = _tempArray[i].split('=');
+				if (_keyValuePair[0] == paramName) {
+					return _keyValuePair[1];
+				}
+			}
+		}
+
+		try {
+			level = getQuerystring("level");
+		} catch (exception) {
+			location.href = '?level=1';
+		}
+
+		if (level == 1) {
+			alert("Level : 1 [Das Ziel: 300]");
+			keyword = ['Apfel', 'Banane', 'Orange', 'Pflaume', 'Erdbeere', 'Pfirsich', 'Kirsche', 'Zitrone', 'Birne', 'Ananas'];
+			article = [1, 2, 2, 2, 2, 1, 2, 2, 2, 2];
+			goal = 300;
+		} else if (level == 2) {
+			alert("Level : 2 [Das Ziel : 500]");
+			keyword = ['Hemd', 'Bluse', 'Pullover', 'Hose', 'Rock', 'Kleid', 'Jacke', 'Mantel', 'Krawatte', 'Hut'];
+			article = [3, 2, 1, 2, 1, 3, 2, 1, 2, 1];
+			goal = 500;
+		} else if (level == 3) {
+			alert("Level : 3 [Das Ziel : 700]");
+			keyword = ['Arm', 'Bauch', 'Finger', 'Bein', 'Hals', 'Kopf', 'Auge', 'Mund', 'Hand', 'Fuß'];
+			article = [1, 1, 1, 3, 1, 1, 3, 1, 2, 1];
+			goal = 700;
+		} else if (level == 4) {
+			alert("Level : 4 [Das Ziel : 900]");
+			keyword = ['Taxi', 'Bus', 'U-Bahn', 'Zug', 'Auto', 'Straßenbahn', 'Flugzeug', 'Fahrrad', 'S-Bahn', 'Motorrad'];
+			article = [3, 1, 2, 1, 3, 2, 3, 3, 2, 3];
+			goal = 900;
+		} else if (level == 5) {
+			alert("Level : 5 [Das Ziel : 1000]");
+			keyword = ['Kühlschrank', 'Mikrowelle', 'Mülleimer', 'Backofen', 'Spüle', 'Waschmaschine', 'Fenster', 'Teller', 'Glas', 'Löffel'];
+			article = [1, 2, 1, 1, 2, 2, 3, 1, 3, 1];
+			goal = 1000;
+		}
+		
+		function gamewin() {
+			var message = '';
+			var result = document.getElementById('result');
+			if (level == 5) {
+				message = "<h1>Herzlichen Glückwunsch! Sie haben gewonnen! XD</h1>";
+			} else {
+				var nextlevel = (parseInt(level) + 1);
+				message = "<h1>"
+						+ (parseInt(nextlevel) - 1)
+						+ "Level <br>haben Sie geschafft!</h1><br><button class='btn btn-success'><a href='?level="
+						+ nextlevel + "'><h3>Nächstes Level</a></button>";
+			}
+			result.innerHTML += message;
+		}
+		
+		function gameover() {
+			var message = '';
+			var result = document.getElementById('result');
+			
+			message = "<h1>Spiel beendet :(</h1><b>Zielpunkt wurde nicht erreicht.</b><br>";
+			result.innerHTML += message	+ "<button onclick='location.reload()' class='btn btn-danger'><h3>Wiederherstellen</h3></button>";
+		}
+		
+		function button_status(statusNum){
+			if(statusNum == 0){
+				der_button.disabled = false;
+				die_button.disabled = false;
+				das_button.disabled = false;
+			}
+			else if(statusNum == 1){
+				der_button.disabled = true;
+				die_button.disabled = true;
+				das_button.disabled = true;
+			}
+		}
+		
+		function answer(articleNum){
+			var answer = document.getElementById('answer');
+			
+			if(articleNum == 1){
+				answer.innerHTML = "<div class='text-primary'><span>Der</span></div>";
+			}
+			else if(articleNum == 2){
+				answer.innerHTML = "<div class='text-danger'><span>Die</span></div>";
+			}
+			else if(articleNum == 3){
+				answer.innerHTML = "<div class='text-warning'><span>Das</span></div>";
+			}
+			
+			button_status(1);
+			
+			setTimeout(function() {
+					word.innerHTML="";
+					answer.innerHTML="";
+					keyword_show();
+					if(keyword_cnt <= keyword.length) {
+						button_status(0);
+					}
+				}, 2000);
+		}
+		
+		function result(){
+			var message="";
+			var score = document.getElementById('score');
+			
+			message="<span>Score: " + point + "</span>";
+			score.innerHTML = message;
+			
+			if (point >= goal){
+				gamewin();
+			}
+			else{
+				gameover();
+			}
+		}
+		
+		function keyword_show() {
+			this.node = document.createElement('span');
+			this.node.id = keyword[keyword_cnt];
+			this.node.innerHTML = keyword[keyword_cnt++];
+			
+			if (keyword_cnt > keyword.length) {
+				result();
+				word.innerHTML = "The End";
+			}
+			else{
+				word.appendChild(this.node);
+			}
+		}
+		
+		function keydown(keyCode){
+			if (keyCode == 49) {
+				if(article[keyword_cnt-1] == 1){
+					point = point + 100;
+				}
+			}
+			else if (keyCode == 50) {
+				if(article[keyword_cnt-1] == 2){
+					point = point + 100;
+				}
+			}
+			else if (keyCode == 51) {
+				if(article[keyword_cnt-1] == 3){
+					point = point + 100;
+				}
+			}
+			
+			answer(article[keyword_cnt-1]);
+		}
+		
+		keyword_show();
+		</script>
+	</div>
+</th:block>
+</html>
