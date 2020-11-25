@@ -18,7 +18,7 @@
 						</div>
 						<div class="row">
 							<div class="col-lg-4 mb-4" th:each="post : ${bean.posts}">
-								<div class="card shadow" style="height: 400px;">
+								<div class="card shadow">
 									<div class="card-body gallery-body">
 										<a th:href="@{/post/view/{postId} (postId=${post.id})}" th:utext="${post.getFirstImage()}"></a>
 										<div class="post-info" style="padding: 0 5px; display: block;">
@@ -27,7 +27,7 @@
 											<div class="w-100">
 												<span th:if="${bean.user != null}">
 													<a id="btnMessage" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														<i class="far fa-user"></i><span th:text="${post.user.username}"></span>
+														<i class="far fa-user mr-2"></i><span th:text="${post.user.username}"></span>
 													</a>
 													<div class="dropdown-menu">
 														<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${post.user.id})}">
@@ -36,17 +36,17 @@
 													</div>
 												</span>
 											</div>
-											<div class="d-inline-flex w-100">
-												<div>
+											<div class="w-100" style="display: inline-table;">
+												<div class="d-table-cell">
 													<i class="far fa-clock" style="line-height: 1.3rem;"></i>
-													<p th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
+													<span th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></span>
-													<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></p>
+													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></span>
 												</div>
-												<div class="text-right">
-													<span class="badge badge-pill badge-info p-2"><i class="far fa-eye mr-1"></i><span th:text="${post.viewCount}"></span></span>
-													<span class="badge badge-pill badge-info p-2" id="postLikeCount"><i class="far fa-thumbs-up mr-1"></i><span th:text="${post.getLikesCount()}"></span></span>
-													<span class="badge badge-pill badge-secondary p-2" th:if="${post.getComments().size() > 0}"><i class="far fa-comment mr-1"></i><span th:text="${post.getComments().size()}"></span></span>
+												<div class="d-table-cell text-right">
+													<span class="badge badge-pill badge-info pr-2 pl-2 pt-1"><i class="far fa-eye mr-1"></i><span th:text="${post.viewCount}"></span></span>
+													<span class="badge badge-pill badge-info pr-2 pl-2 pt-1" id="postLikeCount"><i class="far fa-thumbs-up mr-1"></i><span th:text="${post.getLikesCount()}"></span></span>
+													<span class="badge badge-pill badge-secondary pr-2 pl-2 pt-1" th:if="${post.getComments().size() > 0}"><i class="far fa-comment mr-1"></i><span th:text="${post.getComments().size()}"></span></span>
 												</div>
 											</div>
 												<div class="text-right" style="width:65%;">
