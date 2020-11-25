@@ -19,7 +19,7 @@
 										<tbody>
 											<tr>
 												<td colspan="2">
-													<a href="/post/list/free_board"><h6 class="mb-0 text-gray-800" th:text="${bean.title}"></h6></a>
+													<a th:href="@{/post/list/{category} (category=${bean.post.category})}"><h6 class="mb-0 text-gray-800" th:text="${bean.title}"></h6></a>
 												</td>
 											</tr>
 											<tr>
