@@ -18,12 +18,12 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td colspan="2">
+												<td colspan="3">
 													<a th:href="@{/post/list/{category} (category=${bean.category})}"><h6 class="mb-0 text-gray-800" th:text="${bean.title}"></h6></a>
 												</td>
 											</tr>
 											<tr>
-												<th class="post-view-title" colspan="2" th:text="${bean.post.title}"></th>
+												<th class="post-view-title" colspan="3" th:text="${bean.post.title}"></th>
 											</tr>
 											<tr>
 												<td th:if="${bean.user == null}" th:text="${bean.post.user.username}" class="created-user"></td>
@@ -38,28 +38,31 @@
 													</div>
 												</td>
 												<td>
-													<i class="far fa-clock ml-1 mt-1 mr-1"></i>
+													<i class="far fa-clock ml-1 mr-1"></i>
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
-													<i class="far fa-eye mt-1 ml-1 mr-1"></i>
+													<i class="far fa-eye mt-1 ml-3 mr-1"></i>
 													<span th:text="${bean.post.viewCount}"></span>
 												</td>
-											<tr>
-												<td style="border: none;" colspan="2">
-													<a class="text-danger mr-3" th:if="${bean.hasPermit == 1}" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
+												<td class="text-right">
+													<a class="text-danger" th:href="@{/post/delete/{postId} (postId=${bean.post.id})}" role="button">
 														<span th:text="${bean.btnDelete}"></span>
 													</a> 
-													<a class="text-info" th:if="${bean.hasPermit == 1}" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"> 
+													<a class="text-info ml-2" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"> 
 														<span th:text="${bean.btnModify}"></span>
 													</a>
 												</td>
+											<tr/>
+											<tr>
+												<td colspan="3">
+													<hr class="mt-1" />
+													<span th:utext="${bean.post.content}"></span>
+													<hr class="mt-1" />
+												</td>
 											</tr>
 											<tr>
-												<td colspan="2"><span th:utext="${bean.post.content}"></span></td>
-											</tr>
-											<tr>
-												<th style="border: none;" class="text-center" colspan="2">
+												<th class="text-center" colspan="3">
 													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
 													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
 													<span class="badge badge-pill badge-secondary" style="margin: 0 5px;" id="postLikeCount" th:text="${bean.post.getLikesCount()}"></span>
@@ -80,7 +83,7 @@
 									<input type="hidden" id="id" name="id" th:field="*{id}" /> <input type="hidden" id="user" name="user" th:field="*{user}" /> <input type="hidden" id="post" name="post" th:field="*{post}" />
 									<div class="form-group">
 										<div class="form-inline">
-											<input class="form-control mt-1" type="text" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /> 
+											<input class="form-control" type="text" th:attr="placeholder=${commentListBean.commentContent}" th:field="*{content}" th:text="*{content}" required /> 
 											<input class="btn btn-info ml-1" type="submit" name="btnSave" id="btnSave" th:value="${commentListBean.btnSave}" />
 										</div>
 									</div>
@@ -93,14 +96,14 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td style="border: none;" th:if="${bean.user == null}">
-													<i class="far fa-user-circle" style="margin: 0 5px;"></i>
+												<td th:if="${bean.user == null}">
+													<i class="far fa-user-circle mr-2"></i>
 													<span class="font-weight-bold" th:text="${comment.user.username}"></span>
 												</td>
-												<td style="border: none;" th:if="${bean.user != null}">
-													<div class="btn-group dropright mb-1">
+												<td th:if="${bean.user != null}">
+													<div class="btn-group dropright">
 														<a id="btnMessage" type="button" class="btn btn-outline-secondary dropdown-toggle user-comment" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-															<i class="far fa-user-circle" style="margin: 0 5px;"></i><span class="mr-2 d-none d-lg-inline" th:text="${comment.user.username}"></span>
+															<i class="far fa-user-circle mr-1"></i><span class="mr-2 d-none d-lg-inline" th:text="${comment.user.username}"></span>
 														</a>
 														<div class="dropdown-menu">
 															<a class="dropdown-item" th:href="@{/note/new/{receiverId} (receiverId=${comment.user.id})}">
@@ -108,31 +111,31 @@
 															</a>
 														</div>
 													</div>
-													<i class="far fa-clock" style="margin: 0 5px;"></i>
+													<i class="far fa-clock"></i>
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
-													<a class="text-danger ml-1 mt-1 mr-1" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button">
+													<a class="text-danger ml-3" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" th:href="@{/comment/delete/{commentId} (commentId=${comment.id})}" role="button">
 														<span th:text="${commentListBean.btnDelete}"></span>
 													</a>
-													<a th:id="'btnModify__${comment.id}__'" class="text-info mr-1" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" role="button">
+													<a class="text-info ml-2 ajaxTrigger" th:id="'btnModify__${comment.id}__'" th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" role="button">
 														<span th:text="${commentListBean.btnModify}"></span>
 													</a>
 												</td>
-												<td style="border: none;" class="text-right">
-													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
-													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+												<td class="text-right">
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<span th:id="'commentLikeCount__${comment.id}__'" class="badge badge-pill badge-secondary" style="margin:0 5px;" th:text="${comment.getLikesCount()}"></span>
 												</td>
 											</tr>
 											<tr>
-												<td style="border: none;" colspan="2">
+												<td colspan="2">
 													<input th:id="'txtComment__${comment.id}__'" class="form-control comment-entered" type="text" th:value="${comment.content}" th:readonly="true" th:required="true" />
+													<hr class="mb-1" />
 												</td>
 											</tr>
 										</tbody>
 									</table>
-									<hr />
 								</div>
 							</div>
 						</div>

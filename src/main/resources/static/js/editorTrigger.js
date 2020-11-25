@@ -12,8 +12,23 @@ $(document).ready(function() {
 		height: 400,
 		maximumImageFileSize: 2097152,
 		callbacks: {
-			onImageUploadError: function(msg) {
-				alert('Change image! (Max: 2MB)');
+			onImageUpload: function(files) {
+				if (!files.length) {
+					return;
+				}
+				var file = files[0];
+				if (file.size > 2097152) {
+					alert('Change image! (Max: 2MB)');
+					return;
+				}
+				var reader = new FileReader();
+				reader.onloadend = function() {
+					var img = $("<img>").attr({ src: reader.result, width: "100%" });
+					$('#editor').summernote("insertNode", img[0]);
+				}
+				if (file) {
+					reader.readAsDataURL(file);
+				}
 			}
 		}
 	});

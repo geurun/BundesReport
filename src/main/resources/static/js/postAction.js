@@ -32,13 +32,14 @@ $("#btnPostLike").on("click", function() {
 	});
 });
 
-$(".btn").click(function() {
+$(".ajaxTrigger").click(function() {
 	var btnId = $(this).attr("id");
 	if (btnId.indexOf("btnModify") != -1) {
 		var num = btnId.substring(9);
 		var txtComment = $("#txtComment" + num);
 		if (txtComment.attr("readonly")) {
 			txtComment.attr("readonly", false);
+			txtComment.removeClass("comment-entered");
 		} else {
 			commentModifyAction($(btnId), txtComment, num);
 		}
@@ -69,9 +70,11 @@ function commentModifyAction(btnModify, txtComment, num) {
 			xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
 		}, success: function(data) {
 			txtComment.attr("readonly", true);
+			txtComment.addClass("comment-entered");
 			btnModify.prop("disabled", false);
 		}, error: function(e) {
 			txtComment.attr("readonly", true);
+			txtComment.addClass("comment-entered");
 			btnModify.prop("disabled", false);
 		}
 	});
