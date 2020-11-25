@@ -34,12 +34,18 @@
 													</a>
 												</div>
 											</span>
-											<div class="font-italic text-right" style="display: inline-flex; width: 100%;">
+											<div class="d-inline-flex w-100">
+											<div class="d-inline-flex w-100">
 												<i class="far fa-clock" style="line-height: 1.3rem;"></i>
 												<p th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
 												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></p>
 												<p th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></p>
 											</div>
+												<div class="text-right" style="width:65%;">
+												<span class="badge badge-pill badge-info"><i class="far fa-eye"></i><span th:text="${post.viewCount}"></span></span>
+												<span class="badge badge-pill badge-info" id="postLikeCount"><i class="far fa-thumbs-up"></i><span th:text="${post.getLikesCount()}"></span></span>
+												<span class="badge badge-pill badge-secondary"><i class="far fa-comment"></i><span th:text="${post.getComments().size()}"></span></span>
+											</div></div>
 										</div>
 									</div>
 								</div>
