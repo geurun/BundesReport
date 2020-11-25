@@ -46,14 +46,9 @@
 												<div class="d-table-cell text-right">
 													<span class="badge badge-pill badge-info pr-2 pl-2 pt-1"><i class="far fa-eye mr-1"></i><span th:text="${post.viewCount}"></span></span>
 													<span class="badge badge-pill badge-info pr-2 pl-2 pt-1" id="postLikeCount"><i class="far fa-thumbs-up mr-1"></i><span th:text="${post.getLikesCount()}"></span></span>
-													<span class="badge badge-pill badge-secondary pr-2 pl-2 pt-1" th:if="${post.getComments().size() > 0}"><i class="far fa-comment mr-1"></i><span th:text="${post.getComments().size()}"></span></span>
+													<span class="badge badge-pill badge-secondary pr-2 pl-2 pt-1"><i class="far fa-comment mr-1"></i><span th:text="${post.getComments().size()}"></span></span>
 												</div>
 											</div>
-												<div class="text-right" style="width:65%;">
-												<span class="badge badge-pill badge-info"><i class="far fa-eye"></i><span th:text="${post.viewCount}"></span></span>
-												<span class="badge badge-pill badge-info" id="postLikeCount"><i class="far fa-thumbs-up"></i><span th:text="${post.getLikesCount()}"></span></span>
-												<span class="badge badge-pill badge-secondary"><i class="far fa-comment"></i><span th:text="${post.getComments().size()}"></span></span>
-											</div></div>
 										</div>
 									</div>
 								</div>
