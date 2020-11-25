@@ -3,9 +3,8 @@ a:hover {
 }
 
 .post-view-title {
-	font-size: 2rem;
+	font-size: 1.75rem;
 	width: 1%;
-	white-space: nowrap;
 }
 
 .view-count {
@@ -23,7 +22,6 @@ a:hover {
 
 .created-user {
 	width: 1%;
-	white-space: nowrap;
 	padding-right: 0px !important;
 }
 
