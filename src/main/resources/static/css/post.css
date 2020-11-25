@@ -1,5 +1,11 @@
 .post-view-title{
 	font-size: 2rem;
+	width:1%;
+	white-space: nowrap;
+}
+
+.view-count{
+	vertical-align: bottom !important;
 }
 
 .table-bordered th, .table-bordered td{
@@ -12,10 +18,16 @@
 }
 
 .created-user{
+	width: 1%;
+	white-space: nowrap;
+	padding-right: 0px !important;
+}
+
+.message-to-user{
 	color: #858796;
 }
 
-.created-user:hover{
+.message-to-user:hover{
 	color: #474850;
 }
 
