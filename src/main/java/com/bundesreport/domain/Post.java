@@ -93,7 +93,7 @@ public class Post {
 	}
 
 	public String getFirstImage() {
-		String target = "<img src=";
+		String target = "<img ";
 		int targetNum = getContent().indexOf(target);
 		if (targetNum == -1) {
 			return "<img src=\"/img/no-image.png\">";
