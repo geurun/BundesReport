@@ -85,7 +85,7 @@ public class Comment {
 		return false;
 	}
 
-	public int getLikesCount() {
+	public int getLikeCount() {
 		return getLikes().size();
 	}
 }

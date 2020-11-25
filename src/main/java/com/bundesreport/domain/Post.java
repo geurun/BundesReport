@@ -88,8 +88,12 @@ public class Post {
 		return this;
 	}
 
-	public int getLikesCount() {
+	public int getLikeCount() {
 		return getLikes().size();
+	}
+
+	public int getCommentCount() {
+		return getComments().size();
 	}
 
 	public String getFirstImage() {

@@ -8,21 +8,21 @@ a:hover {
 }
 
 .view-count {
-	vertical-align: bottom !important;
+	vertical-align: bottom!important;
 }
 
 .table-bordered th, .table-bordered td {
-	border: none !important;
+	border: none!important;
 }
 
 .table th, .table td {
-	border: none !important;
-	padding-top: 0 !important;
+	border: none!important;
+	padding-top: 0!important;
 }
 
 .created-user {
 	width: 1%;
-	padding-right: 0px !important;
+	padding-right: 0px!important;
 }
 
 .message-to-user {
@@ -34,13 +34,19 @@ a:hover {
 }
 
 .user-comment {
-	border: none !important;
+	border: none!important;
 }
 
 .form-control {
-	background: none !important;
+	background: none!important;
 }
 
 .comment-entered {
-	border: none !important;
+	border: none!important;
+}
+
+.note-image-btn {
+	color: var(--white)!important;
+	background-color: var(--info)!important;
+	border-color: var(--info)!important;
 }

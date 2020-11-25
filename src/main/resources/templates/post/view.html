@@ -65,7 +65,7 @@
 												<th class="text-center" colspan="3">
 													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
 													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
-													<span class="badge badge-pill badge-secondary" style="margin: 0 5px;" id="postLikeCount" th:text="${bean.post.getLikesCount()}"></span>
+													<span class="badge badge-pill badge-secondary ml-1" id="postLikeCount" th:text="${bean.post.getLikeCount()}"></span>
 												</th>
 											</tr>
 										</tbody>
@@ -125,7 +125,7 @@
 												<td class="text-right">
 													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
-													<span th:id="'commentLikeCount__${comment.id}__'" class="badge badge-pill badge-secondary" style="margin:0 5px;" th:text="${comment.getLikesCount()}"></span>
+													<span th:id="'commentLikeCount__${comment.id}__'" class="badge badge-pill badge-secondary ml-1" th:text="${comment.getLikeCount()}"></span>
 												</td>
 											</tr>
 											<tr>
