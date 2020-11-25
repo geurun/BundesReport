@@ -29,6 +29,7 @@ public class SidebarBean extends MessageBean {
 		event = getMsgUtil().getMessage("menu.event");
 		miniGame = getMsgUtil().getMessage("menu.miniGame");
 		rain = getMsgUtil().getMessage("menu.rain");
+		article = getMsgUtil().getMessage("menu.article");
 		presentation = getMsgUtil().getMessage("menu.presentation");
 	}
 
@@ -47,5 +48,6 @@ public class SidebarBean extends MessageBean {
 	private String event;
 	private String miniGame;
 	private String rain;
+	private String article;
 	private String presentation;
 }
