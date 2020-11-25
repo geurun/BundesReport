@@ -17,7 +17,7 @@
 							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-secondary"><span th:text="${bean.write}"></span></a>
 						</div>
 						<div class="row">
-							<div class="col-lg-4 mb-4" th:each="post : ${bean.posts}">
+							<div class="col-lg-4 mb-4 min400" th:each="post : ${bean.posts}">
 								<div class="card shadow h-100">
 									<div class="card-body gallery-body">
 										<a th:href="@{/post/view/{postId} (postId=${post.id})}" th:utext="${post.getFirstImage()}"></a>

@@ -24,7 +24,7 @@
 											<tbody>
 												<tr>
 													<th style="width: 15%" th:text="${bean.postTitle}"></th>
-													<td style="width: 85%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.postTitle}" th:field="*{title}" th:text="${title}" required /></td>
+													<td style="width: 85%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.postTitle}" th:field="*{title}" th:text="${title}" maxlength="45" oninput="maxLength(this)" required /></td>
 												</tr>
 												<tr>
 													<th th:text="${bean.postContent}"></th>

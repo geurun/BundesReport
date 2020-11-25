@@ -27,3 +27,7 @@ td {
 	background-color: #36b9cc;
 	border-color: #36b9cc;
 }
+
+.min400 {
+	min-width: 400px;
+}

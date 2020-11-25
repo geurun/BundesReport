@@ -33,3 +33,9 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function maxLength(object) {
+	if (object.value.length > object.maxLength) {
+		object.value = object.value.slice(0, object.maxLength);
+	}
+}
