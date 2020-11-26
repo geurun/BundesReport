@@ -12,8 +12,8 @@
 						<div class="presentation-img-logo">
 							<img th:src="@{/img/BundesReportLogo.png}">
 						</div> 
-						Today, we continue to have special communication that shares our daily lives, empathizes with each other, and creates new things that we need.<br />
-						<br />
+						Today, we continue to have special communication that shares our daily lives, emphasizes with each other, and creates new things that we need.<br />
+						<br/>
 						Our communication connects each other, creates new values, and supports you who love Germany and Korea.<br />
 						<br />
 						So that the excitement of starting a new life on the other side of the globe, and the joy of free communication, continues every single day,<br />
@@ -38,29 +38,29 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="presentation-profile">
+							<td class="presentation-profile detail-juli-top">
 								<div class="presentation-img-profile">
 									<img class="juli" th:src="@{/img/presentation/juli.jpg}">
 								</div>
 							</td>
-							<td class="presentation-profile">
+							<td class="presentation-profile detail-hanna-top">
 								<div class="presentation-img-profile">
 									<img class="hanna" th:src="@{/img/presentation/hanna.jpg}">
 								</div>
 							</td>
-							<td class="presentation-profile">
+							<td class="presentation-profile detail-olaf-top">
 								<div class="presentation-img-profile">
 									<img class="olaf" th:src="@{/img/presentation/olaf.jpg}">
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td><span class="description-profile-bold ml-3 mb-3"> Juli, You-Jin Lee<br /></span></td>
-							<td><span class="description-profile-bold ml-3 mb-3"> Hanna, Ji-Hyun Lee<br /></span></td>
-							<td><span class="description-profile-bold ml-3 mb-3"> Olaf, Seung-Jae Lee<br /></span></td>
+							<td class="detail-juli-middle"><span class="description-profile-bold ml-3 mb-3"> Juli, You-Jin Lee<br /></span></td>
+							<td class="detail-hanna-middle"><span class="description-profile-bold ml-3 mb-3"> Hanna, Ji-Hyun Lee<br /></span></td>
+							<td class="detail-olaf-middle"><span class="description-profile-bold ml-3 mb-3"> Olaf, Seung-Jae Lee<br /></span></td>
 						</tr>
 						<tr>
-							<td>
+							<td class="description-profile-detail detail-juli-bottom">
 								<span>
 									Data Modeling<br />
 									Development of Boards function<br />
@@ -68,7 +68,7 @@
 									Development of Comment function
 								</span>
 							</td>
-							<td>
+							<td class="description-profile-detail detail-hanna-bottom">
 								<span>
 									Front-end Development<br />
 									View designing<br />
@@ -76,7 +76,7 @@
 									Development of Game function
 								</span>
 							</td>
-							<td>
+							<td class="description-profile-detail detail-olaf-bottom">
 								<span>
 									Setting up the Development environment<br />
 									Development of User function<br />
@@ -93,7 +93,7 @@
 						<div class="presentation-img-settingpage">
 							<img th:src="@{/img/presentation/spring.png}">
 						</div>
-						<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationOne">
+						<ul class="navbar-nav sidebar sidebar-dark accordion" id="presentationOne">
 							<!-- Nav Item - Pages Collapse Menu -->
 							<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <span
 									class="description-table-title">DE</span>
@@ -134,7 +134,7 @@
 								</div>
 							</li>
 						</ul>
-						<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationTwo">
+						<ul class="navbar-nav sidebar sidebar-dark accordion mr-5" id="presentationTwo">
 							<!-- Nav Item - Pages Collapse Menu -->
 							<li class="nav-item"><a class="nav-link collapsed nav-spec" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <span
 									class="description-table-title">SPEC</span>
@@ -171,12 +171,12 @@
 								</div>
 							</li>
 						</ul>
-						<ul class="third-col navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationThree">
+						<ul class="navbar-nav sidebar sidebar-dark accordion" id="presentationThree">
 							<!-- Nav Item - Pages Collapse Menu -->
 							<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"> <span
 									class="description-table-title">Versioning</span>
 							</a>
-								<div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#presentationThree">
+								<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#presentationThree">
 									<div class="bg-white py-2 collapse-inner rounded">
 										<a class="collapse-item" href="#">
 											<figure class="presentation-img-setting">
@@ -193,10 +193,39 @@
 								</div>
 							</li>
 						</ul>
+						<ul class="navbar-nav sidebar sidebar-dark accordion" id="presentationFour">
+							<!-- Nav Item - Pages Collapse Menu -->
+							<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"> <span
+									class="description-table-title">Hosting</span>
+							</a>
+								<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#presentationFour">
+									<div class="bg-white py-2 collapse-inner rounded">
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/GoogleCloudPlatform.png}">
+												<figcaption>Google Cloud Platform</figcaption>
+											</figure>
+										</a> <a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/Jenkins.png}">
+												<figcaption>Jenkins</figcaption>
+											</figure>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</section>
 			<section id="window4">
+				<div class="inner">
+					<span class="description">
+						<iframe src="https://app.ganttpro.com/shared/token/04ffb5a47e4b114e117c216e93f96777cb7df526848a0e8d70ce169b837b70d1/588087#/"></iframe>
+					</span>
+				</div>
+			</section>
+			<section id="window5">
 				<div class="inner">
 					<span class="description description-model">
 						<div class="presentation-img-modelpage">
@@ -236,7 +265,7 @@
 					</span>
 				</div>
 			</section>
-			<section id="window5">
+			<section id="window6">
 				<div class="inner">
 					<span class="description description-future">
 						<div class="presentation-img-futurepage">
