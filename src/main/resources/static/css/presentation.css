@@ -33,6 +33,7 @@
 
 .description {
 	margin-left: 15%;
+	margin-right: 10%;
 	font-size: 1.3rem;
 	font-weight: normal;
 	justify-content: left;
@@ -165,14 +166,15 @@ iframe{
 
 .presentation-img-modelpage {
 	position: absolute;
-	top: 10%;
-	left: 50%;
-	z-index: 0;
+	top: 0px;
+	left: 40%;
 }
 
 .presentation-img-modelpage img {
-	width: 80%;
-	opacity: 0.7;
+	margin-top: 10%;
+	padding-left: 10%;
+	width: 90%;
+	
 }
 
 .description-profile-title, .description-future-title {
@@ -190,6 +192,7 @@ iframe{
 }
 
 .presentation-img-futurepage img {
+	width: 100%;
 	opacity: 0.7;
 }
 
@@ -202,27 +205,26 @@ iframe{
 		font-size: 1.4rem;
 	}
 	
-	.description-table-profile{
-		margin-left: 10% !important;
-    	margin-right: 10% !important;
-	}
-	
 	.description-profile-title{
 		font-size: 3rem;
 	}
 	
+	#window3 > .inner> .description{
+  		margin-right: 5% !important;
+  	}
+	
 	.presentation-img-modelpage{
-		top: 20%;
-		left: 50%;
+		top: 15%;
+		left: 45%;
 	}
+	
+	.presentation-img-modelpage img{
+		margin-top: 0;
+	}
+	
 }
 
 @media (max-width: 1200px) {
-	
-	.description{
-		margin-left: 10%;
-		margin-right: 10%;
-	}
 	
 	.presentation-img-mainpage, .presentation-img-settingpage {
 		display: none;
@@ -280,7 +282,15 @@ iframe{
   		border-radius: 0 0 5px 5px;
   	}
   	
-  	#window3 > .inner> .description{
-  		margin-right: 5% !important;
+  	.description-model{
+  		font-size: 1rem;
+  	}
+  	
+  	.presentation-img-modelpage img{
+		margin-top: 10%;
+	}
+  	
+  	.presentation-img-futurepage img{
+  		display: none;
   	}
 }
