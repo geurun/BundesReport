@@ -41,7 +41,7 @@
 													<i class="far fa-clock ml-1 mr-1"></i>
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(bean.post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
+													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(bean.post.createdDate, 'dd-MM-yyyy HH:mm')}"></span>
 													<i class="far fa-eye mt-1 ml-3 mr-1"></i>
 													<span th:text="${bean.post.viewCount}"></span>
 												</td>
@@ -132,7 +132,7 @@
 													<i class="far fa-clock"></i>
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
+													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.createdDate, 'dd-MM-yyyy HH:mm')}"></span>
 													<a th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" class="text-danger ml-3" role="button" data-toggle="modal" th:data-target="'#commentDeleteModal__${comment.id}__'">
 														<span th:text="${commentListBean.btnDelete}"></span>
 													</a>
