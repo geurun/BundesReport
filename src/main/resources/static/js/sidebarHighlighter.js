@@ -23,6 +23,8 @@ $(document).ready(function() {
 		$.setBoard(0, $("#lnkGallery"));
 	} else if (path.indexOf("/game/rain") >= 0) {
 		$.setBoard(1, $("#lnkRain"));
+	} else if (path.indexOf("/game/article") >= 0) {
+		$.setBoard(1, $("#lnkArticle"));
 	}
 });
 
