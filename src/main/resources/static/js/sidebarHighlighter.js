@@ -9,6 +9,8 @@ $(document).ready(function() {
 		$.setBoard(0, $("#lnkAbroad"));
 	} else if (path.indexOf("living_qa") >= 0) {
 		$.setBoard(0, $("#lnkLiving"));
+	} else if (path.indexOf("deutsch_qa") >= 0) {
+		$.setBoard(0, $("#lnkDeutsch"));
 	} else if (path.indexOf("flea_market") >= 0) {
 		$.setBoard(0, $("#lnkFlea"));
 	} else if (path.indexOf("job_search") >= 0) {

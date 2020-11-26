@@ -20,6 +20,7 @@ public class SidebarBean extends MessageBean {
 		freeBoard = getMsgUtil().getMessage("menu.freeBoard");
 		abroadBoard = getMsgUtil().getMessage("menu.abroadBoard");
 		livingQA = getMsgUtil().getMessage("menu.livingQA");
+		deutschQA = getMsgUtil().getMessage("menu.deutschQA");
 		fleaMarket = getMsgUtil().getMessage("menu.fleaMarket");
 		jobSearch = getMsgUtil().getMessage("menu.jobSearch");
 		club = getMsgUtil().getMessage("menu.club");
@@ -39,6 +40,7 @@ public class SidebarBean extends MessageBean {
 	private String freeBoard;
 	private String abroadBoard;
 	private String livingQA;
+	private String deutschQA;
 	private String fleaMarket;
 	private String jobSearch;
 	private String club;
