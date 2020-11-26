@@ -46,7 +46,7 @@
 													<span th:text="${bean.post.viewCount}"></span>
 												</td>
 												<td class="text-right">
-													<a th:if="${bean.user != null}" class="text-danger" data-toggle="modal" data-target="#postDeleteModal" role="button"><span th:text="${bean.btnDelete}"></span></a>
+													<a th:if="${bean.user != null and bean.hasPermit == 1}" class="text-danger" data-toggle="modal" data-target="#postDeleteModal" role="button"><span th:text="${bean.btnDelete}"></span></a>
 													<div class="modal fade" id="postDeleteModal" tabindex="-1" role="dialog" aria-labelledby="#postDeleteModalLabel">
 														<div class="modal-dialog modal-dialog-centered">
 															<div class="modal-content">
@@ -66,7 +66,7 @@
 															</div>
 														</div>
 													</div>
-													<a th:if="${bean.user != null}" class="text-info ml-2" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"> 
+													<a th:if="${bean.user != null and bean.hasPermit == 1}" class="text-info ml-2" th:href="@{/post/update/{postId} (postId=${bean.post.id})}" role="button"> 
 														<span th:text="${bean.btnModify}"></span>
 													</a>
 												</td>
@@ -133,7 +133,7 @@
 													<span th:if="${bean.user == null}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 													<span th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(comment.createdDate, 'HH:mm dd-MM-yyyy')}"></span>
-													<a class="text-danger ml-3" role="button" data-toggle="modal" th:data-target="'#commentDeleteModal__${comment.id}__'">
+													<a th:if="${bean.user != null and bean.user.getUsername() == comment.getUser().getUsername()}" class="text-danger ml-3" role="button" data-toggle="modal" th:data-target="'#commentDeleteModal__${comment.id}__'">
 														<span th:text="${commentListBean.btnDelete}"></span>
 													</a>
 													<div class="modal fade" th:id="'commentDeleteModal__${comment.id}__'" tabindex="-1" role="dialog" th:aria-labelledby="'#commentDeleteModal__${comment.id}__Label'">
