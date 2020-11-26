@@ -44,6 +44,10 @@ public class PostBean extends MessageBean {
 		btnModify = getMsgUtil().getMessage("post.btnModify");
 		btnDelete = getMsgUtil().getMessage("post.btnDelete");
 		btnMessageSend = getMsgUtil().getMessage("post.note.send");
+		confirmTitle = getMsgUtil().getMessage("post.confirm.title");
+		confirmContent = getMsgUtil().getMessage("post.confirm.content");
+		confirmCancel = getMsgUtil().getMessage("post.confirm.cancel");
+		confirmApply = getMsgUtil().getMessage("post.confirm.apply");
 	}
 
 	private Post post;
@@ -60,4 +64,8 @@ public class PostBean extends MessageBean {
 	private String btnMessageSend;
 	private int hasPermit = 0;
 	private int hasLike = 0;
+	private String confirmTitle;
+	private String confirmContent;
+	private String confirmCancel;
+	private String confirmApply;
 }

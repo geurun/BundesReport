@@ -43,6 +43,10 @@ public class ProfileBean extends MessageBean {
 		languageStatus = getMsgUtil().getMessage("user.languageStatus");
 		withdrawal = getMsgUtil().getMessage("user.withdrawal");
 		save = getMsgUtil().getMessage("user.save");
+		confirmTitle = getMsgUtil().getMessage("user.confirm.title");
+		confirmContent = getMsgUtil().getMessage("user.confirm.content");
+		confirmCancel = getMsgUtil().getMessage("user.confirm.cancel");
+		confirmApply = getMsgUtil().getMessage("user.confirm.apply");
 	}
 
 	private int postCount;
@@ -60,4 +64,8 @@ public class ProfileBean extends MessageBean {
 	private String languageStatus;
 	private String withdrawal;
 	private String save;
+	private String confirmTitle;
+	private String confirmContent;
+	private String confirmCancel;
+	private String confirmApply;
 }

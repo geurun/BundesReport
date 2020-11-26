@@ -38,10 +38,29 @@
 											<tr>
 												<th style="border: none;">
 													<a class="btn btn-secondary" href="/note/list" role="button"><span th:text="${bean.btnList}"></span></a>
-													<a class="btn btn-secondary" th:href="@{/note/new/{receiverId} (receiverId=${bean.message.sender.id})}" role="button"><span th:text="${bean.btnReply}"></span></a>
+													<a class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#deleteModal"><span th:text="${bean.btnDelete}"></span></a>
+													<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="#deleteModalLabel">
+														<div class="modal-dialog modal-dialog-centered">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="staticBackdropLabel" th:text="${bean.confirmTitle}"></h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<span th:text="${bean.confirmContent}"></span>
+																</div>
+																<div class="modal-footer">
+																	<a type="button" class="btn btn-secondary" data-dismiss="modal" th:text="${bean.confirmCancel}"></a>
+																	<a th:href="@{/note/delete/{id} (id=${bean.message.id})}" type="button" class="btn btn-info" th:text="${bean.confirmApply}"></a>
+																</div>
+															</div>
+														</div>
+													</div>
 												</th>
 												<td style="border: none;" class="text-right">
-													<a class="btn btn-outline-danger" th:href="@{/note/delete/{id} (id=${bean.message.id})}" role="button"><span th:text="${bean.btnDelete}"></span></a>
+													<a class="btn btn-info" th:href="@{/note/new/{receiverId} (receiverId=${bean.message.sender.id})}" role="button"><span th:text="${bean.btnReply}"></span></a>
 												</td>
 											</tr>
 										</tbody>

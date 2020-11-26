@@ -26,6 +26,10 @@ public class NoteBean extends MessageBean {
 		btnSend = getMsgUtil().getMessage("note.send");
 		btnReply = getMsgUtil().getMessage("note.reply");
 		btnDelete = getMsgUtil().getMessage("note.delete");
+		confirmTitle = getMsgUtil().getMessage("note.confirm.title");
+		confirmContent = getMsgUtil().getMessage("note.confirm.content");
+		confirmCancel = getMsgUtil().getMessage("note.confirm.cancel");
+		confirmApply = getMsgUtil().getMessage("note.confirm.apply");
 	}
 
 	private Note message;
@@ -39,4 +43,8 @@ public class NoteBean extends MessageBean {
 	private String btnSend;
 	private String btnReply;
 	private String btnDelete;
+	private String confirmTitle;
+	private String confirmContent;
+	private String confirmCancel;
+	private String confirmApply;
 }

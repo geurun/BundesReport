@@ -25,6 +25,10 @@ public class CommentListBean extends MessageBean {
 		btnSave = getMsgUtil().getMessage("comment.btnSave");
 		btnModify = getMsgUtil().getMessage("comment.btnModify");
 		btnDelete = getMsgUtil().getMessage("comment.btnDelete");
+		confirmTitle = getMsgUtil().getMessage("comment.confirm.title");
+		confirmContent = getMsgUtil().getMessage("comment.confirm.content");
+		confirmCancel = getMsgUtil().getMessage("comment.confirm.cancel");
+		confirmApply = getMsgUtil().getMessage("comment.confirm.apply");
 	}
 
 	private List<Comment> comments;
@@ -37,4 +41,8 @@ public class CommentListBean extends MessageBean {
 	private String btnModify;
 	private String btnDelete;
 	private int hasPermit = 0;
+	private String confirmTitle;
+	private String confirmContent;
+	private String confirmCancel;
+	private String confirmApply;
 }
