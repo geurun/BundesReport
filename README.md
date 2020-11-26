@@ -1,4 +1,4 @@
-![](/img/bundesreport-logo-gray-layer.png)
+![](/src/main/resources/static/img/bundesreport-logo-color-3.png)
 
 1. **프로젝트 소개 / 팀 소개**
    - [Bundesreport](#bundesreport)
@@ -54,7 +54,7 @@ _____
 - Bootstrap
 - Lombok
 - JPA
-- CAPTCHA
+- reCAPTCHA
 
 ### 기타
 - 버전 관리 : Git
