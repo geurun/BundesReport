@@ -20,11 +20,11 @@
 										<input type="hidden" id="id" name="id" th:field="*{id}" />
 										<input type="hidden" id="user" name="user" th:field="*{user}" />
 										<input type="hidden" id="category" name="category" th:field="*{category}" />
-										<table class="table table-bordered">
+										<table class="table">
 											<tbody>
 												<tr>
 													<th style="width: 15%" th:text="${bean.postTitle}"></th>
-													<td style="width: 85%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.postTitle}" th:field="*{title}" th:text="${title}" required /></td>
+													<td style="width: 85%"><input type="text" class="form-control input-sm" th:attr="placeholder=${bean.postTitle}" th:field="*{title}" th:text="${title}" maxlength="45" oninput="maxLength(this)" required /></td>
 												</tr>
 												<tr>
 													<th th:text="${bean.postContent}"></th>
@@ -35,7 +35,7 @@
 														<a class="btn btn-secondary" th:href="@{/post/list/{category} (category=${bean.category})}" role="button"><span th:text="${bean.btnList}"></span></a>
 													</th>
 													<td style="border: none;" class="text-right">
-														<input type="submit" name="btnSave" id="btnSave" class="btn btn-secondary" th:value="${bean.btnSave}" />
+														<input type="submit" name="btnSave" id="btnSave" class="btn btn-info" th:value="${bean.btnSave}" />
 													</td>
 												</tr>
 											</tbody>

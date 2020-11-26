@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="presentationScriptFragment">
+	<!-- Bootstrap core JavaScript-->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- Core plugin JavaScript-->
+	<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+	<!-- presentation -->
+	<script th:src="@{/js/docSlider.js}"></script>
+	<script>docSlider.init();</script>
+	<!-- Custom scripts for all pages-->
+	<script th:src="@{/js/sb-admin-2.js}"></script>
+	<!-- Sidebar highlighter -->
+	<script th:src="@{/js/sidebarHighlighter.js}"></script>
+</th:block>
+</html>

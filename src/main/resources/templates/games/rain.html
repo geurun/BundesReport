@@ -87,15 +87,15 @@
 				clearInterval(setInterval1);
 				clearInterval(setInterval2);
 				if (level == 5) {
-					result += "<h1>Herzlichen Glückwunsch! Sie haben gewonnen! XD</h1>";
+					message = "<h1>Herzlichen Glückwunsch! Sie haben gewonnen! XD</h1>";
 				} else {
 					var nextlevel = (parseInt(level) + 1);
-					message += "<h1>"
+					message = "<h1>"
 							+ (parseInt(nextlevel) - 1)
 							+ "Level <br>haben Sie geschafft!</h1><br><button class='btn btn-success'><a href='?level="
 							+ nextlevel + "'><h3>Nächstes Level</a></button>";
-					result.innerHTML += message;
 				}
+				result.innerHTML += message;
 				var text = document.getElementById('text');
 				text.disabled = true;
 			}
@@ -110,7 +110,7 @@
 			function gameover(code) {
 				var message = '';
 				var result = document.getElementById('result');
-				;
+				
 				clearInterval(setInterval1);
 				clearInterval(setInterval2);
 				if (code == 1) {

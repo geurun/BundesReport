@@ -20,6 +20,7 @@ public class SidebarBean extends MessageBean {
 		freeBoard = getMsgUtil().getMessage("menu.freeBoard");
 		abroadBoard = getMsgUtil().getMessage("menu.abroadBoard");
 		livingQA = getMsgUtil().getMessage("menu.livingQA");
+		deutschQA = getMsgUtil().getMessage("menu.deutschQA");
 		fleaMarket = getMsgUtil().getMessage("menu.fleaMarket");
 		jobSearch = getMsgUtil().getMessage("menu.jobSearch");
 		club = getMsgUtil().getMessage("menu.club");
@@ -29,6 +30,8 @@ public class SidebarBean extends MessageBean {
 		event = getMsgUtil().getMessage("menu.event");
 		miniGame = getMsgUtil().getMessage("menu.miniGame");
 		rain = getMsgUtil().getMessage("menu.rain");
+		article = getMsgUtil().getMessage("menu.article");
+		presentation = getMsgUtil().getMessage("menu.presentation");
 	}
 
 	private String home;
@@ -37,6 +40,7 @@ public class SidebarBean extends MessageBean {
 	private String freeBoard;
 	private String abroadBoard;
 	private String livingQA;
+	private String deutschQA;
 	private String fleaMarket;
 	private String jobSearch;
 	private String club;
@@ -46,4 +50,6 @@ public class SidebarBean extends MessageBean {
 	private String event;
 	private String miniGame;
 	private String rain;
+	private String article;
+	private String presentation;
 }

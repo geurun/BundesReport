@@ -7,17 +7,18 @@ td {
 	text-decoration: none;
 }
 
-#postListDT a, #noteListDT a, .pagination a{
+#postListDT a, #noteListDT a, .pagination a, #btnMessage {
 	text-decoration: none;
 	color: #858796;
 }
 
-#postListDT a:hover, #noteListDT a:hover, .pagination a:hover{
+#postListDT a:hover, #noteListDT a:hover, .pagination a:hover,
+	#btnMessage:hover {
 	color: #43444c;
 }
 
-.gallery-body >a> img {
-	width: 100% !important;
+.gallery-body>a>img {
+	width: 100%!important;
 	height: 75%;
 	padding: 5px;
 }
@@ -27,4 +28,6 @@ td {
 	border-color: #36b9cc;
 }
 
-
+.min400 {
+	min-width: 400px;
+}

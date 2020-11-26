@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/presentation">
+<th:block layout:fragment="content">
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<a href="/"> <img class="btn-presentation-close" th:src="@{/img/presentation/icon_arrow_prev_wt.png}">
+		</a>
+		<div class="docSlider">
+			<section id="window1">
+				<div class="inner">
+					<span class="description">
+						<div class="presentation-img-logo">
+							<img th:src="@{/img/BundesReportLogo.png}">
+						</div> 
+						Today, we continue to have special communication that shares our daily lives, empathizes with each other, and creates new things that we need.<br />
+						<br />
+						Our communication connects each other, creates new values, and supports you who love Germany and Korea.<br />
+						<br />
+						So that the excitement of starting a new life on the other side of the globe, and the joy of free communication, continues every single day,<br />
+						<br />
+						<span class="description-bold mt-3">
+						Bundes Report is in your daily life today.
+						</span>
+					</span>
+					<div class="presentation-img-mainpage">
+						<img th:src="@{/img/presentation/main_page.png}">
+					</div>
+				</div>
+			</section>
+			<section id="window2">
+				<div class="inner">
+					<table class="description description-table-profile">
+						<tr>
+							<td colspan="3">
+								<div class="description description-profile-title">
+									<span>Team of Julnaf</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="presentation-profile">
+								<div class="presentation-img-profile">
+									<img class="juli" th:src="@{/img/presentation/juli.jpg}">
+								</div>
+							</td>
+							<td class="presentation-profile">
+								<div class="presentation-img-profile">
+									<img class="hanna" th:src="@{/img/presentation/hanna.jpg}">
+								</div>
+							</td>
+							<td class="presentation-profile">
+								<div class="presentation-img-profile">
+									<img class="olaf" th:src="@{/img/presentation/olaf.jpg}">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><span class="description-profile-bold ml-3 mb-3"> Juli, You-Jin Lee<br /></span></td>
+							<td><span class="description-profile-bold ml-3 mb-3"> Hanna, Ji-Hyun Lee<br /></span></td>
+							<td><span class="description-profile-bold ml-3 mb-3"> Olaf, Seung-Jae Lee<br /></span></td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									Data Modeling<br />
+									Development of Boards function<br />
+									Development of Gallery board function<br />
+									Development of Comment function
+								</span>
+							</td>
+							<td>
+								<span>
+									Front-end Development<br />
+									View designing<br />
+									Create layout and views<br />
+									Development of Game function
+								</span>
+							</td>
+							<td>
+								<span>
+									Setting up the Development environment<br />
+									Development of User function<br />
+									Development of message function<br />
+								</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+			<section id="window3">
+				<div class="inner">
+					<div class="row description">
+						<div class="presentation-img-settingpage">
+							<img th:src="@{/img/presentation/spring.png}">
+						</div>
+						<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationOne">
+							<!-- Nav Item - Pages Collapse Menu -->
+							<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <span
+									class="description-table-title">DE</span>
+							</a>
+								<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#presentationOne">
+									<div class="bg-white py-2 collapse-inner rounded">
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/java.png}">
+												<figcaption>11.0.9 (adoptopenjdk)</figcaption>
+											</figure>
+										</a>
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/mysql.png}">
+												<figcaption>MySQL 8.0.22</figcaption>
+											</figure>
+										</a>
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/tomcat.png}">
+												<figcaption>Apache Tomcat 9.0.39</figcaption>
+											</figure>
+										</a>
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/eclipse.png}">
+												<figcaption>Eclipse 2020-09</figcaption>
+											</figure>
+										</a>
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/maven.png}">
+												<figcaption>Maven</figcaption>
+											</figure>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationTwo">
+							<!-- Nav Item - Pages Collapse Menu -->
+							<li class="nav-item"><a class="nav-link collapsed nav-spec" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <span
+									class="description-table-title">SPEC</span>
+							</a>
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#presentationTwo">
+									<div class="bg-white py-2 collapse-inner rounded collapse-spec">
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/spring_boot.png}">
+												<img th:src="@{/img/presentation/spring_security.png}">
+												<figcaption>
+													Spring Boot
+												</figcaption>
+											</figure>
+										</a> <a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img class="mr-3" th:src="@{/img/presentation/thymeleaf.png}">
+												<img th:src="@{/img/presentation/bootstrap.png}">
+												<figcaption>View</figcaption>
+											</figure>
+										</a> <a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/lombok.png}">
+												<img th:src="@{/img/presentation/JPA_Hibernate.png}">
+												<figcaption>Model</figcaption>
+											</figure>
+										</a> <a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/reCAPTCHA.png}">
+												<figcaption>Tools</figcaption>
+											</figure>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="third-col navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mr-5" id="presentationThree">
+							<!-- Nav Item - Pages Collapse Menu -->
+							<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"> <span
+									class="description-table-title">Versioning</span>
+							</a>
+								<div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#presentationThree">
+									<div class="bg-white py-2 collapse-inner rounded">
+										<a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/github.png}">
+												<figcaption>GitHub</figcaption>
+											</figure>
+										</a> <a class="collapse-item" href="#">
+											<figure class="presentation-img-setting">
+												<img th:src="@{/img/presentation/github_project.png}">
+												<figcaption>Github project</figcaption>
+											</figure>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section id="window4">
+				<div class="inner">
+					<span class="description description-model">
+						<div class="presentation-img-modelpage">
+							<img th:src="@{/img/presentation/BundesReport_model.png}">
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">회원 관리 기능</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">회원 간 쪽지 기능</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">게시판 기능(댓글, 좋아요, 갤러리)</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">게임 기능(산성비)</span>
+						</div>
+						<br />
+						<div class="mb-3">
+							<span class="description-bold">USERS: 회원관리 테이블</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">POSTS: 게시물 테이블</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">POSTS_LIKES: 게시물 좋아요 테이블</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">COMMENTS: 댓글 테이블</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">COMMENT_LIKES: 댓글 좋아요 테이블</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold">NOTES: 쪽지 테이블</span>
+						</div>
+					</span>
+				</div>
+			</section>
+			<section id="window5">
+				<div class="inner">
+					<span class="description description-future">
+						<div class="presentation-img-futurepage">
+							<img th:src="@{/img/presentation/future.png}">
+						</div>
+						<div class="description-future-title">
+							<span class="description-bold">Further works</span>
+						</div>
+						<div class="mb-3">
+							<span class="description-bold future-bold">Board<br /></span>
+							Change to "Paging Web Support" of Spring Data JPA
+						</div>
+						<div class="mb-3">
+						<span class="description-bold future-bold">Member<br /></span>
+						<ul>
+							<li>Support OAuth</li>
+							<li>Find Password</li>
+							<li>Use E-mail authentication</li>
+						</ul>
+						</div>
+					</span>
+				</div>
+			</section>
+		</div>
+	</div>
+</th:block>
+</html>

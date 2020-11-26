@@ -39,6 +39,7 @@ public class PostListBean extends MessageBean {
 		postTitle = getMsgUtil().getMessage("post.list.postTitle");
 		createdUser = getMsgUtil().getMessage("post.list.createdUser");
 		createdDate = getMsgUtil().getMessage("post.list.createdDate");
+		viewCount = getMsgUtil().getMessage("post.list.viewCount");
 		write = getMsgUtil().getMessage("post.list.write");
 		btnMessageSend = getMsgUtil().getMessage("post.list.note.send");
 	}
@@ -49,6 +50,7 @@ public class PostListBean extends MessageBean {
 	private String postTitle;
 	private String createdUser;
 	private String createdDate;
+	private String viewCount;
 	private String write;
 	private String btnMessageSend;
 }

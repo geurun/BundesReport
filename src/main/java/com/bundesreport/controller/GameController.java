@@ -13,4 +13,10 @@ public class GameController extends PageController {
 		createLayout(model, auth);
 		return "games/rain";
 	}
+	
+	@RequestMapping(value = "/game/article")
+	public String article(Model model, Authentication auth) {
+		createLayout(model, auth);
+		return "games/article";
+	}
 }
