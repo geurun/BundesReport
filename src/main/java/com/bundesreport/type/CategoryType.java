@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum CategoryType {
 	FREE_BOARD(0), ABROAD_BOARD(1), LIVING_QA(2), FLEA_MARKET(3), JOB_SEARCH(4), CLUB(5), EVENT_NOTIFICATION(6),
-	RECIPE(7), GALLERY(8);
+	RECIPE(7), GALLERY(8), DEUTSCH_QA(9);
 
 	CategoryType(int value) {
 		this.value = value;
@@ -22,6 +22,9 @@ public enum CategoryType {
 		}
 		if (LIVING_QA.getValue() == this.value) {
 			return "post.title.livingQA";
+		}
+		if (DEUTSCH_QA.getValue() == this.value) {
+			return "post.title.deutschQA";
 		}
 		if (FLEA_MARKET.getValue() == this.value) {
 			return "post.title.fleaMarket";
@@ -50,6 +53,9 @@ public enum CategoryType {
 		}
 		if (LIVING_QA.getValue() == this.value) {
 			return "living_qa";
+		}
+		if (DEUTSCH_QA.getValue() == this.value) {
+			return "deutsch_qa";
 		}
 		if (FLEA_MARKET.getValue() == this.value) {
 			return "flea_market";

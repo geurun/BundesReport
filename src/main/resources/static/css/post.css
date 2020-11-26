@@ -1,44 +1,52 @@
-.post-view-title{
-	font-size: 2rem;
-	width:1%;
-	white-space: nowrap;
+a:hover {
+	text-decoration: none;
 }
 
-.view-count{
-	vertical-align: bottom !important;
-}
-
-.table-bordered th, .table-bordered td{
-	border: none !important;
-}
-
-.table th, .table td{
-	border: none !important;
-	padding-top: 0 !important;
-}
-
-.created-user{
+.post-view-title {
+	font-size: 1.75rem;
 	width: 1%;
-	white-space: nowrap;
-	padding-right: 0px !important;
 }
 
-.message-to-user{
+.view-count {
+	vertical-align: bottom!important;
+}
+
+.table-bordered th, .table-bordered td {
+	border: none!important;
+}
+
+.table th, .table td {
+	border: none!important;
+	padding-top: 0!important;
+}
+
+.created-user {
+	width: 1%;
+	padding-right: 0px!important;
+}
+
+.message-to-user {
 	color: #858796;
 }
 
-.message-to-user:hover{
+.message-to-user:hover {
 	color: #474850;
 }
 
-.user-comment{
-	border: none !important;
+.user-comment {
+	border: none!important;
 }
 
-.form-control{
-	background: none !important;
+.form-control {
+	background: none!important;
 }
 
-.comment-entered{
-	border: none !important;
+.comment-entered {
+	border: none!important;
+}
+
+.note-image-btn {
+	color: var(--white)!important;
+	background-color: var(--info)!important;
+	border-color: var(--info)!important;
 }

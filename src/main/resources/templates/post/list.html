@@ -14,7 +14,7 @@
 							<h1 class="h3 mb-0 text-gray-800" th:text="${bean.title}"></h1>
 						</div>
 						<div class="text-right pb-2" th:if="${bean.user} != null and ${bean.category != null}">
-							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-secondary"><span th:text="${bean.write}"></span></a>
+							<a th:href="@{/post/write/{category} (category=${bean.category})}" class="btn btn-info"><span th:text="${bean.write}"></span></a>
 						</div>
 						<div class="card shadow mb-4">
 							<div class="card-body">
@@ -22,20 +22,19 @@
 									<table class="table table-bordered" id="postListDT">
 										<thead>
 											<tr>
-												<th style="width: 10%" th:text="${bean.number}"></th>
-												<th style="width: 50%" th:text="${bean.postTitle}"></th>
+												<th style="width: 65%" th:text="${bean.postTitle}"></th>
 												<th style="width: 20%" th:text="${bean.createdUser}"></th>
-												<th style="width: 10%" th:text="${bean.viewCount}"></th>
-												<th style="width: 10%" th:text="${bean.createdDate}"></th>
+												<th style="width: 15%" th:text="${bean.createdDate}"></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="post : ${bean.posts}">
-												<td th:text="${post.id}"></td>
 												<td>
 													<a th:href="@{/post/view/{postId} (postId=${post.id})}">
 														<span th:text="${post.title}"></span>
-														<span class="badge badge-pill badge-secondary" style="margin: 0 5px;" th:if="${post.getComments().size() > 0}" th:text="${post.getComments().size()}"></span>
+														<span class="badge badge-pill badge-info" th:if="${post.viewCount > 0}"><i class="far fa-eye mr-1"></i><span th:text="${post.viewCount}"></span></span>
+														<span class="badge badge-pill badge-info" th:if="${post.getLikeCount() > 0}"><i class="far fa-thumbs-up mr-1"></i><span th:text="${post.getLikeCount()}"></span></span>
+														<span class="badge badge-pill badge-secondary" th:if="${post.getCommentCount() > 0}"><i class="far fa-comment"></i><span th:text="${post.getCommentCount()}"></span></span>
 													</a>
 												</td>
 												<td th:if="${bean.user == null}" th:text="${post.user.username}"></td>
@@ -50,10 +49,9 @@
 														</a>
 													</div>
 												</td>
-												<td th:text="${post.viewCount}"></td>
-												<td th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></td>
-												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></td>
-												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy')}"></td>
+												<td th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
 											</tr>
 										</tbody>
 									</table>
