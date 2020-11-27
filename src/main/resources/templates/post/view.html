@@ -80,7 +80,7 @@
 											</tr>
 											<tr>
 												<th class="text-center" colspan="3">
-													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-success" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
+													<a th:if="${bean.user != null and bean.hasLike == 0}" class="btn btn-info" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
 													<a th:if="${bean.user != null and bean.hasLike == 1}" class="btn btn-outline-danger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a> 
 													<span class="badge badge-pill badge-secondary" id="postLikeCount" th:if="${bean.user == null}"><i class="far fa-thumbs-up p-1"></i><span class="mr-1" th:text="${bean.post.getLikeCount()}"></span></span>
 													<span class="badge badge-pill badge-secondary ml-1" id="postLikeCount" th:if="${bean.user != null}" th:text="${bean.post.getLikeCount()}"></span>
@@ -160,7 +160,7 @@
 													</a>
 												</td>
 												<td class="text-right">
-													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-success ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
+													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and !comment.hasMineLike(bean.user)}" class="btn btn-info ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<a th:id="'btnCommentLike__${comment.id}__'" th:if="${bean.user != null and comment.hasMineLike(bean.user)}" class="btn btn-outline-danger ajaxTrigger" role="button" id="btnPostLike"><i class="fas fa-thumbs-up"></i></a>
 													<span th:id="'commentLikeCount__${comment.id}__'" class="badge badge-pill badge-secondary ml-1" th:text="${comment.getLikeCount()}"></span>
 												</td>

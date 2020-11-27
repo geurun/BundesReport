@@ -16,13 +16,13 @@ $("#btnPostLike").on("click", function() {
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
 		}, success: function(data) {
-			if ($("#btnPostLike").hasClass("btn-success")) {
-				$("#btnPostLike").removeClass("btn-success");
+			if ($("#btnPostLike").hasClass("btn-info")) {
+				$("#btnPostLike").removeClass("btn-info");
 				$("#btnPostLike").addClass("btn-outline-danger");
 				$("#postLikeCount").text(Number($("#postLikeCount").text()) + 1);
 			} else {
 				$("#btnPostLike").removeClass("btn-outline-danger");
-				$("#btnPostLike").addClass("btn-success");
+				$("#btnPostLike").addClass("btn-info");
 				$("#postLikeCount").text(Number($("#postLikeCount").text()) - 1);
 			}
 			$("#btnPostLike").prop("disabled", false);
@@ -97,13 +97,13 @@ function commentLikeAction(btnCommentLike, num) {
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
 		}, success: function(data) {
-			if (btnCommentLike.hasClass("btn-success")) {
-				btnCommentLike.removeClass("btn-success");
+			if (btnCommentLike.hasClass("btn-info")) {
+				btnCommentLike.removeClass("btn-info");
 				btnCommentLike.addClass("btn-outline-danger");
 				$('#commentLikeCount' + num).text(Number($('#commentLikeCount' + num).text()) + 1);
 			} else {
 				btnCommentLike.removeClass("btn-outline-danger");
-				btnCommentLike.addClass("btn-success");
+				btnCommentLike.addClass("btn-info");
 				$('#commentLikeCount' + num).text(Number($('#commentLikeCount' + num).text()) - 1);
 			}
 			btnCommentLike.prop("disabled", false);
