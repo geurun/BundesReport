@@ -7,6 +7,9 @@ $(document).ready(function() {
 		});
 	}
 	if ($('#noteListDT').length) {
-		$('#noteListDT').DataTable({"order": [[ 2, "asc" ]]});
+		$('#noteListDT').DataTable({
+			columnDefs: [ { type: 'date', 'targets': [2] } ],
+			"order": [[ 2, "desc" ]]
+		});
 	}
 });

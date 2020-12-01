@@ -51,7 +51,7 @@
 												</td>
 												<td th:if="${bean.user == null}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('KOREAN')}" th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'HH:mm dd-MM-yyyy')}"></td>
+												<td th:if="${bean.user != null and bean.user.getLanguageStatus().getString().equals('DEUTSCH')}" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
 											</tr>
 										</tbody>
 									</table>
