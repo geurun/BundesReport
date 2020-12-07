@@ -72,7 +72,13 @@ From November 4 to December 1 by taking the training course for 2020 K-Move FKI 
    - Support OAuth 
    - Find password
    - Verified by email or Send email
-2. Modify the way showing data on board(Datatable Library -> Spring Data JPA의 Paging Web Support)
-3. Make admin page
-4. Make hashtag(#) on post
-5. Make ranking board for mini-game
+2. Make admin page
+3. Make hashtag(#) on post
+4. Make ranking board for mini-game
+
+## Example Images
+![](/src/main/resources/static/img/example/1.png)
+![](/src/main/resources/static/img/example/2.png)
+![](/src/main/resources/static/img/example/3.png)
+![](/src/main/resources/static/img/example/4.png)
+![](/src/main/resources/static/img/example/5.png)
