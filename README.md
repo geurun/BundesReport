@@ -22,7 +22,7 @@ _____
 - Build development environment
 - Implement user feature
 - Implement message feature
-- :link: [Github](https://github.com/veritas0806)
+- :link: [Github](https://github.com/geurun)
 
 **YouJin Lee (Juli)**
 - Backend
